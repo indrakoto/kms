@@ -9,7 +9,8 @@ use App\Http\Controllers\ArticleController;
 
 
 Route::get('/', function () {
-    return view('beranda');
+    //return view('beranda');
+    return redirect('/home');
 });
 
 Route::get('/home', function () {
@@ -25,6 +26,13 @@ Route::get('/home', function () {
 });
 // Route untuk halaman artikel
 Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show');
+
+// Route untuk halaman utama artikel
+Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
+
+// Route untuk memuat lebih banyak artikel via AJAX
+Route::get('/article/load-more', [ArticleController::class, 'loadMoreArticles'])->name('article.loadMore');
+
 
 
 Route::get('/depan', function () {
