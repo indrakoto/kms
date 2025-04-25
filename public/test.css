@@ -1,0 +1,1426 @@
+/* Knowledge Management System (KMS) Ditjen Migas - Beranda */
+
+position: relative;
+width: 1366px;
+height: 1789px;
+
+background: #FFFFFF;
+
+
+/* Rectangle 1 */
+
+position: absolute;
+width: 1366px;
+height: 400px;
+left: calc(50% - 1366px/2);
+top: 762px;
+
+background: #284173;
+border-radius: 0px;
+
+
+/* Mask group */
+
+position: absolute;
+width: 1000px;
+height: 330px;
+left: 183px;
+top: 100px;
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+width: 1000px;
+height: 330px;
+left: calc(50% - 1000px/2);
+top: 100px;
+
+background: #D9D9D9;
+border-radius: 30px;
+
+
+/* Banner 01 1 */
+
+position: absolute;
+width: 1624px;
+height: 378px;
+left: 16px;
+top: 70px;
+
+background: url(Banner 01.png);
+
+
+/* Rectangle 1 */
+
+position: absolute;
+width: 1366px;
+height: 75px;
+left: calc(50% - 1366px/2);
+top: 0px;
+
+background: #284173;
+
+
+/* Rectangle 3 */
+
+position: absolute;
+width: 82px;
+height: 29px;
+left: 1201px;
+top: 23px;
+
+background: #FFC541;
+border-radius: 14.5px;
+
+
+/* KMS by DIRJEN MIGAS 02 1 */
+
+position: absolute;
+width: 110px;
+height: 40px;
+left: 84px;
+top: 18px;
+
+background: url(KMS by DIRJEN MIGAS 02.png);
+
+
+/* KMS by DIRJEN MIGAS 02 2 */
+
+position: absolute;
+width: 95px;
+height: 34px;
+left: 1053px;
+top: 120px;
+
+background: url(KMS by DIRJEN MIGAS 02.png);
+
+
+/* Beranda */
+
+position: absolute;
+width: 56px;
+height: 18px;
+left: 287px;
+top: 28px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+
+color: #FFC541;
+
+
+
+/* Neraca Arus Minyak Bumi */
+
+position: absolute;
+width: 86px;
+height: 36px;
+left: 190px;
+top: 997px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Neraca Arus LPG */
+
+position: absolute;
+width: 83px;
+height: 36px;
+left: 341px;
+top: 997px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Neraca Arus Gas */
+
+position: absolute;
+width: 83px;
+height: 36px;
+left: 491px;
+top: 997px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Capaian Kinerja (SICAKI) */
+
+position: absolute;
+width: 105px;
+height: 36px;
+left: 629px;
+top: 997px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* E-SAKIP */
+
+position: absolute;
+width: 55px;
+height: 18px;
+left: 805px;
+top: 997px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Manajemen Risiko (Aplikasi Kementerian) */
+
+position: absolute;
+width: 152px;
+height: 36px;
+left: 906px;
+top: 997px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Model Proyeksi (Vensim) */
+
+position: absolute;
+width: 106px;
+height: 36px;
+left: 1080px;
+top: 997px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Masuk */
+
+position: absolute;
+width: 46px;
+height: 18px;
+left: 1219px;
+top: 28px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Analisis */
+
+position: absolute;
+width: 53px;
+height: 18px;
+left: 377px;
+top: 28px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Knowledge */
+
+position: absolute;
+width: 74px;
+height: 18px;
+left: 464px;
+top: 28px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Help */
+
+position: absolute;
+width: 31px;
+height: 18px;
+left: 573px;
+top: 28px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Group 1 */
+
+position: absolute;
+width: 397px;
+height: 29px;
+left: 786px;
+top: 23px;
+
+
+
+/* Rectangle 2 */
+
+position: absolute;
+width: 397px;
+height: 29px;
+left: 786px;
+top: 23px;
+
+background: #FFFFFF;
+border-radius: 14.5px;
+
+
+/* Tulis Pencarian ... */
+
+position: absolute;
+width: 118px;
+height: 18px;
+left: 821px;
+top: 29px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+
+color: #C1C1C1;
+
+
+
+/* Icon Search */
+
+position: absolute;
+left: 58.64%;
+right: 40.56%;
+top: 1.79%;
+bottom: 97.6%;
+
+border: 1px solid #C1C1C1;
+
+
+/* Rectangle 4 */
+
+position: absolute;
+width: 1000px;
+height: 255px;
+left: calc(50% - 1000px/2 + 1030px);
+top: 138px;
+
+background: url(worker-oil-rig-sunset-created-with-generative-ai-technology_185193-110072.jpg);
+border-radius: 30px;
+
+
+/* Rectangle 5 */
+
+position: absolute;
+width: 1000px;
+height: 255px;
+left: calc(50% - 1000px/2 - 1030px);
+top: 138px;
+
+background: url(modern-factory-industrial-zone-blue-sky_181624-6369.jpg);
+border-radius: 30px;
+
+
+/* Apa itu KMS? */
+
+position: absolute;
+width: 182px;
+height: 35px;
+left: 508px;
+top: 491px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 800;
+font-size: 30px;
+line-height: 35px;
+
+color: #000000;
+
+
+
+/* Analisis */
+
+position: absolute;
+width: 108px;
+height: 35px;
+left: calc(50% - 108px/2);
+top: calc(50% - 35px/2 - 65px);
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 800;
+font-size: 30px;
+line-height: 35px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Knowledge Terbaru */
+
+position: absolute;
+width: 263px;
+height: 35px;
+left: calc(50% - 263px/2 + 0.5px);
+top: calc(50% - 35px/2 + 339px);
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 800;
+font-size: 30px;
+line-height: 35px;
+text-align: center;
+
+color: #284173;
+
+
+
+/* Mengelola Pengetahuan, Menggerakkan Energi. */
+
+position: absolute;
+width: 471px;
+height: 70px;
+left: 676px;
+top: 230px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 800;
+font-size: 30px;
+line-height: 35px;
+
+color: #FFFFFF;
+
+
+
+/* Knowledge Management System (KMS) Ditjen Migas adalah platform digital yang dirancang untuk mengelola, mendokumentasikan, dan menganalisis berbagai data serta informasi strategis di sektor minyak dan gas bumi. KMS ini berfungsi sebagai pusat pengetahuan terintegrasi yang mencakup regulasi, operasional, keuangan, teknologi, serta analisis industri migas. Dengan fitur berbasis AI dan data analytics, sistem ini mendukung pengambilan keputusan, efisiensi operasional, serta pengembangan inovasi dalam pengelolaan migas di Indonesia. */
+
+position: absolute;
+width: 623px;
+height: 144px;
+left: 489px;
+top: 549px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+
+color: #000000;
+
+
+
+/* Rectangle 6 */
+
+position: absolute;
+width: 2px;
+height: 69px;
+left: 663px;
+top: 231px;
+
+background: #FFC541;
+
+
+/* Rectangle 7 */
+
+position: absolute;
+width: 2px;
+height: 33px;
+left: 489px;
+top: 494px;
+
+background: #FFC541;
+
+
+/* Group 2 */
+
+position: absolute;
+width: 61px;
+height: 10px;
+left: calc(50% - 61px/2 + 0.5px);
+top: 443px;
+
+
+
+/* Ellipse 1 */
+
+position: absolute;
+width: 10px;
+height: 10px;
+left: 653px;
+top: 443px;
+
+background: #284173;
+
+
+/* Ellipse 2 */
+
+position: absolute;
+width: 10px;
+height: 10px;
+left: 678px;
+top: 443px;
+
+background: #D9D9D9;
+
+
+/* Ellipse 3 */
+
+position: absolute;
+width: 10px;
+height: 10px;
+left: 704px;
+top: 443px;
+
+background: #D9D9D9;
+
+
+/* data-analysis-graph-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--analytics-logo-business-bussines-vol-1-pack-infographics-illustrations-3962174_waifu2x_art_noise3_scale 1 */
+
+position: absolute;
+width: 237px;
+height: 237px;
+left: 216px;
+top: 470px;
+
+background: url(data-analysis-graph-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--analytics-logo-business-bussines-vol-1-pack-infographics-illustrations-3962174_waifu2x_art_noise3_scale.png);
+
+
+/* Rectangle 8 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 183px;
+top: 880px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Rectangle 9 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 333px;
+top: 880px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Rectangle 10 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 483px;
+top: 880px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Rectangle 11 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 633px;
+top: 880px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Rectangle 12 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 783px;
+top: 880px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Rectangle 13 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 933px;
+top: 880px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Rectangle 14 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 1083px;
+top: 880px;
+
+background: #FFFFFF;
+border-radius: 10px;
+
+
+/* Group 3 */
+
+position: absolute;
+width: 1137px;
+height: 25px;
+left: calc(50% - 1137px/2 + 0.5px);
+top: 918px;
+
+
+
+/* Icon Arrow left-circle */
+
+position: absolute;
+left: 8.42%;
+right: 89.75%;
+top: 51.31%;
+bottom: 47.29%;
+
+border: 2px solid #FFFFFF;
+
+
+/* Icon Arrow right-circle */
+
+position: absolute;
+left: 91.65%;
+right: 6.52%;
+top: 51.31%;
+bottom: 47.29%;
+
+border: 2px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Group 4 */
+
+position: absolute;
+width: 200px;
+height: 40px;
+left: calc(50% - 200px/2);
+top: 1070px;
+
+
+
+/* Lihat Selengkapnya */
+
+position: absolute;
+width: 133px;
+height: 18px;
+left: calc(50% - 133px/2 - 0.5px);
+top: 1081px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Rectangle 15 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 200px;
+height: 40px;
+left: calc(50% - 200px/2);
+top: 1070px;
+
+border: 1px solid #FFFFFF;
+border-radius: 20px;
+
+
+/* Group 5 */
+
+position: absolute;
+width: 200px;
+height: 40px;
+left: calc(50% - 200px/2);
+top: 1599px;
+
+
+
+/* Lihat Selengkapnya */
+
+position: absolute;
+width: 133px;
+height: 18px;
+left: calc(50% - 133px/2 - 0.5px);
+top: 1610px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+/* identical to box height */
+text-align: center;
+
+color: #000000;
+
+
+
+/* Rectangle 15 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 200px;
+height: 40px;
+left: calc(50% - 200px/2);
+top: 1599px;
+
+border: 1px solid #000000;
+border-radius: 20px;
+
+
+/* oil-refinery-3d-icon-download-in-png-blend-fbx-gltf-file-formats--industry-factory-fuel-petroleum-pack-icons-8894180 1 */
+
+position: absolute;
+width: 90px;
+height: 90px;
+left: 188px;
+top: 885px;
+
+background: url(oil-refinery-3d-icon-download-in-png-blend-fbx-gltf-file-formats--industry-factory-fuel-petroleum-pack-icons-8894180.png);
+
+
+/* 11222202 1 */
+
+position: absolute;
+width: 72px;
+height: 72px;
+left: 347px;
+top: 894px;
+
+background: url(11222202.png);
+
+
+/* gas-cylinder-3d-icon-download-in-png-blend-fbx-gltf-file-formats--tank-cooking-stove-energy-pack-nature-icons-8679014 1 */
+
+position: absolute;
+width: 66px;
+height: 66px;
+left: 499px;
+top: 897px;
+
+background: url(gas-cylinder-3d-icon-download-in-png-blend-fbx-gltf-file-formats--tank-cooking-stove-energy-pack-nature-icons-8679014.png);
+
+
+/* analysis-chart-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bar-donut-graph-circular-desktop-data-analytics-pack-business-icons-7121889 1 */
+
+position: absolute;
+width: 64px;
+height: 64px;
+left: 654px;
+top: 897px;
+
+background: url(analysis-chart-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bar-donut-graph-circular-desktop-data-analytics-pack-business-icons-7121889.png);
+
+
+/* 11233865 1 */
+
+position: absolute;
+width: 66px;
+height: 66px;
+left: 800px;
+top: 895px;
+
+background: url(11233865.png);
+
+
+/* 3928183 1 */
+
+position: absolute;
+width: 59px;
+height: 59px;
+left: 953px;
+top: 900px;
+
+background: url(3928183.png);
+
+
+/* prototyping-3d-icon-download-in-png-blend-fbx-gltf-file-formats--blueprint-design-drafting-prototype-technology-printing-pack-art-abstract-icons-5740201 1 */
+
+position: absolute;
+width: 66px;
+height: 66px;
+left: 1103px;
+top: 897px;
+
+background: url(prototyping-3d-icon-download-in-png-blend-fbx-gltf-file-formats--blueprint-design-drafting-prototype-technology-printing-pack-art-abstract-icons-5740201.png);
+
+
+/* Rectangle 16 */
+
+position: absolute;
+width: 280px;
+height: 210px;
+left: 97px;
+top: 1570px;
+
+background: #F7F7F7;
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 19 */
+
+position: absolute;
+width: 280px;
+height: 210px;
+left: 337px;
+top: 1570px;
+
+background: #F7F7F7;
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 22 */
+
+position: absolute;
+width: 280px;
+height: 210px;
+left: 577px;
+top: 1570px;
+
+background: #F7F7F7;
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 25 */
+
+position: absolute;
+width: 280px;
+height: 210px;
+left: 817px;
+top: 1570px;
+
+background: #F7F7F7;
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 28 */
+
+position: absolute;
+width: 280px;
+height: 210px;
+left: 1057px;
+top: 1570px;
+
+background: #F7F7F7;
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 17 */
+
+position: absolute;
+width: 103px;
+height: 176px;
+left: 114px;
+top: 1412px;
+
+background: url(engineer-examining-data-with-oil-rig-backdrop_641503-114570.jpg);
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 20 */
+
+position: absolute;
+width: 103px;
+height: 176px;
+left: 354px;
+top: 1412px;
+
+background: url(biggest_oil_and_gas_companies.png);
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 23 */
+
+position: absolute;
+width: 103px;
+height: 176px;
+left: 594px;
+top: 1412px;
+
+background: url(industri-oil-and-gas.jpg);
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 26 */
+
+position: absolute;
+width: 103px;
+height: 176px;
+left: 834px;
+top: 1412px;
+
+background: url(analysis-global-energy-supply-chains_1104763-50795.jpg);
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Rectangle 29 */
+
+position: absolute;
+width: 103px;
+height: 176px;
+left: 1074px;
+top: 1412px;
+
+background: url(Oil-1.png);
+border-radius: 10px;
+transform: rotate(-90deg);
+
+
+/* Strategi Optimasi Produksi Migas: Best Practices & Implementasi */
+
+position: absolute;
+width: 176px;
+height: 54px;
+left: 114px;
+top: 1446px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+
+color: #284173;
+
+
+
+/* Roadmap Transisi Energi: Tantangan & Peluang bagi Sektor Migas */
+
+position: absolute;
+width: 176px;
+height: 54px;
+left: 354px;
+top: 1446px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+
+color: #284173;
+
+
+
+/* Regulasi Terbaru dalam Industri Migas: Dampak dan Implikasi */
+
+position: absolute;
+width: 176px;
+height: 54px;
+left: 594px;
+top: 1446px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+
+color: #284173;
+
+
+
+/* Digitalisasi & AI dalam Pengelolaan Migas: Inovasi Masa Depan */
+
+position: absolute;
+width: 176px;
+height: 54px;
+left: 834px;
+top: 1446px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+
+color: #284173;
+
+
+
+/* Keamanan & Keselamatan Operasi Migas: Standar & Protokol Terkini */
+
+position: absolute;
+width: 176px;
+height: 72px;
+left: 1074px;
+top: 1446px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+
+color: #284173;
+
+
+
+/* Direktorat Pembinaan Usaha Hulu */
+
+position: absolute;
+width: 176px;
+height: 12px;
+left: 114px;
+top: 1430px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #284173;
+
+
+
+/* Direktorat Pembinaan Program */
+
+position: absolute;
+width: 176px;
+height: 12px;
+left: 354px;
+top: 1430px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #284173;
+
+
+
+/* Sekretariat Ditjen Migas */
+
+position: absolute;
+width: 176px;
+height: 12px;
+left: 594px;
+top: 1430px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #284173;
+
+
+
+/* Direktorat Teknik & Lingkungan */
+
+position: absolute;
+width: 176px;
+height: 12px;
+left: 834px;
+top: 1430px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #284173;
+
+
+
+/* LEMIGAS */
+
+position: absolute;
+width: 176px;
+height: 12px;
+left: 1074px;
+top: 1430px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #284173;
+
+
+
+/* Rectangle 18 */
+
+position: absolute;
+width: 50px;
+height: 21px;
+left: 235px;
+top: 1529px;
+
+background: #FFC541;
+border-radius: 14.5px;
+
+
+/* Rectangle 21 */
+
+position: absolute;
+width: 50px;
+height: 21px;
+left: 475px;
+top: 1529px;
+
+background: #FFC541;
+border-radius: 14.5px;
+
+
+/* Rectangle 24 */
+
+position: absolute;
+width: 50px;
+height: 21px;
+left: 715px;
+top: 1529px;
+
+background: #FFC541;
+border-radius: 14.5px;
+
+
+/* Rectangle 27 */
+
+position: absolute;
+width: 50px;
+height: 21px;
+left: 955px;
+top: 1529px;
+
+background: #FFC541;
+border-radius: 14.5px;
+
+
+/* Rectangle 30 */
+
+position: absolute;
+width: 50px;
+height: 21px;
+left: 1195px;
+top: 1529px;
+
+background: #FFC541;
+border-radius: 14.5px;
+
+
+/* Lihat */
+
+position: absolute;
+width: 23px;
+height: 12px;
+left: 248px;
+top: 1534px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Lihat */
+
+position: absolute;
+width: 23px;
+height: 12px;
+left: 488px;
+top: 1534px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Lihat */
+
+position: absolute;
+width: 23px;
+height: 12px;
+left: 728px;
+top: 1534px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Lihat */
+
+position: absolute;
+width: 23px;
+height: 12px;
+left: 968px;
+top: 1534px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Lihat */
+
+position: absolute;
+width: 23px;
+height: 12px;
+left: 1208px;
+top: 1534px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Rectangle 31 */
+
+position: absolute;
+width: 1366px;
+height: 87px;
+left: calc(50% - 1366px/2);
+top: 1704px;
+
+background: #000000;
+border-radius: 0px;
+
+
+/* Group 6 */
+
+position: absolute;
+width: 143.98px;
+height: 46px;
+left: 1121px;
+top: 1725px;
+
+
+
+/* Icon X */
+
+position: absolute;
+left: 82.06%;
+right: 16.18%;
+top: 97.65%;
+bottom: 1.01%;
+
+background: #FFFFFF;
+
+
+/* Icon IG */
+
+position: absolute;
+left: 84.99%;
+right: 13.25%;
+top: 97.65%;
+bottom: 1.01%;
+
+background: #FFFFFF;
+
+
+/* Icon YT */
+
+position: absolute;
+left: 87.92%;
+right: 10.32%;
+top: 97.82%;
+bottom: 1.17%;
+
+background: #FFFFFF;
+
+
+/* Icon Linkedin */
+
+position: absolute;
+left: 90.85%;
+right: 7.4%;
+top: 97.65%;
+bottom: 1.01%;
+
+background: #FFFFFF;
+
+
+/* Connect with us */
+
+position: absolute;
+width: 104px;
+height: 12px;
+left: 1121px;
+top: 1725px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* © 2025 Direktorat Jenderal Minyak dan Gas Bumi Kementerian Energi dan Sumber Daya Mineral RI. */
+
+position: absolute;
+width: 352px;
+height: 36px;
+left: calc(50% - 352px/2 - 423px);
+top: 1729px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+text-align: center;
+
+color: #A0A0A0;
+
