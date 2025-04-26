@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Article;
 use App\Models\Analisis;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\KnowledgeController;
 
 
 Route::get('/', function () {
@@ -51,6 +52,12 @@ Route::get('/knowledge', function () {
     return view('knowledge');
     //return redirect('/article');
 });
+// Route untuk halaman utama knowledge
+Route::get('/knowledge', [KnowledgeController::class, 'index'])->name('knowledges.index');
+
+// Route untuk memuat lebih banyak knowledge via AJAX
+Route::get('/knowledge/load-more', [KnowledgeController::class, 'loadMoreArticles'])->name('knowledges.loadMore');
+
 
 Route::get('/chatbot', function () {
     return view('chatbot');
