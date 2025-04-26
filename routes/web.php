@@ -13,6 +13,11 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
+Route::get('/beranda', function () {
+    return view('beranda');
+    //return redirect('/home');
+});
+
 Route::get('/home', function () {
     // Mengambil 5 analisis terbaru
     $latestAnalisis = Analisis::latest()->take(5)->get();
@@ -25,20 +30,13 @@ Route::get('/home', function () {
     //return view('home');
 });
 // Route untuk halaman artikel
-Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Route untuk halaman utama artikel
-Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
+Route::get('/article', [ArticleController::class, 'index'])->name('articles.index');
 
 // Route untuk memuat lebih banyak artikel via AJAX
-Route::get('/article/load-more', [ArticleController::class, 'loadMoreArticles'])->name('article.loadMore');
-
-
-
-Route::get('/depan', function () {
-    return view('depan');
-});
-
+Route::get('/article/load-more', [ArticleController::class, 'loadMoreArticles'])->name('articles.loadMore');
 
 
 Route::get('/store', function () {
@@ -51,6 +49,7 @@ Route::get('/analisis', function () {
 
 Route::get('/knowledge', function () {
     return view('knowledge');
+    //return redirect('/article');
 });
 
 Route::get('/chatbot', function () {

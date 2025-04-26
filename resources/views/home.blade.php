@@ -268,7 +268,6 @@
 
         
 
-
       <div class="container">
         <div class="row">
         <h3 class="text-center mb-4">Knowledge Terbaru</h3>
@@ -308,7 +307,7 @@
               </div>
             </div>
           </div> <!-- End Course Item-->
-          @endforeach
+        @endforeach
 
           <div class="mt-4 text-center"><a href="/knowledge" class="read-more"><span>Lihat Selengkapnya</span><i class="bi bi-arrow-right"></i></a></div>
         </div>

@@ -26,7 +26,7 @@ class ArticleController extends Controller
             ]);
         }
     }
-    
+
     // Method untuk menampilkan artikel berdasarkan ID
     public function show($id)
     {
@@ -34,6 +34,6 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
 
         // Mengirim artikel ke view
-        return view('article.show', compact('article'));
+        return view('articles.show', compact('article'));
     }
 }
