@@ -108,7 +108,7 @@
                       @else 
 
                       @endif
-                      <p>{!! $article->content !!}</p>
+                      
 
 
                 </div>

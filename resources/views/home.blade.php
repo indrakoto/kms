@@ -291,7 +291,7 @@
                 @endif
                 </div>
 
-                <h3><a href="{{ route('articles.show', $article->id) }}">{{ $article->title }}</a></h3>
+                <h3><a href="{{ route('knowledges.show', $article->id) }}">{{ $article->title }}</a></h3>
                 <p class="description"> Institusi:  </p>
                 <div class="trainer d-flex justify-content-between align-items-center">
                   <div class="trainer-profile d-flex align-items-center">
