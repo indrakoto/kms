@@ -7,6 +7,7 @@ use App\Filament\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\ExpertProfile;
+use App\Models\Institusi;
 use App\Models\Source;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
@@ -35,7 +36,9 @@ class ArticleResource extends Resource
                     ->label('Kategori')
                     ->options(Category::orderBy('id', 'asc')->pluck('name','id'))
                     ->required(),
-                
+                Select::make('institusi_id')->label('Institusi')
+                    ->options(Institusi::orderBy('id', 'asc')->pluck('name','id'))
+                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
@@ -45,6 +48,7 @@ class ArticleResource extends Resource
                 Select::make('source_id')->label('Sumber Konten')
                     ->options(Source::orderBy('id', 'asc')->pluck('name','id'))
                     ->required(),
+
                 FileUpload::make('file_path')->label('Upload File'),
                 
                 Forms\Components\Toggle::make('is_published')
@@ -89,6 +93,11 @@ class ArticleResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->modalHeading('Hapus Data')
+                    ->modalDescription('Apakah anda sudah yakin untuk menghapus ini ?')
+                    ->modalSubmitActionLabel('Ya')
+                    ->modalCancelActionLabel('Batal'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

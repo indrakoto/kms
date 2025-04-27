@@ -61,13 +61,17 @@
   </header>
 
   <main class="main">
-      <!-- Courses Section -->
+
+
+
+    <!-- Courses Section -->
     <section id="courses" class="courses section">
 
       <div class="container">
 
         <div class="row">
-            <div class="col-lg-3">
+
+          <div class="col-lg-3">
               <div class="list-group">
                   <a 
                       href="{{ route('knowledges.index') }}" 
@@ -77,7 +81,7 @@
                   </a>
                   @foreach ($institusi as $inst)
                     <a 
-                        href="{{ route('knowledges.index', ['institusi' => $inst->id]) }}" 
+                        href="{{ route('articles.index', ['institusi' => $inst->id]) }}" 
                         class="list-group-item list-group-item-action {{ request('institusi') == $inst->id ? 'active-institusi' : '' }}"
                     >
                         {{ $inst->name }}
@@ -86,8 +90,8 @@
               </div>
               
             </div>
-            <div class="col-lg-9">
-              <div class="row">
+
+            <div class="col-lg-9" style="background-color: #f7f7f7;">
               @foreach ($knowledges as $article)
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
                   <div class="course-item mb-4">
@@ -127,18 +131,16 @@
                   </div>
                 </div> <!-- End Course Item-->
               @endforeach
-              </div>
-              <div class="row">
-              <div class="mt-4">
-                  {{ $knowledges->withQueryString()->links() }}
-              </div>
-              </div>
+
             </div>
-          </div>
+            
+
+        </div>
 
       </div>
 
     </section><!-- /Courses Section -->
+
   </main>
 
   <footer id="footer" class="footer position-relative light-background">

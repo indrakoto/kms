@@ -2,28 +2,29 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AnalisisResource\Pages;
-use App\Filament\Resources\AnalisisResource\RelationManagers;
+use App\Filament\Resources\NeracaResource\Pages;
+use App\Filament\Resources\NeracaResource\RelationManagers;
 use App\Models\Analisis;
+use App\Models\Neraca;
 use App\Models\Institusi;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-use function Laravel\Prompts\select;
-
-class AnalisisResource extends Resource
+class NeracaResource extends Resource
 {
-    protected static ?string $model = Analisis::class;
+    protected static ?string $model = Neraca::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel   = 'Analisis ';
+    protected static ?string $navigationLabel   = 'Neraca Analisis ';
+    //protected static ?string $navigationGroup   = 'Master Data';
     protected static bool $shouldRegisterNavigation = true;
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
@@ -34,6 +35,13 @@ class AnalisisResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
+                
+                Select::make('analisis_id')->label('Analisis')
+                    ->options(Analisis::orderBy('id', 'asc')->pluck('name','id'))
+                    ->required(),
+                Select::make('institusi_id')->label('Institusi')
+                    ->options(Institusi::orderBy('id', 'asc')->pluck('name','id'))
+                    ->required()
             ]);
     }
 
@@ -43,6 +51,12 @@ class AnalisisResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('analisis.name')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('institusi.name')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -58,6 +72,7 @@ class AnalisisResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                //Tables\Actions\DeleteAction::make(),
                 Tables\Actions\DeleteAction::make()
                     ->modalHeading('Hapus Data')
                     ->modalDescription('Apakah anda sudah yakin untuk menghapus ini ?')
@@ -81,10 +96,10 @@ class AnalisisResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAnalises::route('/'),
-            //'create' => Pages\CreateAnalisis::route('/create'),
-            'view' => Pages\ViewAnalisis::route('/{record}'),
-            //'edit' => Pages\EditAnalisis::route('/{record}/edit'),
+            'index' => Pages\ListNeracas::route('/'),
+            //'create' => Pages\CreateNeraca::route('/create'),
+            //'edit' => Pages\EditNeraca::route('/{record}/edit'),
+            'view' => Pages\ViewNeraca::route('/{record}'),
         ];
     }
 }

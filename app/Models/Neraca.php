@@ -4,14 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Analisis extends Model
+class Neraca extends Model
 {
     use HasFactory;
 
-    // Nama tabel jika berbeda dari konvensi Laravel
-    protected $table = 'kms_analisis';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'kms_neraca';
 
     /**
      * The primary key for the model.
@@ -49,8 +53,9 @@ class Analisis extends Model
     protected $fillable = [
         'name',
         'description',
-        // Daftar semua field di tabel kms_analisis yang boleh diisi massal
-        // Contoh: 'nama_analisis', 'nilai', 'tanggal', dll.
+        'institusi_id',
+        'analisis_id',
+        // Tambahkan field lain yang boleh diisi secara massal di sini
     ];
 
     /**
@@ -69,15 +74,23 @@ class Analisis extends Model
      */
     protected $casts = [
         'id' => 'integer', // Atau 'biginteger' jika tipe ID Anda bigint
-        // Contoh: 'tanggal' => 'datetime', 'nilai' => 'decimal:2',
+        'institusi_id' => 'integer', // Atau 'biginteger'
+        'analisis_id' => 'integer', // Atau 'biginteger'
     ];
 
     /**
-     * Define the inverse relationship with the KmsNeraca model (one-to-many).
-     * An Analisis entry can be associated with many Neraca entries.
+     * Define the relationship with the KmsInstitusi model.
      */
-    public function neracas()
+    public function institusi()
     {
-        return $this->hasMany(Neraca::class, 'analisis_id');
+        return $this->belongsTo(Institusi::class, 'institusi_id');
+    }
+
+    /**
+     * Define the relationship with the KmsAnalisis model (one-to-one).
+     */
+    public function analisis()
+    {
+        return $this->belongsTo(Analisis::class, 'analisis_id');
     }
 }

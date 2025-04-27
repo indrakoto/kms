@@ -44,8 +44,8 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="/home">Beranda<br></a></li>
-          <li><a href="/analisis">Analisis</a></li>
-          <li><a href="/knowledge" class="active">Knowledge</a></li>
+          <li><a href="/analisis" class="active">Analisis</a></li>
+          <li><a href="/knowledge">Knowledge</a></li>
           <li><a href="/chatbot">Help</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -69,18 +69,12 @@
         <div class="row">
             <div class="col-lg-3">
               <div class="list-group">
-                  <a 
-                      href="{{ route('knowledges.index') }}" 
-                      class="list-group-item list-group-item-action {{ request('institusi') ? '' : 'active-institusi' }}"
-                  >
-                      Semua Institusi
-                  </a>
-                  @foreach ($institusi as $inst)
+                  @foreach ($analisis as $analis)
                     <a 
-                        href="{{ route('knowledges.index', ['institusi' => $inst->id]) }}" 
-                        class="list-group-item list-group-item-action {{ request('institusi') == $inst->id ? 'active-institusi' : '' }}"
+                        href="{{ route('analisis.index', ['id' => $analis->id]) }}" 
+                        class="list-group-item menu-item list-group-item-action {{ request('analisis') == $analis->id ? 'active-analisis' : '' }}"
                     >
-                        {{ $inst->name }}
+                        {{ $analis->name }}
                     </a>
                   @endforeach
               </div>
@@ -88,41 +82,19 @@
             </div>
             <div class="col-lg-9">
               <div class="row">
-              @foreach ($knowledges as $article)
+              @foreach ($neracas as $neraca)
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
                   <div class="course-item mb-4">
-                    <div class="course-content">
+                      <div class="course-content">
                       
-                      <img src="{{ asset('img/rectangle-17.png') }}" class="img-fluid" alt="...">
-                      <div class="d-flex justify-content-between align-items-center">
-                      @if($article->source->name == 'YOUTUBE')
-                        <span class="badges-youtube"><i class="bi bi-youtube"></i></span>
-                      @elseif($article->source->name == 'MP4')
-                        <span class="badges-video"><i class="bi bi-play-circle-fill"></i></span>
-                      @elseif($article->source->name == 'OGG')
-                      <span class="badges-video"><i class="bi bi-play-circle-fill"></i></span>
-                      @elseif($article->source->name == 'PDF')
-                        <span class="badges-pdf"><i class="bi bi-file-pdf" style=""></i></span>
-                      @else 
+                      <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
 
-                      @endif
-                      <!-- <p class="category">{{ $article->category->name }}</p> -->
-                      </div>
+                      
                       
 
-                      <h3 class="mt-4"><a href="{{ route('knowledges.show', $article->id) }}">{{ $article->title }}</a></h3>
-                      <p class="description"> Institusi:  </p>
-                      <div class="trainer d-flex justify-content-between align-items-center">
-                        <div class="trainer-profile d-flex align-items-center">
-                          <img src="{{ asset('img/user-icon.png') }}" class="img-fluid" alt="">
-                          <a href="" class="trainer-link">{{ $article->user->name }}</a>
-                        </div>
-                        <div class="trainer-rank d-flex align-items-center">
-                          <i class="bi bi-person user-icon"></i>&nbsp;50
-                          &nbsp;&nbsp;
-                          <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;65
-                        </div>
-                      </div>
+                      <h3 class="mt-4"><a href="{{ route('analisis.show', $neraca->id) }}">{{ $neraca->name }}</a></h3>
+
+
                     </div>
                   </div>
                 </div> <!-- End Course Item-->
@@ -130,7 +102,7 @@
               </div>
               <div class="row">
               <div class="mt-4">
-                  {{ $knowledges->withQueryString()->links() }}
+                  <!-- {{ $neracas->withQueryString()->links() }} -->
               </div>
               </div>
             </div>

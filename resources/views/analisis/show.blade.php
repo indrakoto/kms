@@ -43,8 +43,8 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="/home">Beranda<br></a></li>
-          <li><a href="/analisis">Analisis</a></li>
-          <li><a href="/knowledge" class="active">Knowledge</a></li>
+          <li><a href="/analisis" class="active">Analisis</a></li>
+          <li><a href="/knowledge">Knowledge</a></li>
           <li><a href="/chatbot">Help</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -69,47 +69,24 @@
             <div class="row">
                 <div class="col-lg-3">
                 <div class="list-group">
+
+                  @foreach ($analisis as $analis)
                     <a 
-                        href="{{ route('knowledges.index') }}" 
-                        class="list-group-item list-group-item-action {{ request('institusi') ? 'active-institusi' : '' }}"
+                        href="{{ route('analisis.index', ['id' => $analis->id]) }}" 
+                        class="list-group-item menu-item list-group-item-action {{ $neraca->analisis_id == $analis->id ? 'active-analisis' : '' }}"
                     >
-                        Semua Institusi
+                        {{ $analis->name }}
                     </a>
-                    @foreach ($institusi as $inst)
-                        <a 
-                            href="{{ route('knowledges.index', ['institusi' => $inst->id]) }}" 
-                            class="list-group-item list-group-item-action {{ $article->institusi_id == $inst->id ? 'active-institusi' : '' }}"
-                        >
-                            {{ $inst->name }}
-                        </a>
-                    @endforeach
+                  @endforeach
+
                 </div>
-                
+     
                 </div>
                 <div class="col-lg-9">
                 <div class="row">
 
-                      <h1>{{ $article->title }}</h1>
-                            
-                      @if($article->source->name == 'YOUTUBE')
-                        <p>{!! $article->content !!}</p>
-                      @elseif($article->source->name == 'MP4')
-                        <video width="967" height="360" controls>
-                            <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                      @elseif($article->source->name == 'OGG')
-                        <video width="967" height="500" controls>
-                            <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                      @elseif($article->source->name == 'PDF')
-                        <iframe src="{{ asset('storage/' . $article->file_path) }}" width="967" height="500"></iframe>
-                      @else 
-
-                      @endif
-                      <p>{!! $article->content !!}</p>
-
+                            <h1>{{ $neraca->name }}</h1>
+                            <p>{!! $neraca->description !!}</p>
 
                 </div>
 
