@@ -83,7 +83,9 @@ Route::post('/proxy-chatbot', function (Request $request) {
     ]);
 
     // Kirim request ke API Ollama
-    $response = Http::post('http://localhost:11434/api/generate', $validated);
+    //$response = Http::post('http://localhost:11434/api/generate', $validated);
+    $response = Http::timeout(60)->post('http://localhost:11434/api/generate', $validated);
+
 
     // Kembalikan response API Ollama ke frontend
     return response()->json($response->json(), $response->status());
