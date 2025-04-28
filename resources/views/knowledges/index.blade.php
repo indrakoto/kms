@@ -62,7 +62,7 @@
 
   <main class="main">
       <!-- Courses Section -->
-    <section id="courses" class="courses section">
+    <section id="courses" class="courses section"  style="background-color: #ccc;">
 
       <div class="container">
 
@@ -86,7 +86,7 @@
               </div>
               
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-9" style="background-color: #fff;">
               <div class="row">
               @foreach ($knowledges as $article)
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">

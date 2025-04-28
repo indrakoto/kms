@@ -76,15 +76,20 @@ Route::get('/chatbot', function () {
 // Menambahkan Route untuk Proxy API
 Route::post('/proxy-chatbot', function (Request $request) {
     // Validasi input dari frontend
-    $validated = $request->validate([
+    /*$validated = $request->validate([
         'model' => 'required|string',
         'prompt' => 'required|string',
         'stream' => 'required|boolean',
+    ]);*/
+
+    $validated = $request->validate([
+        'message' => 'required|string',
     ]);
 
     // Kirim request ke API Ollama
     //$response = Http::post('http://localhost:11434/api/generate', $validated);
-    $response = Http::timeout(60)->post('http://localhost:11434/api/generate', $validated);
+    //$response = Http::timeout(60)->post('http://localhost:11434/api/generate', $validated);
+    $response = Http::timeout(60)->post('http://127.0.0.1:5000/chat', $validated);
 
 
     // Kembalikan response API Ollama ke frontend
