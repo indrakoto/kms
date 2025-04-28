@@ -24,7 +24,7 @@
                     'X-CSRF-TOKEN': csrfToken, // Menyertakan CSRF token di header
                 },
                 body: JSON.stringify({
-                    model: "llama3.2",
+                    model: "gemma:7b-instruct",
                     prompt: userMessage,
                     stream: false
                 }),
