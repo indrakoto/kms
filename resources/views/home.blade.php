@@ -197,6 +197,8 @@
               <img src="{{ asset('img/neraca-arus-minyak-bumi.png') }}" alt="Analisis" class="img-fluid">
             </div>
             <h3 class="analisis-title">Neraca Arus Minyak Bumi</h3>
+            <p class="analisis-count">&nbsp;</p>
+            <a href="/analisis" class="stretched-link"></a>
           </div>
         </div>
         <div class="swiper-slide swiper-slide-prev" style="width: 199.333px; margin-right: 20px;" role="group" aria-label="7 / 8" data-swiper-slide-index="2">
@@ -205,6 +207,8 @@
               <img src="{{ asset('img/neraca-arus-lpg.png') }}" alt="Analisis" class="img-fluid">
             </div>
             <h3 class="analisis-title">Neraca Arus LPG</h3>
+            <p class="analisis-count">&nbsp;</p>
+            <a href="/analisis" class="stretched-link"></a>
           </div>
         </div>
         <div class="swiper-slide swiper-slide-active" style="width: 199.333px; margin-right: 20px;" role="group" aria-label="8 / 8" data-swiper-slide-index="3">
@@ -213,6 +217,8 @@
               <img src="{{ asset('img/neraca-arus-gas.png') }}" alt="Analisis" class="img-fluid">
             </div>
             <h3 class="analisis-title">Neraca Arus Gas</h3>
+            <p class="analisis-count">&nbsp;</p>
+            <a href="/analisis" class="stretched-link"></a>
           </div>
         </div>
         <div class="swiper-slide swiper-slide-next" style="width: 199.333px; margin-right: 20px;" role="group" aria-label="1 / 8" data-swiper-slide-index="4">
@@ -221,6 +227,8 @@
               <img src="{{ asset('img/capaian-kinerja-sicaki.png') }}" alt="Analisis" class="img-fluid">
             </div>
             <h3 class="analisis-title">Capaian Kinerja (SICAKI)</h3>
+            <p class="analisis-count">&nbsp;</p>
+            <a href="/analisis" class="stretched-link"></a>
           </div>
         </div>
         <div class="swiper-slide" style="width: 199.333px; margin-right: 20px;" role="group" aria-label="2 / 8" data-swiper-slide-index="5">
@@ -229,6 +237,8 @@
               <img src="{{ asset('img/esakip.png') }}" alt="Analisis" class="img-fluid">
             </div>
             <h3 class="analisis-title">E-SAKIP</h3>
+            <p class="analisis-count">&nbsp;</p>
+            <a href="/analisis" class="stretched-link"></a>
           </div>
         </div>
         <div class="swiper-slide" style="width: 199.333px; margin-right: 20px;" role="group" aria-label="3 / 8" data-swiper-slide-index="6">
@@ -238,7 +248,7 @@
             </div>
             <h3 class="analisis-title">Manajemen Resiko</h3>
             <p class="analisis-count">(Aplikasi Kementerian)</p>
-            <a href="ctaegory.html" class="stretched-link"></a>
+            <a href="/analisis" class="stretched-link"></a>
           </div>
         </div>
         <div class="swiper-slide" style="width: 199.333px; margin-right: 20px;" role="group" aria-label="4 / 8" data-swiper-slide-index="7">
@@ -248,7 +258,7 @@
             </div>
             <h3 class="analisis-title">Model Proyeksi</h3>
             <p class="analisis-count">&nbsp;</p>
-            <a href="ctaegory.html" class="stretched-link"></a>
+            <a href="/analisis" class="stretched-link"></a>
           </div>
         </div>
 
