@@ -47,6 +47,7 @@
           <li><a href="/home" class="active">Beranda<br></a></li>
           <li><a href="/analisis">Analisis</a></li>
           <li><a href="/knowledge">Knowledge</a></li>
+          <li><a href="/geoportal">Geo-Portal</a></li>
           <li><a href="/chatbot">Help</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

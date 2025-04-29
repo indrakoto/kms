@@ -7,9 +7,10 @@
   <title>KMS - MIGAS</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
-  <link href="{{ asset('img/logo-esdm.png') }}" rel="icon">
+  <link href="{{ asset('img/KMS-by-DIRJEN-MIGAS-02-1.png') }}" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -26,7 +27,7 @@
 
   <!-- Main CSS File -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet" />
 
 </head>
 
@@ -44,9 +45,9 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="/home">Beranda<br></a></li>
-          <li><a href="/analisis" class="active">Analisis</a></li>
+          <li><a href="/analisis">Analisis</a></li>
           <li><a href="/knowledge">Knowledge</a></li>
-          <li><a href="/geoportal">Geo-Portal</a></li>
+          <li><a href="/geoportal" class="active">Geo-Portal</a></li>
           <li><a href="/chatbot">Help</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -62,63 +63,24 @@
   </header>
 
   <main class="main">
-      <!-- Courses Section -->
+
+    <!-- Courses Section -->
     <section id="courses" class="courses section">
 
-      <div class="container">
-
-        <div class="row">
-            <div class="col-lg-3">
-              <div class="list-group">
-                  @foreach ($analisis as $analis)
-                    <a 
-                        href="{{ route('analisis.index', ['id' => $analis->id]) }}" 
-                        class="list-group-item menu-item list-group-item-action {{ request('analisis') == $analis->id ? 'active-analisis' : '' }}"
-                    >
-                        {{ $analis->name }}
-                    </a>
-                  @endforeach
-              </div>
-              
-            </div>
-            <div class="col-lg-9">
-              <div class="row">
-              @foreach ($neracas as $neraca)
-                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="course-item mb-4">
-                      <div class="course-content">
-                      
-                      <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
-
-                      
-                      
-
-                      <h3 class="mt-4"><a href="{{ route('analisis.show', $neraca->id) }}">{{ $neraca->name }}</a></h3>
-
-
-                    </div>
-                  </div>
-                </div> <!-- End Course Item-->
-              @endforeach
-              </div>
-              <div class="row">
-              <div class="mt-4">
-                  <!-- {{ $neracas->withQueryString()->links() }} -->
-              </div>
-              </div>
-            </div>
-          </div>
-
-      </div>
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Geo-Portal</h2>
+        <div class=" py-4">
+          
+            <iframe src="https://geoportal.esdm.go.id/migas/" width="100%" height="600px;"></iframe>
+        </div>
+      </div><!-- End Section Title -->
 
     </section><!-- /Courses Section -->
 
-    <div class="container">
-          <iframe src="https://geoportal.esdm.go.id/migas/" width="100%" height="600px;"></iframe>
-    </div>
   </main>
 
-  <footer id="footer" class="footer position-relative light-background">
+  <footer id="footer" class="footer position-relative dongker-background">
 
     <div class="container footer-top">
       <div class="row gy-4">
@@ -131,7 +93,7 @@
     <div class="container copyright text-center mt-4">
       <p></p>
       <div class="credits">
-
+copyright
       </div>
     </div>
 
@@ -153,8 +115,7 @@
 
   <!-- Main JS File -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="{{ asset('assets/js/chat.js') }}"></script>
 
 </body>
 

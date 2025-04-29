@@ -41,8 +41,8 @@ Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.
 Route::get('/article/load-more', [ArticleController::class, 'loadMoreArticles'])->name('articles.loadMore');
 
 
-Route::get('/store', function () {
-    return view('store');
+Route::get('/geoportal', function () {
+    return view('geoportal');
 });
 
 //Route::get('/analisis', function () {
