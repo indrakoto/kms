@@ -63,7 +63,7 @@
 
   <main class="main">
       <!-- Courses Section -->
-    <section id="courses" class="courses section"  style="background-color: #ccc;">
+    <section id="courses" class="courses section">
 
       <div class="container">
 
