@@ -1,12 +1,13 @@
 /* Fonts */
 :root {
   --default-font: "Open Sans",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
+  --heading-font: "Roboto-Regular", sans-serif;
   --nav-font: "Roboto-Regular", Helvetica, "Poppins",  sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
+  --background-image : url('/img/doodle.png');
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #37423b; /* Color for headings, subheadings and title throughout the website */
@@ -58,8 +59,12 @@
 --------------------------------------------------------------*/
 body {
   color: var(--default-color);
-  background-color: var(--background-color);
   font-family: var(--default-font);
+  background-repeat: repeat;
+  margin: 0;
+  padding: 0;
+  background-size: 150px; /* Sesuaikan ukuran sesuai kebutuhan */
+  min-height: 100vh; /* Pastikan body mencakup seluruh tinggi viewport */
 }
 
 a {
@@ -947,6 +952,31 @@ section,
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
+.about {
+  position: relative;
+  background-image: url('/img/doodle.png');
+  background-repeat: repeat;
+  background-size: 150px; /* Sesuaikan dengan ukuran di body */
+  
+  /* Warna overlay dengan transparansi */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6); /* Putih transparan 70% */
+    z-index: 1;
+  }
+}
+
+/* Konten about harus di atas overlay */
+.about > * {
+  position: relative;
+  z-index: 2;
+}
+
 .about .content h3 {
   font-size: 2rem;
   font-weight: 700;
@@ -1002,36 +1032,7 @@ section,
   margin-left: 10px;
 }
 
-.courses .read-more {
-  background: var(--accent-color);
-  color: var(--contrast-color);
-  font-family: var(--heading-font);
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 1px;
-  padding: 10px 24px 12px 24px;
-  border-radius: 50px;
-  transition: 0.3s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.courses .read-more i {
-  font-size: 18px;
-  margin-left: 5px;
-  line-height: 0;
-  transition: 0.3s;
-}
-
-.courses .read-more:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
-  padding-right: 19px;
-}
-
-.courses .read-more:hover i {
-  margin-left: 10px;
-}
 
 /*--------------------------------------------------------------
 # Counts Section
@@ -1185,6 +1186,37 @@ section,
 /*--------------------------------------------------------------
 # Courses Section
 --------------------------------------------------------------*/
+.courses .read-more {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 10px 24px 12px 24px;
+  border-radius: 50px;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.courses .read-more i {
+  font-size: 18px;
+  margin-left: 5px;
+  line-height: 0;
+  transition: 0.3s;
+}
+
+.courses .read-more:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  padding-right: 19px;
+}
+
+.courses .read-more:hover i {
+  margin-left: 10px;
+}
+
 .courses .course-item {
   background-color: #f7f7f7; /* var(--surface-color); */
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
@@ -1196,8 +1228,9 @@ section,
 }
 
 .courses .course-content h3 {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 16px;
+  line-height: 1.5;
 }
 
 .courses .course-content h3 a {
@@ -2194,6 +2227,273 @@ section,
   }
 }
 
+
+/*--------------------------------------------------------------
+# Knowledges Section
+--------------------------------------------------------------*/
+.knowledges {
+  position: relative;
+  background-image: url('/img/doodle.png');
+  background-repeat: repeat;
+  background-size: 150px; /* Sesuaikan dengan ukuran di body */
+  
+  /* Warna overlay dengan transparansi */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7); /* Putih transparan 70% */
+    z-index: 1;
+  }
+}
+
+/* Konten about harus di atas overlay */
+.knowledges > * {
+  position: relative;
+  z-index: 2;
+}
+
+.knowledges .read-more {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 10px 24px 12px 24px;
+  border-radius: 50px;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.knowledges .read-more i {
+  font-size: 18px;
+  margin-left: 5px;
+  line-height: 0;
+  transition: 0.3s;
+}
+
+.knowledges .read-more:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  padding-right: 19px;
+}
+
+.knowledges .read-more:hover i {
+  margin-left: 10px;
+}
+
+.knowledges .knowledge-item {
+  background-color: #f7f7f7; /* var(--surface-color); */
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 10px;
+}
+
+.knowledges .knowledge-content {
+  padding: 15px;
+}
+
+.knowledges .knowledge-content h3 {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.5;
+  height: 50px;
+}
+
+.knowledges .knowledge-content h3 a {
+  color: var(--accent-color);
+  transition: 0.3s;
+}
+
+.knowledges .knowledge-content h3 a:hover {
+  color: var(--heading-color);
+}
+
+.knowledges .knowledge-content .category {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 14px;
+  padding: 6px 14px;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.knowledges .knowledge-content .price {
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.knowledges .knowledge-content .description {
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+}
+
+.knowledges .trainer {
+  padding-top: 0;
+  font-size: 11px
+  /*padding-top: 15px;
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);*/
+}
+
+.knowledges .trainer .trainer-profile img {
+  max-width: 50px;
+  border-radius: 50px;
+}
+
+.knowledges .trainer .trainer-profile .trainer-link {
+  padding-left: 10px;
+  /*font-weight: 600;
+  font-size: 16px;*/
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  transition: 0.3s;
+}
+
+.knowledges .trainer .trainer-profile .trainer-link:hover {
+  color: var(--accent-color);
+}
+
+.knowledges .trainer .trainer-rank {
+  /*font-size: 18px;*/
+  color: color-mix(in srgb, var(--default-color), transparent 60%);
+}
+
+.knowledges .trainer .trainer-rank .user-icon {
+  /*font-size: 22px;*/
+}
+
+.knowledges .badges {
+  position: absolute;
+  width: 25px;
+  height: 45px;
+  top: 0;
+  z-index: 1;
+  left: 255px;
+  background: #ffc541;
+  color: #4498ae;
+  border-radius: 0px 0px 11.5px 11.5px;
+}
+
+.knowledges .badges-video {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  text-align: center;
+  padding-top: 12px;
+  top: 0;
+  z-index: 1;
+  left: 255px;
+  background: #ffc541;
+  color: #000000;
+  border-radius: 0px 0px 11.5px 11.5px;
+  
+}
+
+.knowledges .badges-youtube {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  text-align: center;
+  padding-top: 12px;
+  top: 0;
+  z-index: 1;
+  left: 255px;
+  background: #da0a0a;
+  color: #ffffff;
+  border-radius: 0px 0px 11.5px 11.5px;
+}
+
+.knowledges .badges-pdf {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  text-align: center;
+  padding-top: 12px;
+  top: 0;
+  z-index: 1;
+  left: 255px;
+  background: #055b02;
+  color: #ffffff;
+  border-radius: 0px 0px 11.5px 11.5px;
+}
+
+
+/*--------------------------------------------------------------
+# Knowledges knowledge Details Section
+--------------------------------------------------------------*/
+.knowledges-knowledge-details {
+  padding-bottom: 20px;
+}
+
+.knowledges-knowledge-details h3 {
+  font-size: 24px;
+  margin: 30px 0 15px 0;
+  font-weight: 400;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.knowledges-knowledge-details h3:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+  bottom: 0;
+  left: 0;
+}
+
+.knowledges-knowledge-details h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--accent-color);
+  bottom: 0;
+  left: 0;
+}
+
+.knowledges-knowledge-details .knowledge-info {
+  background: color-mix(in srgb, var(--default-color), transparent 95%);
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.knowledges-knowledge-details .knowledge-info h5 {
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+  font-family: var(--nav-font);
+}
+
+.knowledges-knowledge-details .knowledge-info p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.knowledges-knowledge-details .knowledge-info a {
+  color: var(--accent-color);
+}
+
+
+
 .swiper-slide {
   height: 220px;
+}
+
+
+.sliders {
+    background-image: var(--background-image);
+    background-repeat: repeat;
+    background-size: 150px; /* Sesuaikan ukuran sesuai kebutuhan */
+    margin: 0;
+    padding: 0;
+    padding: 30px 0;
 }

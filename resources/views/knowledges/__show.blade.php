@@ -62,51 +62,58 @@
 
     <main class="main">
 
-      
-      <section id="knowledges-knowledge-details" class="knowledges-knowledge-details section">
+      <!-- Courses Section -->
+        <section id="courses" class="courses section">
 
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-8">
-                <h3>{{ $article->title }}</h3>
-                        @if($article->source->name == 'YOUTUBE')
-                          <p>{!! $article->content !!}</p>
-                        @elseif($article->source->name == 'MP4')
-                          <video width="855" height="360" controls>
-                              <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
-                              Your browser does not support the video tag.
-                          </video>
-                        @elseif($article->source->name == 'OGG')
-                          <video width="855" height="500" controls>
-                              <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
-                              Your browser does not support the video tag.
-                          </video>
-                        @elseif($article->source->name == 'PDF')
-                          <iframe src="{{ asset('storage/' . $article->file_path) }}" width="855" height="500"></iframe>
-                        @else 
-
-                        @endif
-                        
-                        <div class="trainer d-flex justify-content-between align-items-center">
-                            <div class="trainer-profile d-flex align-items-center">
-                              Publik/Private
-                            </div>
-                            <div class="trainer-rank d-flex align-items-center">
-                              <i class="bi bi-person user-icon"></i>&nbsp;50
-                              &nbsp;&nbsp;
-                              <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;65
-                            </div>
-                      </div>                  
+                <div class="col-lg-3">
+                <div class="list-group">
+                    <a 
+                        href="{{ route('knowledges.index') }}" 
+                        class="list-group-item list-group-item-action {{ request('institusi') ? 'active-institusi' : '' }}"
+                    >
+                        Semua Institusi
+                    </a>
+                    @foreach ($institusi as $inst)
+                        <a 
+                            href="{{ route('knowledges.index', ['institusi' => $inst->id]) }}" 
+                            class="list-group-item list-group-item-action {{ $article->institusi_id == $inst->id ? 'active-institusi' : '' }}"
+                        >
+                            {{ $inst->name }}
+                        </a>
+                    @endforeach
                 </div>
-                <div class="col-lg-4">
-                  <h3>Knowledge Lainnya</h3>
-                    <div class="sidebar-post-content">
-                      <h5 class="post-title fs-5">
-                        <a href="#">Create Stocks and Flows</a>
-                      </h5>
-                      <p class=" m-0 lh-base" style="font-size: 14px;">Posted at: 12 April 2025</p>
-                    </div>
+                
+                </div>
+                <div class="col-lg-9">
+                <div class="row">
+
+                      <h1>{{ $article->title }}</h1>
+                            
+                      @if($article->source->name == 'YOUTUBE')
+                        <p>{!! $article->content !!}</p>
+                      @elseif($article->source->name == 'MP4')
+                        <video width="967" height="360" controls>
+                            <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                      @elseif($article->source->name == 'OGG')
+                        <video width="967" height="500" controls>
+                            <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                      @elseif($article->source->name == 'PDF')
+                        <iframe src="{{ asset('storage/' . $article->file_path) }}" width="967" height="500"></iframe>
+                      @else 
+
+                      @endif
+                      
+
+
+                </div>
+
                 </div>
             </div>
 

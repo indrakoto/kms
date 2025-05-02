@@ -26,6 +26,7 @@
 
   <!-- Main CSS File -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
 
 </head>
 
@@ -63,31 +64,41 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section>
+    <section class="sliders">
 
       <div class="container">
-                <div id="carouselExampleIndicators" class="carousel slide">
+                <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
+
+                    <!-- Indicators -->
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-inner">
+
+                    <!-- Slides -->
+                    <div class="carousel-inner rounded">
                         <div class="carousel-item active">
-                        <img src="{{ asset('img/mask-group.png') }}" class="d-block w-100" alt="...">
+                          <img src="{{ asset('img/mask-group.png') }}" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-none d-md-block">
+                              <h5>Beautiful Mountain</h5>
+                              <p>A stunning view of a snow-capped mountain during sunset.</p>
+                          </div>
                         </div>
                         <div class="carousel-item">
-                        <img src="{{ asset('img/mask-group.png') }}" class="d-block w-100" alt="...">
+                          <img src="{{ asset('img/mask-group.png') }}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                        <img src="{{ asset('img/mask-group.png') }}" class="d-block w-100" alt="...">
+                          <img src="{{ asset('img/mask-group.png') }}" class="d-block w-100" alt="...">
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -97,7 +108,7 @@
     </section><!-- /Hero Section -->
 
     <!-- About Section -->
-    <section id="about" class="about section">
+    <section id="about" class="about ">
 
       <div class="container">
 
@@ -273,8 +284,8 @@
 
 </section>
 
-    <!-- Courses Section -->
-    <section id="courses" class="courses section">
+    <!-- knowledges Section -->
+    <section id="knowledges" class="knowledges section">
       <!-- Section Title -->
 
         
@@ -284,37 +295,39 @@
         <h3 class="text-center mb-4">Knowledge Terbaru</h3>
         @foreach ($latestArticles as $article)
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="course-item">
+            <div class="knowledge-item">
               
-              <div class="course-content">
-              <img src="{{ asset('img/rectangle-17.png') }}" class="img-fluid mb-4" alt="...">
+              <div class="knowledge-content">
+                <img src="{{ asset('img/rectangle-17.png') }}" class="img-fluid mb-3" alt="...">
                 <div class="d-flex justify-content-between align-items-center">
-                @if($article->source->name == 'YOUTUBE')
-                  <p><button class="btn btn-sm btn-danger"><i class="bi bi-youtube"></i> &nbsp; {{ $article->category->name }}</button></p>
-                @elseif($article->source->name == 'MP4')
-                  <p><button class="btn btn-sm btn-warning"><i class="bi bi-play-circle-fill"></i> &nbsp; {{ $article->category->name }}</button></p>
-                @elseif($article->source->name == 'OGG')
-                  <p><button class="btn btn-sm btn-success"><i class="bi bi-play-circle-fill"></i> &nbsp; {{ $article->category->name }}</button></p>
-                @elseif($article->source->name == 'PDF')
-                  <p><button class="btn btn-sm btn-success text-light" ><i class="bi bi-file-pdf" style=""></i> &nbsp; {{ $article->category->name }}</button></p>
-                @else 
-
-                @endif
+                  @if($article->source->name == 'YOUTUBE')
+                    <span class="badges-youtube"><i class="bi bi-youtube"></i></span>
+                  @elseif($article->source->name == 'MP4')
+                    <span class="badges-video"><i class="bi bi-play-circle-fill"></i></span>
+                  @elseif($article->source->name == 'OGG')
+                  <span class="badges-video"><i class="bi bi-play-circle-fill"></i></span>
+                  @elseif($article->source->name == 'PDF')
+                    <span class="badges-pdf"><i class="bi bi-file-pdf" style=""></i></span>
+                  @else 
+                  @endif
+                  <!-- <p class="category">{{ $article->category->name }}</p> -->
                 </div>
 
                 <h3><a href="{{ route('knowledges.show', $article->id) }}">{{ $article->title }}</a></h3>
-                <p class="description"> Institusi:  </p>
-                <div class="trainer d-flex justify-content-between align-items-center">
+                
+                <div class="trainer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3 ">
                   <div class="trainer-profile d-flex align-items-center">
-                    <img src="assets/img/trainers/trainer-1-2.jpg" class="img-fluid" alt="">
-                    <a href="" class="trainer-link">{{ $article->user->name }}</a>
+                    Publik/Private
                   </div>
                   <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-person user-icon"></i>&nbsp;50
+                    <i class="bi bi-eye eye-icon"></i>&nbsp;0
+                  &nbsp;&nbsp;
+                    <i class="bi bi-people user-icon"></i>&nbsp;0
                     &nbsp;&nbsp;
-                    <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;65
+                    <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;0
                   </div>
                 </div>
+                
               </div>
             </div>
           </div> <!-- End Course Item-->
@@ -326,7 +339,7 @@
       </div>
       
 
-    </section><!-- /Courses Section -->
+    </section><!-- /knowledges Section -->
 
   </main>
 

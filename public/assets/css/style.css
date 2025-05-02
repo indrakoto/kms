@@ -61,3 +61,8 @@
     .list-group:last-child .menu-item {
         margin-bottom: 25px;
     }
+
+    .carousel-item img {
+        height: 355px;
+        object-fit: cover;
+    }
