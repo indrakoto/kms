@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'AI')
+@section('title', 'Chat')
 @section('body-class', 'ai-page')
 
 @push('styles')
@@ -36,5 +36,5 @@
 @endsection
 
 @push('scripts')
-  <script src="{{ asset('assets/js/ai.js') }}"></script>
+  <script src="{{ asset('assets/js/chat.js') }}"></script>
 @endpush

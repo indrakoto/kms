@@ -4,7 +4,7 @@
     ['label' => 'Analisis', 'url' => '/analisis'],
     ['label' => 'Knowledge', 'url' => '/knowledge'],
     ['label' => 'Geo-Portal', 'url' => '/geoportal'],
-    ['label' => '<img  height="18px" src="' . asset('img/LogoAlphaByteBlack.png') . '" /> &nbsp; AI', 'url' => '/chatbot', 'raw' => true, 'class' => ''],
+    ['label' => '<img  height="18px" src="' . asset('img/LogoAlphaByteBlack.png') . '" /> &nbsp; AI', 'url' => '/ai', 'raw' => true, 'class' => ''],
     ['label' => '<i class="bi bi-file-lock2-fill text-warning" style="font-size:xx-large;"></i>', 'url' => '/login', 'raw' => true],
   ];
 @endphp

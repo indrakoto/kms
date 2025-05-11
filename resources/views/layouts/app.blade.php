@@ -6,7 +6,8 @@
   <title>@yield('title', 'KMS MIGAS')</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
   <link href="{{ asset('img/logo-esdm.png') }}" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -44,7 +45,6 @@
 
   <!-- Vendor JS -->
   <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
   <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
   <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
@@ -52,8 +52,6 @@
 
   <!-- Main JS -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
   @stack('scripts')
 </body>
