@@ -53,7 +53,7 @@ class AnalisisController extends Controller
 
     public function show(Analisis $analisis)
     {
-        $neracas = $analisis->neracas()->latest()->paginate(10);
+        $neracas = $analisis->neracas()->latest()->paginate(6);
         $analisisList = Analisis::withCount('neracas')->get();
         
         return view('analisis.show', [
