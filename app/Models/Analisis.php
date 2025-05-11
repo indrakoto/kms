@@ -49,6 +49,7 @@ class Analisis extends Model
     protected $fillable = [
         'name',
         'description',
+        'slug',
         // Daftar semua field di tabel kms_analisis yang boleh diisi massal
         // Contoh: 'nama_analisis', 'nilai', 'tanggal', dll.
     ];
@@ -79,5 +80,10 @@ class Analisis extends Model
     public function neracas()
     {
         return $this->hasMany(Neraca::class, 'analisis_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

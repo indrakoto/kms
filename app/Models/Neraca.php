@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Neraca extends Model
 {
@@ -55,6 +56,7 @@ class Neraca extends Model
         'description',
         'institusi_id',
         'analisis_id',
+        'slug'
         // Tambahkan field lain yang boleh diisi secara massal di sini
     ];
 
@@ -93,4 +95,20 @@ class Neraca extends Model
     {
         return $this->belongsTo(Analisis::class, 'analisis_id');
     }
+
+
+     // Auto-generate slug
+     protected static function boot()
+     {
+         parent::boot();
+         
+         static::creating(function ($neraca) {
+             $neraca->slug = Str::slug($neraca->name);
+         });
+     }
+ 
+     public function getRouteKeyName()
+     {
+         return 'slug';
+     }
 }

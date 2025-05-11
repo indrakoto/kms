@@ -15,6 +15,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
+use Illuminate\Support\Str;
 
 class NeracaResource extends Resource
 {
@@ -32,7 +35,11 @@ class NeracaResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                Forms\Components\TextInput::make('slug'),
+
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
                 
@@ -51,12 +58,14 @@ class NeracaResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('slug'),
                 Tables\Columns\TextColumn::make('analisis.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('institusi.name')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -14,7 +14,7 @@ class Article extends Model
     protected $table = 'kms_articles';
 
     // Kolom-kolom yang bisa diisi (mass assignment)
-    protected $fillable = ['category_id', 'user_id', 'title', 'content', 'file_path', 'is_published', 'views', 'source_id','institusi_id'];
+    protected $fillable = ['category_id', 'user_id', 'title', 'content', 'file_path', 'is_published', 'views', 'source_id','institusi_id','slug'];
 
     // Relasi: satu artikel dimiliki oleh satu kategori
     public function category()

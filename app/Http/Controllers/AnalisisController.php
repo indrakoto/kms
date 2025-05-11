@@ -10,7 +10,32 @@ use Illuminate\Http\Request;
 
 class AnalisisController extends Controller
 {
-    public function index(Request $request)
+    // Menampilkan SEMUA neraca (dengan pagination)
+
+    public function index()
+    {
+        $neracas = Neraca::with('analisis')->latest()->paginate(10);
+        $analisisList = Analisis::withCount('neracas')->get();
+        
+        return view('analisis.index', [
+            'neracas' => $neracas,
+            'analisisList' => $analisisList,
+            'activeAnalisis' => null
+        ]);
+    }
+
+
+
+    public function indexxx()
+    {
+        $neracas = Neraca::latest()->paginate(6);
+        $analisisList = Analisis::all();
+        $activeAnalisis = null; // Tidak ada analisis aktif di halaman awal
+        
+        return view('analisis.index', compact('neracas', 'analisisList', 'activeAnalisis'));
+    }
+
+    public function indexx(Request $request)
     {
         $analisis_id = $request->query('id');
 
@@ -26,14 +51,42 @@ class AnalisisController extends Controller
         return view('analisis.index', compact('analisis','neracas'));
     }
 
-    public function show($id)
+    public function show(Analisis $analisis)
     {
-        // Cari artikel berdasarkan ID
-        $neraca = Neraca::findOrFail($id);
+        $neracas = $analisis->neracas()->latest()->paginate(10);
+        $analisisList = Analisis::withCount('neracas')->get();
+        
+        return view('analisis.show', [
+            'analisis' => $analisis,
+            'neracas' => $neracas,
+            'analisisList' => $analisisList,
+            'activeAnalisis' => $analisis->id
+        ]);
+    }
 
-        // Ambil semua institusi buat daftar menu
-        $analisis = Analisis::all();
+    // Menampilkan neraca berdasarkan analisis
+    public function showAnalisis(Analisis $analisis)
+    {
+        $neracas = $analisis->neracas()->latest()->paginate(6);
+        $analisisList = Analisis::all();
+        
+        return view('analisis.show', [
+            'analisis' => $analisis,
+            'neracas' => $neracas,
+            'analisisList' => $analisisList,
+            'activeAnalisis' => $analisis->id
+        ]);
+    }
 
-        return view('analisis.show', compact('neraca', 'analisis'));
+    // Menampilkan detail neraca
+    public function showNeraca(Neraca $neraca)
+    {
+        $analisisList = Analisis::withCount('neracas')->get();
+        
+        return view('neraca.show', [
+            'neraca' => $neraca,
+            'analisisList' => $analisisList,
+            'activeAnalisis' => $neraca->analisis_id
+        ]);
     }
 }
