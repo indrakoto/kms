@@ -44,12 +44,16 @@ Route::get('/knowledge/{id}', [KnowledgeController::class, 'show'])->name('knowl
 Route::get('/knowledge/load-more', [KnowledgeController::class, 'loadMoreArticles'])->name('knowledges.loadMore');
 
 
-Route::get('/chatbot', function () {
+Route::get('/ai', function () {
     return view('ai');
 });
 
+Route::get('/chat', function () {
+    return view('chat');
+});
+
 // Menambahkan Route untuk Proxy API
-Route::post('/proxy-chatbot', function (Request $request) {
+Route::post('/ai-api', function (Request $request) {
     // Validasi input dari frontend
     /*$validated = $request->validate([
         'model' => 'required|string',
@@ -72,7 +76,7 @@ Route::post('/proxy-chatbot', function (Request $request) {
 });
 
 // Menambahkan Route untuk API General
-Route::post('/general-chatbot', function (Request $request) {
+Route::post('/chat-api', function (Request $request) {
     // Validasi input dari frontend
     $validated = $request->validate([
         'model' => 'required|string',
