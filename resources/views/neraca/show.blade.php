@@ -1,86 +1,86 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <!-- SIDEBAR -->
-        <div class="col-md-3">
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Kategori Analisis</h5>
-                </div>
-                <div class="list-group list-group-flush">
-                    <a href="{{ route('analisis.index') }}" 
-                       class="list-group-item list-group-item-action {{ !$activeAnalisis ? 'active' : '' }}">
-                       Semua Neraca
-                    </a>
-                    
-                    @foreach($analisisList as $item)
-                        <a href="{{ route('analisis.show', $item->slug) }}" 
-                           class="list-group-item list-group-item-action {{ $activeAnalisis == $item->id ? 'active' : '' }}">
-                           {{ $item->name }}
-                           <span class="badge bg-secondary float-end">{{ $item->neracas_count }}</span>
+<section id="analisis" class="analisis section">
+    <div class="container">
+        <div class="row">
+            <!-- SIDEBAR -->
+            <div class="col-lg-3">
+                <div class="card shadow-sm mb-4">
+
+                    <div class="list-group">
+                        <a href="{{ route('analisis.index') }}" 
+                        class="list-group-item list-group-item-action {{ !$activeAnalisis ? 'active-analisis' : '' }}">
+                        Semua Analisis
                         </a>
-                    @endforeach
+                        
+                        @foreach($analisisList as $item)
+                            <a href="{{ route('analisis.show', $item->slug) }}" 
+                            class="list-group-item list-group-item-action {{ $activeAnalisis == $item->id ? 'active-analisis' : '' }}">
+                            {{ $item->name }}
+                            <span class="badge bg-secondary float-end">{{ $item->neracas_count }}</span>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- MAIN CONTENT -->
-        <div class="col-md-9">
-            <div class="card shadow-sm">
-                <div class="card-header bg-white">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('analisis.index') }}">Analisis</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('analisis.show', $neraca->analisis->slug) }}">
+            <!-- MAIN CONTENT -->
+            <div class="col-md-9">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('analisis.index') }}">Analisis</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="{{ route('analisis.show', $neraca->analisis->slug) }}">
+                                        {{ $neraca->analisis->name }}
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    {{ Str::limit($neraca->name, 30) }}
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="card-body">
+                        <article>
+                            <h1 class="mb-3">{{ $neraca->name }}</h1>
+                            
+                            <div class="meta d-flex gap-3 text-muted mb-4">
+                                <div>
+                                    <i class="far fa-calendar-alt me-1"></i>
+                                    {{ $neraca->created_at->format('d M Y') }}
+                                </div>
+                                <div>
+                                    <i class="fas fa-tag me-1"></i>
+                                    <a href="{{ route('analisis.show', $neraca->analisis->slug) }}" 
+                                    class="text-decoration-none">
                                     {{ $neraca->analisis->name }}
-                                </a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">
-                                {{ Str::limit($neraca->name, 30) }}
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-
-                <div class="card-body">
-                    <article>
-                        <h1 class="mb-3">{{ $neraca->name }}</h1>
-                        
-                        <div class="meta d-flex gap-3 text-muted mb-4">
-                            <div>
-                                <i class="far fa-calendar-alt me-1"></i>
-                                {{ $neraca->created_at->format('d M Y') }}
+                                    </a>
+                                </div>
                             </div>
-                            <div>
-                                <i class="fas fa-tag me-1"></i>
-                                <a href="{{ route('analisis.show', $neraca->analisis->slug) }}" 
-                                   class="text-decoration-none">
-                                   {{ $neraca->analisis->name }}
-                                </a>
+
+                            <div class="content">
+                                {!! $neraca->description !!}
                             </div>
-                        </div>
+                        </article>
 
-                        <div class="content">
-                            {!! $neraca->description !!}
+                        <div class="mt-5">
+                            <a href="{{ route('analisis.show', $neraca->analisis->slug) }}" 
+                            class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left me-2"></i>Kembali ke Daftar Analisis
+                            </a>
                         </div>
-                    </article>
-
-                    <div class="mt-5">
-                        <a href="{{ route('analisis.show', $neraca->analisis->slug) }}" 
-                           class="btn btn-outline-primary">
-                           <i class="fas fa-arrow-left me-2"></i>Kembali ke Daftar Neraca
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection
 
 @push('styles')

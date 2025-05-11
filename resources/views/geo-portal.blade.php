@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Courses Section -->
-    <section id="courses" class="courses section">
+    <section id="general" class="general section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -15,5 +15,5 @@
         </div>
       </div><!-- End Section Title -->
 
-    </section><!-- /Courses Section -->
+    </section><!-- /general Section -->
 @endsection
