@@ -47,7 +47,14 @@ class KnowledgeController extends Controller
 
         // Ambil semua institusi buat daftar menu
         $institusi = Institusi::all();
-
-        return view('knowledges.show', compact('article', 'institusi'));
+        
+        // Ambil 10 artikel terakhir dengan kategori yang sama (kecuali artikel saat ini)
+        $relatedArticles = Article::where('category_id', $article->category_id)
+            ->where('id', '!=', $article->id) // Exclude current article
+            ->latest() // Urutkan dari yang terbaru
+            ->take(10) // Ambil 10 artikel
+            ->get();
+            
+        return view('knowledges.show', compact('article',  'relatedArticles', 'institusi'));
     }
 }

@@ -10,7 +10,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
-  <link href="{{ asset('img/KMS-by-DIRJEN-MIGAS-02-1.png') }}" rel="icon">
+  <link href="{{ asset('img/logo-esdm.png') }}" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
@@ -44,20 +44,16 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="/home" class="active">Beranda<br></a></li>
+          <li><a href="/home">Beranda<br></a></li>
           <li><a href="/analisis">Analisis</a></li>
           <li><a href="/knowledge">Knowledge</a></li>
           <li><a href="/geoportal">Geo-Portal</a></li>
-          <li><a href="/chatbot">Help</a></li>
+          <li><a href="/chatbot" class="logo me-auto active"><img src="{{ asset('img/LogoAlphaByteBlack.png') }}" /> AI</a></li>
+          <li><a class="" href="/administrator"> <i class="bi bi-file-lock-fill text-warning"  style="font-size:xx-large;"></i> </a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
       
-        <form action="#" method="post" class="searchx">
-            <div class="search-form"><input type="text" name="search"></div>
-        </form>
-
-      <a class="btn-getstarted" href="/administrator">Masuk</a>
 
     </div>
   </header>

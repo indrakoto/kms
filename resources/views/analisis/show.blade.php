@@ -46,16 +46,12 @@
           <li><a href="/analisis" class="active">Analisis</a></li>
           <li><a href="/knowledge">Knowledge</a></li>
           <li><a href="/geoportal">Geo-Portal</a></li>
-          <li><a href="/chatbot">Help</a></li>
+          <li><a href="/chatbot" class="logo me-auto"><img src="{{ asset('img/LogoAlphaByteBlack.png') }}" /> AI</a></li>
+          <li><a class="" href="/administrator"> <i class="bi bi-file-lock2-fill text-warning"  style="font-size:xx-large;"></i> </a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-      
-        <form action="#" method="post" class="searchx">
-            <div class="search-form"><input type="text" name="search"></div>
-        </form>
-
-      <a class="btn-getstarted" href="/administrator">Masuk</a>
+    
 
     </div>
   </header>

@@ -1,8 +1,8 @@
 /* Fonts */
 :root {
-  --default-font: "Open Sans",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Roboto-Regular", sans-serif;
-  --nav-font: "Roboto-Regular", Helvetica, "Poppins",  sans-serif;
+  --default-font: Roboto, sans-serif , "Open Sans",  system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Roboto", sans-serif;
+  --nav-font: "Roboto",  sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -11,7 +11,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #37423b; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #284173; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #1f4f8e; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -767,11 +767,9 @@ h6 {
 # Global Page Titles & Breadcrumbs
 --------------------------------------------------------------*/
 .page-title {
-  --default-color: var(--contrast-color);
-  --background-color: var(--accent-color);
-  --heading-color: var(--contrast-color);
-  color: var(--default-color);
-  background-color: var(--background-color);
+  font-family: var(--nav-font);
+  letter-spacing: 0.1vh;
+  color: var(--accent-color);
   position: relative;
 }
 
@@ -786,7 +784,6 @@ h6 {
 }
 
 .page-title nav {
-  background-color: color-mix(in srgb, var(--accent-color) 90%, black 5%);
   padding: 20px 0;
 }
 
@@ -799,16 +796,19 @@ h6 {
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: normal;
+  padding: 0;
 }
-
+.page-title nav ol li {
+  padding-left: 0;
+}
 .page-title nav ol li+li {
   padding-left: 10px;
 }
 
 .page-title nav ol li+li::before {
-  content: "/";
+  content: "\00BB";
   display: inline-block;
   padding-right: 10px;
   color: color-mix(in srgb, var(--default-color), transparent 70%);
@@ -2427,15 +2427,18 @@ section,
 # Knowledges knowledge Details Section
 --------------------------------------------------------------*/
 .knowledges-knowledge-details {
-  padding-bottom: 20px;
+  padding-top: 10px;
 }
 
 .knowledges-knowledge-details h3 {
   font-size: 24px;
-  margin: 30px 0 15px 0;
+  margin: 0 0 15px 0;
   font-weight: 400;
   position: relative;
   padding-bottom: 10px;
+  letter-spacing: 0.1vh;
+  font-family: var(--default-font);
+  color: var(--accent-color);
 }
 
 .knowledges-knowledge-details h3:before {
@@ -2463,15 +2466,13 @@ section,
 .knowledges-knowledge-details .knowledge-info {
   background: color-mix(in srgb, var(--default-color), transparent 95%);
   padding: 10px 15px;
-  margin-bottom: 15px;
+  margin: 15px 0;
+  font-family: var(--default-font);
+  color: var(--default-color);
+  font-weight: 400;
+  font-size: 14px;
 }
 
-.knowledges-knowledge-details .knowledge-info h5 {
-  font-weight: 400;
-  font-size: 16px;
-  margin: 0;
-  font-family: var(--nav-font);
-}
 
 .knowledges-knowledge-details .knowledge-info p {
   margin: 0;
@@ -2482,6 +2483,24 @@ section,
   color: var(--accent-color);
 }
 
+
+/*--------------------------------------------------------------
+# Knowledges knowledge Lainnya
+--------------------------------------------------------------*/
+.knowledges-knowledge-lainnya {
+  padding-top: 0px;
+}
+
+.knowledges-knowledge-lainnya h3 {
+  font-size: 14px;
+  margin: 0 0 15px 0;
+  font-weight: normal;
+  position: relative;
+  padding-bottom: 10px;
+  letter-spacing: 0.1vh;
+  font-family: var(--default-font);
+  color: #6e6e6e;
+}
 
 
 .swiper-slide {

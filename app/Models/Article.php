@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Article extends Model
 {
@@ -53,5 +54,15 @@ class Article extends Model
     public function likes()
     {
         return $this->hasMany(Like::class, 'article_id');  // Relasi one to many dengan Like
+    }
+
+    /**
+     * Accessor untuk format tanggal Indonesia
+     */
+    public function getTanggalIndoAttribute()
+    {
+        return Carbon::parse($this->created_at)
+            ->locale('id_ID') // Set locale ke Indonesia
+            ->translatedFormat('j F Y'); // Format: 27 April 2025
     }
 }

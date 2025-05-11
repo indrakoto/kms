@@ -46,30 +46,35 @@
           <li><a href="/analisis">Analisis</a></li>
           <li><a href="/knowledge" class="active">Knowledge</a></li>
           <li><a href="/geoportal">Geo-Portal</a></li>
-          <li><a href="/chatbot">Help</a></li>
+          <li><a href="/chatbot" class="logo me-auto"><img src="{{ asset('img/LogoAlphaByteBlack.png') }}" /> AI</a></li>
+          <li><a class="" href="/administrator"> <i class="bi bi-file-lock2-fill text-warning"  style="font-size:xx-large;"></i> </a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-      
-        <form action="#" method="post" class="searchx">
-            <div class="search-form"><input type="text" name="search"></div>
-        </form>
 
-      <a class="btn-getstarted" href="/administrator">Masuk</a>
 
     </div>
   </header>
 
     <main class="main">
-
+    <!-- Page Title -->
+      <div class="page-title" data-aos="fade">
+        <nav class="breadcrumbs">
+          <div class="container">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">Course Details</li>
+            </ol>
+          </div>
+        </nav>
+      </div><!-- End Page Title -->
       
       <section id="knowledges-knowledge-details" class="knowledges-knowledge-details section">
-
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-8">
                 <h3>{{ $article->title }}</h3>
+                
                         @if($article->source->name == 'YOUTUBE')
                           <p>{!! $article->content !!}</p>
                         @elseif($article->source->name == 'MP4')
@@ -88,24 +93,60 @@
 
                         @endif
                         
-                        <div class="trainer d-flex justify-content-between align-items-center">
-                            <div class="trainer-profile d-flex align-items-center">
-                              Publik/Private
+                        <div class="knowledge-info d-flex justify-content-between align-items-center">
+                            <div class="info-profile d-flex align-items-center">
+                              Publikasi: {{ $article->tanggal_indo }}
                             </div>
-                            <div class="trainer-rank d-flex align-items-center">
+                            <div class="knowledge-info-rank d-flex align-items-center">
+                              <i class="bi bi-eye eye-icon"></i>&nbsp;0
+                              &nbsp;&nbsp;
                               <i class="bi bi-person user-icon"></i>&nbsp;50
                               &nbsp;&nbsp;
                               <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;65
                             </div>
-                      </div>                  
+                        </div>
+                        <hr>
+                        {{ $article->content }}                  
                 </div>
                 <div class="col-lg-4">
-                  <h3>Knowledge Lainnya</h3>
-                    <div class="sidebar-post-content">
-                      <h5 class="post-title fs-5">
-                        <a href="#">Create Stocks and Flows</a>
-                      </h5>
-                      <p class=" m-0 lh-base" style="font-size: 14px;">Posted at: 12 April 2025</p>
+                    <div class="knowledges-knowledge-lainnya">
+                        <h3>Knowledge Lainnya</h3>
+                        
+<div class="related-articles">
+    @foreach($relatedArticles as $related)
+    <div class="row mt-4 mb-3 align-items-center">
+        <!-- Kolom untuk thumbnail -->
+        <div class="col-md-6">
+            <img src="{{ asset('img/rectangle-17.png') }}" class="img-fluid rounded" alt="{{ $related->title }}">
+        </div>
+        
+        <!-- Kolom untuk konten -->
+        <div class="col-md-6">
+            <h6 class="mb-1">
+                <a href="{{ route('knowledges.show', $related->id) }}" class="text-decoration-none">
+                    {{ $related->title }}
+                </a>
+            </h6>
+            <div class="d-flex small text-muted gap-3">
+                <div>
+                    <i class="bi bi-calendar me-1"></i>
+                    {{ $related->created_at->format('d M Y') }}
+                </div>
+                <div>
+                    <i class="bi bi-eye me-1"></i>
+                    {{ $related->views }} views
+                    
+                          &nbsp;&nbsp;
+                          <i class="bi bi-people user-icon"></i>&nbsp;0
+                          &nbsp;&nbsp;
+                          <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;0
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
                     </div>
                 </div>
             </div>
