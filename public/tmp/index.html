@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot ESDM</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Marked.js untuk Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background: #f4f4f4;
+        }
+        #chat-container {
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: white;
+            overflow: hidden;
+        }
+        #chat-box {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            font-size: 14px;
+            background: #fafafa;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            background: white;
+            align-items: center;
+        }
+        #user-input {
+            flex-grow: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* Spinner */
+        #spinner {
+            display: none;
+            margin-left: 15px;
+            color: #007bff;
+            font-size: 14px;
+            animation: blink 1.2s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        /* CSS untuk Markdown Tabel */
+        .bot-response table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: white;
+        }
+        .bot-response th, .bot-response td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        .bot-response th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .bot-response ul, .bot-response ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        .bot-response li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2><center>PPL GPT</center></h2><br>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Tulis pesan...">
+            <button id="send-button" onclick="sendMessage()">Kirim</button>
+            <div id="spinner">⏳ Memproses jawaban...</div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let userMessage = $("#user-input").val().trim();
+            if (userMessage === "") return;
+
+            // Tampilkan pesan pengguna
+            $("#chat-box").append("<p><b>Anda:</b> " + userMessage + "</p>");
+            $("#user-input").val("");
+
+            // Tampilkan spinner
+            $("#spinner").show();
+
+            $.ajax({
+                type: "POST",
+                url: "/chat",
+                contentType: "application/json",
+                data: JSON.stringify({ message: userMessage }),
+                success: function(response) {
+                    let botResponse = response.response;
+                    let rawHTML = marked.parse(botResponse);
+                    let formattedResponse = /<table|<ul|<ol|<div|<h\d|<pre|<code/.test(rawHTML)
+                        ? rawHTML
+                        : rawHTML.replace(/\n/g, "<br>");
+                    $("#chat-box").append("<div class='bot-response'><b>PPL:</b> " + formattedResponse + "</div>");
+                    $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+                },
+                error: function() {
+                    $("#chat-box").append("<div class='bot-response'><b>PPL:</b> ❌ Terjadi kesalahan saat memproses.</div>");
+                },
+                complete: function() {
+                    // Sembunyikan spinner setelah selesai
+                    $("#spinner").hide();
+                }
+            });
+        }
+
+        $("#user-input").keypress(function(event) {
+            if (event.which === 13) {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
