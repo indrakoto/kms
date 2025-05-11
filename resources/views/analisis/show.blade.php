@@ -1,140 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>KMS - MIGAS</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-
-  <!-- Favicons -->
-  <link href="{{ asset('img/logo-esdm.png') }}" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
-</head>
-
-<body class="index-page">
-
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-      <a href="/" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <img src="{{ asset('img/KMS-by-DIRJEN-MIGAS-02-1.png') }}" />
-      </a>
-
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="/home">Beranda<br></a></li>
-          <li><a href="/analisis" class="active">Analisis</a></li>
-          <li><a href="/knowledge">Knowledge</a></li>
-          <li><a href="/geoportal">Geo-Portal</a></li>
-          <li><a href="/chatbot" class="logo me-auto"><img src="{{ asset('img/LogoAlphaByteBlack.png') }}" /> AI</a></li>
-          <li><a class="" href="/administrator"> <i class="bi bi-file-lock2-fill text-warning"  style="font-size:xx-large;"></i> </a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-    
-
-    </div>
-  </header>
-
-    <main class="main">
-
-      <!-- Courses Section -->
-        <section id="courses" class="courses section">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-3">
-                <div class="list-group">
-
-                  @foreach ($analisis as $analis)
-                    <a 
-                        href="{{ route('analisis.index', ['id' => $analis->id]) }}" 
-                        class="list-group-item menu-item list-group-item-action {{ $neraca->analisis_id == $analis->id ? 'active-analisis' : '' }}"
-                    >
-                        {{ $analis->name }}
+@section('content')
+<div class="container-fluid">
+    <div class="row">
+        <!-- SIDEBAR -->
+        <div class="col-md-3">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Kategori Analisis</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="{{ route('analisis.index') }}" 
+                       class="list-group-item list-group-item-action {{ !$activeAnalisis ? 'active' : '' }}">
+                       Semua Neraca
                     </a>
-                  @endforeach
-
-                </div>
-     
-                </div>
-                <div class="col-lg-9">
-                <div class="row">
-
-                            <h1>{{ $neraca->name }}</h1>
-                            <p>{!! $neraca->description !!}</p>
-
-                </div>
-
+                    
+                    @foreach($analisisList as $item)
+                        <a href="{{ route('analisis.show', $item->slug) }}" 
+                           class="list-group-item list-group-item-action {{ $activeAnalisis == $item->id ? 'active' : '' }}">
+                           {{ $item->name }}
+                           <span class="badge bg-secondary float-end">{{ $item->neracas_count }}</span>
+                        </a>
+                    @endforeach
                 </div>
             </div>
-
         </div>
 
-        </section><!-- /Courses Section -->
-    </main>
+        <!-- MAIN CONTENT -->
+        <div class="col-md-9">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">{{ $analisis->name }}</h4>
+                    <p class="text-muted mb-0">{{ $analisis->description }}</p>
+                </div>
 
-<footer id="footer" class="footer position-relative light-background">
+                <div class="card-body">
+                    @if($neracas->count() > 0)
+                        @foreach($neracas as $neraca)
+                            <div class="neraca-item border-bottom pb-3 mb-3">
+                                <h5>
+                                    <a href="{{ route('neraca.show', $neraca->slug) }}" class="text-decoration-none">
+                                        {{ $neraca->name }}
+                                    </a>
+                                </h5>
+                                <p class="text-muted small">
+                                    {{ $neraca->created_at->format('d M Y') }} • 
+                                    {{ $neraca->analisis->name }}
+                                </p>
+                                <p>{{ Str::limit($neraca->description, 200) }}</p>
+                                <a href="{{ route('neraca.show', $neraca->slug) }}" class="btn btn-sm btn-primary">
+                                    Baca Selengkapnya
+                                </a>
+                            </div>
+                        @endforeach
 
-  <div class="container footer-top">
-    <div class="row gy-4">
-
-    <!-- <iframe src="https://geoportal.esdm.go.id/migas/" width="100%" height="600px;"></iframe> -->
-
+                        <div class="mt-4">
+                            {{ $neracas->links() }}
+                        </div>
+                    @else
+                        <div class="alert alert-info">
+                            Belum ada neraca untuk kategori ini.
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+@endsection
 
-  <div class="container copyright text-center mt-4">
-    <p></p>
-    <div class="credits">
-
-    </div>
-  </div>
-
-</footer>
-
-<!-- Scroll Top -->
-<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-<!-- Preloader -->
-<div id="preloader"></div>
-
-<!-- Vendor JS Files -->
-<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
-<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-<script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-<script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
-<!-- Main JS File -->
-<script src="{{ asset('assets/js/main.js') }}"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-
-</body>
-
-</html>
-</body>
-</html>
+@push('styles')
+<style>
+    .list-group-item.active {
+        background-color: #e9f5ff;
+        border-left: 3px solid #0d6efd;
+        color: #0d6efd;
+        font-weight: 500;
+    }
+</style>
+@endpush

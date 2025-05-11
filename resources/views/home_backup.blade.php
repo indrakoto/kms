@@ -107,8 +107,7 @@
                 </div>
       </div>
 
-    </section>
-    <!-- /Hero Section -->
+    </section><!-- /Hero Section -->
 
     <!-- About Section -->
     <section id="about" class="about ">
@@ -134,8 +133,7 @@
 
       </div>
 
-    </section>
-    <!-- /About Section -->
+    </section><!-- /About Section -->
 
 
 <section id="analisis-cards" class="analisis-cards section dongker-background">
@@ -288,8 +286,12 @@
 
 </section>
 
-    <!-- Knowledges Section -->
+    <!-- knowledges Section -->
     <section id="knowledges" class="knowledges section">
+      <!-- Section Title -->
+
+        
+
       <div class="container">
         <div class="row">
         <h3 class="text-center mb-4">Knowledge Terbaru</h3>
@@ -337,8 +339,9 @@
         </div>
         
       </div>
-    </section>
-    <!-- /Knowledges Section -->
+      
+
+    </section><!-- /knowledges Section -->
 
   </main>
 
