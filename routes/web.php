@@ -108,3 +108,7 @@ Route::get('/article/load-more', [ArticleController::class, 'loadMoreArticles'])
 Route::get('/geoportal', function () {
     return view('geo-portal');
 });
+
+Route::get('/geo-portal', function () {
+    return view('geo-portal');
+});
