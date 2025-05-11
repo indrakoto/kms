@@ -21,14 +21,14 @@
         position: absolute;
         right: 0;
         top: 0;
-        width: 10px;
+        width: 8px;
         height: 100%;
         background-color: #fbc02d;
     }
 
     /* Styling active */
     .active-analisis {
-        background-color: #284173;
+        background-color: #3154a0;
         color: white;
         position: relative;
     }
@@ -39,12 +39,12 @@
         top: 0;
         width: 10px;
         height: 100%;
-        background-color: #4379e7;
+        background-color: #fbc02d;
     }
 
     .menu-item {
         border-radius: 0 !important;
-        border: 1px solid #dee2e6;
+        border: 1px solid #921e81;
         padding: 15px;
     }
 
