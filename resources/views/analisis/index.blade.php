@@ -38,9 +38,10 @@
                 <div class="analisis-item mb-4">
                   <div class="analisis-content">
                     <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
-                    <h3 class="mt-4"><a href="{{ route('analisis.show', $neraca) }}">{{ $neraca->name }}</a></h3>
-                    <small class="text-muted">
-                        Kategori: {{ $neraca->analisis->name }}
+                    <h3 class="mt-4"><a href="{{ route('neraca.show', $neraca->slug) }}">{{ $neraca->name }}</a></h3>
+                    <small class="text-muted small">
+                        {{ $neraca->created_at->format('d M Y') }} • 
+                        {{ $neraca->analisis->name }}
                     </small>
                   </div>
                 </div>

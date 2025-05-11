@@ -29,8 +29,6 @@
             <div class="col-md-9">
             <h4 class="mb-0">{{ $analisis->name }}</h4>
                 <div class="row">
-
-
                     
                         @if($neracas->count() > 0)
                             @foreach($neracas as $neraca)
