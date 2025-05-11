@@ -8,15 +8,25 @@ use App\Models\Analisis;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\AnalisisController;
+//use App\Http\Controllers\NeracaController;
 
 Route::get('/', function () {
     //return view('beranda');
     return redirect('/home');
 });
 
+Route::get('/login', function () {
+    return redirect('/administrator');
+});
+
 Route::get('/beranda', function () {
-    return view('beranda');
-    //return redirect('/home');
+    // Mengambil 5 analisis terbaru
+    $latestAnalisis = Analisis::latest()->take(5)->get();
+
+    // Mengambil 3 artikel terbaru
+    $latestArticles = Article::latest()->take(4)->get();  
+
+    return view('index', compact('latestAnalisis', 'latestArticles'));
 });
 
 Route::get('/home', function () {
@@ -42,21 +52,14 @@ Route::get('/article/load-more', [ArticleController::class, 'loadMoreArticles'])
 
 
 Route::get('/geoportal', function () {
-    return view('geoportal');
+    return view('geo-portal');
 });
 
-//Route::get('/analisis', function () {
-//    return view('analisis');
-//});
-// Route untuk halaman utama analisis
-Route::get('/analisis', [AnalisisController::class, 'index'])->name('analisis.index');
-// Route untuk halaman artikel
-Route::get('/analisis/{id}', [AnalisisController::class, 'show'])->name('analisis.show');
-
-//Route::get('/knowledge', function () {
-//    return view('knowledge');
-    //return redirect('/article');
-//});
+Route::prefix('analisis')->group(function () {
+    Route::get('/', [AnalisisController::class, 'index'])->name('analisis.index');
+    Route::get('/{analisis:slug}', [AnalisisController::class, 'show'])->name('analisis.show');
+    Route::get('/read/{neraca:slug}', [AnalisisController::class, 'showNeraca'])->name('neraca.show');
+});
 
 // Route untuk halaman utama knowledge
 Route::get('/knowledge', [KnowledgeController::class, 'index'])->name('knowledges.index');
@@ -70,7 +73,7 @@ Route::get('/knowledge/load-more', [KnowledgeController::class, 'loadMoreArticle
 
 
 Route::get('/chatbot', function () {
-    return view('chatbot');
+    return view('ai');
 });
 
 // Menambahkan Route untuk Proxy API
@@ -90,6 +93,24 @@ Route::post('/proxy-chatbot', function (Request $request) {
     //$response = Http::post('http://localhost:11434/api/generate', $validated);
     //$response = Http::timeout(60)->post('http://localhost:11434/api/generate', $validated);
     $response = Http::timeout(60)->post('http://127.0.0.1:5000/chat', $validated);
+
+
+    // Kembalikan response API Ollama ke frontend
+    return response()->json($response->json(), $response->status());
+});
+
+// Menambahkan Route untuk API General
+Route::post('/general-chatbot', function (Request $request) {
+    // Validasi input dari frontend
+    $validated = $request->validate([
+        'model' => 'required|string',
+        'prompt' => 'required|string',
+        'stream' => 'required|boolean',
+    ]);
+
+    // Kirim request ke API Ollama (General)
+    //$response = Http::post('http://localhost:11434/api/generate', $validated);
+    $response = Http::timeout(60)->post('http://localhost:11434/api/generate', $validated);
 
 
     // Kembalikan response API Ollama ke frontend
