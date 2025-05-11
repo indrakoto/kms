@@ -17,20 +17,14 @@
 
         try {
             // Kirim pertanyaan ke API Ollama
-            const response = await fetch('/chat-api', {
-            //const response = await fetch('/proxy-chatbot', {
+            const response = await fetch('/ai-api', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': csrfToken, // Menyertakan CSRF token di header
                 },
                 body: JSON.stringify({
-                    model: "llama3.2",
-                    /*model: "gemma:7b-instruct",*/
-                    //keep_alive: 5,
-                    prompt: userMessage,
-                    stream: false
-                    //message: userMessage
+                    message: userMessage
                 }),
             });
 
