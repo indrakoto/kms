@@ -1,3 +1,4 @@
+/* Gaya dasar pesan */
 .message {
     margin-bottom: 10px;
     max-width: 75%;
@@ -15,4 +16,74 @@
 .message.bot {
     background-color: #E4E6EB;
     margin-right: auto;
+}
+
+/* Gaya untuk kontainer tabel */
+.message.bot .table-container {
+    overflow-x: auto;
+    margin: 12px 0;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Gaya dasar tabel */
+.message.bot table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 0.9em;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+/* Gaya header dan sel tabel */
+.message.bot th, 
+.message.bot td {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Gaya khusus header */
+.message.bot th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Striped rows */
+.message.bot tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.message.bot tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Gaya untuk teks biasa di pesan bot */
+.message-text {
+    margin-bottom: 12px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.message-text br {
+    content: "";
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Responsive tweak */
+@media (max-width: 600px) {
+    .message.bot th, 
+    .message.bot td {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+    
+    .message {
+        max-width: 85%;
+    }
 }
