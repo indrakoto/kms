@@ -1,40 +1,40 @@
-// Fungsi untuk memproses response bot (teks + tabel)
 function processBotResponse(responseText) {
-    // Pisahkan setiap baris dan filter yang kosong
-    const lines = responseText.split('\n').filter(line => line.trim() !== '');
-    let htmlOutput = '';
-    let currentTableLines = [];
+    // Fungsi untuk mengubah URL menjadi link
+    const urlToLink = (text) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, url => {
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        });
+    };
+
+    const lines = responseText.split('\n');
+    let html = '';
+    let tableLines = [];
     let inTable = false;
 
     lines.forEach(line => {
-        // Deteksi awal tabel
         if (line.trim().startsWith('|') && line.includes('|')) {
-            if (!inTable) {
-                // Mulai tabel baru
-                inTable = true;
-                currentTableLines = [];
-            }
-            currentTableLines.push(line);
+            if (!inTable) inTable = true;
+            tableLines.push(line);
         } else {
-            // Jika sedang dalam tabel, proses tabel terlebih dahulu
-            if (inTable && currentTableLines.length > 0) {
-                htmlOutput += markdownTableToHtml(currentTableLines.join('\n'));
-                currentTableLines = [];
+            if (inTable) {
+                html += markdownTableToHtml(tableLines.join('\n'));
+                tableLines = [];
                 inTable = false;
             }
-            // Tambahkan teks biasa
             if (line.trim()) {
-                htmlOutput += `<div class="message-text">${line}</div>`;
+                // Proses URL di teks biasa
+                html += `<div class="message-text">${urlToLink(line)}</div>`;
             }
         }
     });
 
-    // Handle tabel di akhir teks
-    if (inTable && currentTableLines.length > 0) {
-        htmlOutput += markdownTableToHtml(currentTableLines.join('\n'));
+    if (inTable) {
+        // Proses URL di dalam tabel (jika ada)
+        html += markdownTableToHtml(tableLines.join('\n'));
     }
 
-    return `<div class="message bot">${htmlOutput}</div>`;
+    return `<div class="message bot">${html}</div>`;
 }
 
 // Fungsi khusus untuk konversi markdown table ke HTML
