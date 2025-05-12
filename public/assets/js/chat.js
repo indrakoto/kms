@@ -92,7 +92,7 @@ document.getElementById('send-btn').addEventListener('click', async function () 
     // Tampilkan pesan pengguna
     chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
     input.value = '';
-    
+
     // Scroll ke bawah chat box
     chatBox.scrollTop = chatBox.scrollHeight;
     
@@ -106,7 +106,7 @@ document.getElementById('send-btn').addEventListener('click', async function () 
                 'X-CSRF-TOKEN': csrfToken,
             },
             body: JSON.stringify({
-                model: "gemma:7b-instruct",
+                model: "gemma:2b-instruct",
                 prompt: userMessage,
                 stream: false
             }),
