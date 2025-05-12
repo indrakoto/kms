@@ -1,46 +1,82 @@
-// Fungsi untuk mengubah teks tabel menjadi HTML tabel
-function textToHtmlTable(textData) {
-    // Pisahkan baris-baris data
-    const lines = textData.split('\n').filter(line => line.trim() !== '');
-    
-    // Cari baris yang mengandung header tabel (yang mengandung | --- |)
-    const headerSeparatorIndex = lines.findIndex(line => line.includes('|---'));
-    
-    // Jika format tabel tidak valid
-    if (headerSeparatorIndex === -1 || headerSeparatorIndex === 0) {
-        return textData; // Kembalikan teks asli jika bukan tabel
+// Fungsi untuk memproses response bot (teks + tabel)
+function processBotResponse(responseText) {
+    // Pisahkan setiap baris dan filter yang kosong
+    const lines = responseText.split('\n').filter(line => line.trim() !== '');
+    let htmlOutput = '';
+    let currentTableLines = [];
+    let inTable = false;
+
+    lines.forEach(line => {
+        // Deteksi awal tabel
+        if (line.trim().startsWith('|') && line.includes('|')) {
+            if (!inTable) {
+                // Mulai tabel baru
+                inTable = true;
+                currentTableLines = [];
+            }
+            currentTableLines.push(line);
+        } else {
+            // Jika sedang dalam tabel, proses tabel terlebih dahulu
+            if (inTable && currentTableLines.length > 0) {
+                htmlOutput += markdownTableToHtml(currentTableLines.join('\n'));
+                currentTableLines = [];
+                inTable = false;
+            }
+            // Tambahkan teks biasa
+            if (line.trim()) {
+                htmlOutput += `<div class="message-text">${line}</div>`;
+            }
+        }
+    });
+
+    // Handle tabel di akhir teks
+    if (inTable && currentTableLines.length > 0) {
+        htmlOutput += markdownTableToHtml(currentTableLines.join('\n'));
     }
+
+    return `<div class="message bot">${htmlOutput}</div>`;
+}
+
+// Fungsi khusus untuk konversi markdown table ke HTML
+function markdownTableToHtml(markdownTable) {
+    const lines = markdownTable.trim().split('\n');
     
-    // Ambil header
-    const headerLine = lines[headerSeparatorIndex - 1];
-    const headers = headerLine.split('|').slice(1, -1).map(h => h.trim());
+    // Baris header (pertama)
+    const headerParts = lines[0].split('|').map(part => part.trim());
+    const headers = headerParts.slice(1, -1); // Hilangkan bagian kosong di awal/akhir
     
-    // Ambil data baris
-    const dataRows = lines.slice(headerSeparatorIndex + 1).filter(row => row.includes('|'));
+    // Baris separator (kedua) untuk menentukan jumlah kolom sebenarnya
+    const separatorParts = lines[1].split('|').map(part => part.trim());
+    const actualColumnCount = separatorParts.slice(1, -1).length;
     
-    // Bangun HTML tabel
-    let html = '<div class="table-container"><table class="bot-table">\n';
-    
-    // Tambahkan header
-    html += '  <thead>\n    <tr>\n';
-    headers.forEach(header => {
-        html += `      <th>${header}</th>\n`;
-    });
-    html += '    </tr>\n  </thead>\n';
-    
-    // Tambahkan body
-    html += '  <tbody>\n';
-    dataRows.forEach(row => {
-        const cells = row.split('|').slice(1, -1).map(c => c.trim());
-        html += '    <tr>\n';
-        cells.forEach(cell => {
-            html += `      <td>${cell}</td>\n`;
+    // Baris data (mulai dari baris ke-3)
+    const rows = lines.slice(2)
+        .filter(line => line.includes('|'))
+        .map(line => {
+            const parts = line.split('|').map(part => part.trim());
+            return parts.slice(1, 1 + actualColumnCount); // Ambil hanya kolom yang sesuai
         });
-        html += '    </tr>\n';
-    });
-    html += '  </tbody>\n';
+
+    // Bangun HTML tabel
+    let html = '<div class="table-container"><table class="bot-table">';
     
-    html += '</table></div>';
+    // Header tabel
+    html += '<thead><tr>';
+    headers.slice(0, actualColumnCount).forEach(header => {
+        html += `<th>${header}</th>`;
+    });
+    html += '</tr></thead>';
+    
+    // Body tabel
+    html += '<tbody>';
+    rows.forEach(row => {
+        html += '<tr>';
+        row.forEach(cell => {
+            html += `<td>${cell}</td>`;
+        });
+        html += '</tr>';
+    });
+    html += '</tbody></table></div>';
     
     return html;
 }
@@ -80,18 +116,11 @@ document.getElementById('send-btn').addEventListener('click', async function () 
         }
 
         const data = await response.json();
-        console.log(data);  // Tambahkan log untuk melihat respons API
+        console.log("Raw response:", data);
 
-        // Proses respons untuk mengubah tabel teks menjadi HTML
-        let botMessage = data.response || "Tidak ada balasan";
-        
-        // Cek jika respons mengandung format tabel
-        if (botMessage.includes('|---') && botMessage.includes('|')) {
-            botMessage = textToHtmlTable(botMessage);
-        }
-        
-        // Tampilkan pesan bot
-        chatBox.innerHTML += `<div class="message bot">${botMessage}</div>`;
+        // Proses response dengan fungsi baru
+        const botMessage = data.response || "Tidak ada balasan";
+        chatBox.innerHTML += processBotResponse(botMessage);
         chatBox.scrollTop = chatBox.scrollHeight;
 
     } catch (error) {

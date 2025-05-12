@@ -92,6 +92,8 @@ document.getElementById('send-btn').addEventListener('click', async function () 
     // Tampilkan pesan pengguna
     chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
     input.value = '';
+    
+    // Scroll ke bawah chat box
     chatBox.scrollTop = chatBox.scrollHeight;
     
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
