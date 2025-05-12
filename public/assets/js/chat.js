@@ -104,7 +104,7 @@ document.getElementById('send-btn').addEventListener('click', async function () 
                 'X-CSRF-TOKEN': csrfToken,
             },
             body: JSON.stringify({
-                model: "gemma:7b-instruc",
+                model: "gemma:7b-instruct",
                 prompt: userMessage,
                 stream: false
             }),
