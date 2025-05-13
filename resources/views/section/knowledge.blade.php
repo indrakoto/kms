@@ -8,7 +8,12 @@
             <div class="knowledge-item">
               
               <div class="knowledge-content">
-                <img src="{{ asset('img/rectangle-17.png') }}" class="img-fluid mb-3" alt="...">
+                @php
+                    $thumbnail = $article->thumbnail 
+                        ? asset('articles/thumbnails/' . $article->thumbnail)
+                        : asset('img/default.png');
+                @endphp
+                <img src="{{ $thumbnail }}" class="img-fluid mb-3" alt="Thumbnail">
                 <div class="d-flex justify-content-between align-items-center">
                   @if($article->source->name == 'YOUTUBE')
                     <span class="badges-youtube"><i class="bi bi-youtube"></i></span>

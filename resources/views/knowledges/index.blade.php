@@ -41,10 +41,12 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             @if($article->source->name == 'YOUTUBE')
                                                 <span class="badges-youtube"><i class="bi bi-youtube"></i></span>
-                                            @elseif($article->source->name == 'MP4' || $article->source->name == 'OGG')
+                                            @elseif($article->source->name == 'VIDEO')
                                                 <span class="badges-video"><i class="bi bi-play-circle-fill"></i></span>
                                             @elseif($article->source->name == 'PDF')
                                                 <span class="badges-pdf"><i class="bi bi-file-pdf"></i></span>
+                                            @elseif($article->source->name == 'LINK')
+                                                <span class="badges-link"><i class="bi bi-globe"></i></span>
                                             @endif
                                         </div>
                                         <h3 class="mt-4"><a href="{{ route('knowledges.show', $article->id) }}">{{ $article->title }}</a></h3>

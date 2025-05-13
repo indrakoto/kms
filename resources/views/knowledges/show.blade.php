@@ -5,8 +5,8 @@
         <nav class="breadcrumbs">
           <div class="container">
             <ol>
-              <li><a href="index.html">Home</a></li>
-              <li class="current">Course Details</li>
+              <li><a href="/">Beranda</a></li>
+              <li class="current">Knowledge</li>
             </ol>
           </div>
         </nav>
@@ -17,6 +17,7 @@
             <div class="row">
                 <div class="col-lg-8">
                 <h3 class="mb-2">{{ $article->title }}</h3>
+                <div style="border: 1px solid #cccccc; padding:5px;">
                 <!-- Awal bagian Konten , PDF, Video  , Link atau Youtube --> 
                 @php
                   $sourceType = strtolower($article->source->name);
@@ -62,7 +63,7 @@
 
                 @endswitch
                 <!-- Akhir bagian Konten , PDF, Video  , Link atau Youtube -->                         
-
+                </div>
                         <div class="knowledge-info d-flex justify-content-between align-items-center">
                             <div class="info-profile d-flex align-items-center">
                               Publikasi: {{ $article->tanggal_indo }}
@@ -87,7 +88,12 @@
     <div class="row mt-4 mb-3 align-items-center">
         <!-- Kolom untuk thumbnail -->
         <div class="col-md-6">
-            <img src="{{ asset('img/rectangle-17.png') }}" class="img-fluid rounded" alt="{{ $related->title }}">
+            @php
+                $thumbnail = $related->thumbnail 
+                    ? asset('articles/thumbnails/' . $related->thumbnail)
+                    : asset('img/default.png');
+            @endphp
+            <img src="{{ $thumbnail }}" class="img-fluid rounded" alt="{{ $related->title }}">
         </div>
         
         <!-- Kolom untuk konten -->
