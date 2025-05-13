@@ -26,13 +26,14 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
-    protected static ?string $navigationLabel   = 'Artikel/Pengetahuan/Video';
+    protected static ?string $navigationLabel   = 'Konten Knowledge';
     protected static ?string $recordTitleAttribute  = 'Pengetahuan,Video,Link Website';
     protected static ?string $navigationGroup = 'Knowledge';
     
@@ -126,11 +127,22 @@ class ArticleResource extends Resource
                                 return in_array($sourceName, ['youtube', 'link']);
                             }),
 
-                        FileUpload::make('thumbnail')
-                            ->image()
-                            ->directory('') // kosongkan karena kita sudah atur root-nya ke public/articles/thumbnails
-                            ->disk('thumbnails_public'),
+                        //FileUpload::make('thumbnail')
+                        //    ->image()
+                        //    ->directory('') // kosongkan karena kita sudah atur root-nya ke public/articles/thumbnails
+                        //    ->disk('thumbnails_public'),
 
+                        Croppie::make('thumbnail')
+                            ->disk('thumbnails_public')
+                            ->viewportType('square')
+                            ->viewportHeight(412)
+                            ->viewportWidth(704)
+                            ->boundaryHeight(500)
+                            ->boundaryWidth(800)
+                            ->enableZoom(true)
+                            ->imageFormat('png')
+                            ->imageName('thumb_'),
+                            
                         Toggle::make('is_published')
                             ->required(),
 
@@ -209,7 +221,7 @@ class ArticleResource extends Resource
     {
         return [
             'index' => Pages\ListArticles::route('/'),
-            //'create' => Pages\CreateArticle::route('/create'),
+            'create' => Pages\CreateArticle::route('/create'),
             //'edit' => Pages\EditArticle::route('/{record}/edit'),
             'view' => Pages\ViewArticle::route('/{record}'),
         ];

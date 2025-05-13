@@ -37,7 +37,7 @@
                                                 ? asset('articles/thumbnails/' . $article->thumbnail)
                                                 : asset('img/default.png');
                                         @endphp
-                                        <img src="{{ $thumbnail }}" class="img-fluid" alt="Thumbnail">
+                                        <img src="{{ $thumbnail }}" class="img-fluid rounded" alt="Thumbnail"  style="border: 1px solid #f1f1f1;" >
                                         <div class="d-flex justify-content-between align-items-center">
                                             @if($article->source->name == 'YOUTUBE')
                                                 <span class="badges-youtube"><i class="bi bi-youtube"></i></span>
@@ -50,10 +50,10 @@
                                             @endif
                                         </div>
                                         <h3 class="mt-4"><a href="{{ route('knowledges.show', $article->id) }}">{{ $article->title }}</a></h3>
-                                        <p class="description">Institusi: </p>
+                                        <p class="description">{{ $article->institusi->name }} </p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">
-                                                Publik/Private
+                                                Publikasi: {{ $article->created_at->format('d M Y') }}
                                             </div>
                                             <div class="trainer-rank d-flex align-items-center">
                                                 <i class="bi bi-eye eye-icon"></i>&nbsp;0
