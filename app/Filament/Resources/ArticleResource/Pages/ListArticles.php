@@ -19,7 +19,7 @@ class ListArticles extends ListRecords
                 ->label('Tambah Data')
                 ->createAnother(false)
                 ->modalSubmitActionLabel('Simpan')
-                ->modalHeading('Tambah Data.'),
+                ->modalHeading('Knowledge.'),
         ];
     }
 }

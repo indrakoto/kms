@@ -43,7 +43,7 @@ class ArticleResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Knowledge Content')
+                Forms\Components\Section::make('Tambah Konten')
                     ->schema([
 
                         Select::make('source_id')
