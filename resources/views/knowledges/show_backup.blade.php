@@ -16,53 +16,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                <h3 class="mb-2">{{ $article->title }}</h3>
-                <!-- Awal bagian Konten , PDF, Video  , Link atau Youtube --> 
-                @php
-                  $sourceType = strtolower($article->source->name);
-                @endphp
-                
-                @switch($sourceType)
-                  @case('text')
-                      <div class="article-content">
-                          {!! $article->content !!}
-                      </div>
-                      @break
-
-                  @case('pdf')
-                      <div class="ratio ratio-16x9 mb-4">
-                          <iframe src="{{ Storage::url($article->file_path) }}#toolbar=0" 
-                                  style="border: none;"></iframe>
-                      </div>
-                      @break
-
-                  @case('video')
-                      @if($article->embed_code)
-                          <div class="ratio ratio-16x9 mb-4">
-                              {!! $article->embed_code !!}
-                          </div>
-                      @else
-                          <video controls class="w-100 mb-4">
-                              <source src="{{ Storage::url($article->video_path) }}" type="video/mp4">
+                <h3>{{ $article->title }}</h3>
+                             
+                        @if($article->source->name == 'YOUTUBE')
+                          <p>{!! $article->content !!}</p>
+                        @elseif($article->source->name == 'MP4')
+                          <video width="855" height="360" controls>
+                              <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
+                              Your browser does not support the video tag.
                           </video>
-                      @endif
-                      @break
+                        @elseif($article->source->name == 'OGG')
+                          <video width="855" height="500" controls>
+                              <source src="{{ asset('storage/' . $article->file_path) }}" type="video/mp4">
+                              Your browser does not support the video tag.
+                          </video>
+                        @elseif($article->source->name == 'PDF')
+                          <iframe src="{{ asset('storage/' . $article->file_path) }}" width="855" height="500"></iframe>
+                        @else 
 
-                  @case('youtube')
-                  @case('link')
-                      <div class="ratio ratio-16x9 mb-4">
-                          {!! $article->embed_code !!}
-                      </div>
-                      @break
-
-                  @default
-                      <div class="alert alert-warning">
-                          Format konten tidak dikenali
-                      </div>
-
-                @endswitch
-                <!-- Akhir bagian Konten , PDF, Video  , Link atau Youtube -->                         
-
+                        @endif
+                        
                         <div class="knowledge-info d-flex justify-content-between align-items-center">
                             <div class="info-profile d-flex align-items-center">
                               Publikasi: {{ $article->tanggal_indo }}

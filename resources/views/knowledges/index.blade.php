@@ -32,7 +32,12 @@
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="knowledge-item mb-4">
                                     <div class="knowledge-content">
-                                        <img src="{{ asset('img/rectangle-17.png') }}" class="img-fluid" alt="...">
+                                        @php
+                                            $thumbnail = $article->thumbnail 
+                                                ? asset('articles/thumbnails/' . $article->thumbnail)
+                                                : asset('img/default.png');
+                                        @endphp
+                                        <img src="{{ $thumbnail }}" class="img-fluid" alt="Thumbnail">
                                         <div class="d-flex justify-content-between align-items-center">
                                             @if($article->source->name == 'YOUTUBE')
                                                 <span class="badges-youtube"><i class="bi bi-youtube"></i></span>
