@@ -18,4 +18,12 @@ class EditArticle extends EditRecord
                 ->url($this->getResource()::getUrl()),
         ];
     }
+
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getSubmitFormAction()->label('SIMPAN'),
+            $this->getCancelFormAction()->label('BATAL'),
+        ];
+    }
 }

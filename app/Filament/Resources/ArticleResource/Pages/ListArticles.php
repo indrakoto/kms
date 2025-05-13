@@ -15,7 +15,11 @@ class ListArticles extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Tambah Data')
+                ->createAnother(false)
+                ->modalSubmitActionLabel('Simpan')
+                ->modalHeading('Tambah Data.'),
         ];
     }
 }
