@@ -23,9 +23,11 @@ class NeracaResource extends Resource
 {
     protected static ?string $model = Neraca::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel   = 'Neraca Analisis ';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-pie';
+    protected static ?string $navigationLabel   = 'Data Analisis ';
     //protected static ?string $navigationGroup   = 'Master Data';
+    protected static ?string $navigationGroup = 'Analisis';
+
     protected static bool $shouldRegisterNavigation = true;
     protected static ?int $navigationSort = 6;
 

@@ -9,18 +9,17 @@ use Filament\Resources\Pages\ListRecords;
 class ListNeracas extends ListRecords
 {
     protected static string $resource = NeracaResource::class;
-    protected static ?string $navigationLabel   = 'Neraca Analisis ';
-    protected ?string $heading      = 'Neraca Analisis';    
-    protected ?string $subheading   = 'Data Neraca';
+    protected static ?string $navigationLabel   = 'Data Analisis ';
+    protected ?string $heading      = 'Data Analisis';    
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make()
-                ->label('Tambah Neraca Analisis')
+                ->label('Tambah Data')
                 ->createAnother(false)
                 ->modalSubmitActionLabel('SIMPAN')
-                ->modalHeading('Tambah Neraca Analisis'),
+                ->modalHeading('Tambah Data'),
         ];
     }
 }

@@ -9,9 +9,8 @@ use Filament\Resources\Pages\ListRecords;
 class ListAnalises extends ListRecords
 {
     protected static string $resource = AnalisisResource::class;
-    protected static ?string $navigationLabel   = 'Analisis ';
-    protected ?string $heading      = 'Analisis';    
-    protected ?string $subheading   = 'Data Analisis';
+    protected ?string $heading      = 'Master Analisis';    
+    //protected ?string $subheading   = 'Data Analisis';
 
     protected function getHeaderActions(): array
     {

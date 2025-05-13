@@ -9,9 +9,9 @@ use Filament\Resources\Pages\ListRecords;
 class ListSources extends ListRecords
 {
     protected static string $resource = SourceResource::class;
-    protected static ?string $navigationLabel   = 'Jenis File ';
-    protected ?string $heading      = 'Jenis File';    
-    protected ?string $subheading   = 'Data Jenis-Jenis File';
+    protected static ?string $navigationLabel   = 'Master Tipe Konten ';
+    protected ?string $heading      = 'Master Tipe Konten';    
+    protected ?string $subheading   = 'Data Jenis-Jenis Konten';
 
     protected function getHeaderActions(): array
     {

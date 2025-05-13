@@ -22,10 +22,12 @@ use function Laravel\Prompts\select;
 class AnalisisResource extends Resource
 {
     protected static ?string $model = Analisis::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel   = 'Analisis ';
+    protected static ?string $navigationIcon = 'heroicon-o-beaker';
+    protected static ?string $navigationLabel   = 'Master Analisis';
+    protected static ?string $navigationGroup = 'Analisis';
+
     protected static bool $shouldRegisterNavigation = true;
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
