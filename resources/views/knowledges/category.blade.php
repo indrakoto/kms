@@ -10,15 +10,15 @@
                 <!-- Sidebar untuk memilih Institusi -->
                 <div class="col-lg-3">
                     <div class="list-group">
-                        <a 
+                    <a 
                             href="{{ route('knowledge.index') }}" 
-                            class="list-group-item list-group-item-action {{ request('institusi') ? '' : 'active-institusi' }}">
+                            class="list-group-item list-group-item-action {{ request('institusi_slug') ? '' : 'active-institusi' }}">
                             Semua Institusi
                         </a>
                         @foreach ($institusis as $inst)
                             <a 
-                                href="{{ route('knowledge.index', ['institusi' => $inst->id]) }}" 
-                                class="list-group-item list-group-item-action {{ request('institusi') == $inst->id ? 'active-institusi' : '' }}">
+                                href="{{ route('knowledge.institusi', ['institusi_slug' => $inst->slug]) }}" 
+                                class="list-group-item list-group-item-action {{ request('institusi_slug') == $inst->slug ? 'active-institusi' : '' }}">
                                 {{ $inst->name }}
                             </a>
                         @endforeach
