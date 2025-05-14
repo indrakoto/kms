@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('kms_articles', function (Blueprint $table) {
-            $table->string('content_type')->nullable()->after('file_path');
+        Schema::table('kms_categories', function (Blueprint $table) {
+            $table->text('slug')->nullable()->after('description');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('kms_articles', function (Blueprint $table) {
-            $table->dropColumn('content_type');
+        Schema::table('kms_categories', function (Blueprint $table) {
+            $table->dropColumn('slug');
         });
     }
 };

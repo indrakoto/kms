@@ -13,5 +13,10 @@ class Institusi extends Model
     protected $table = 'kms_institusi';
 
     // Kolom-kolom yang bisa diisi (mass assignment)
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'slug'];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

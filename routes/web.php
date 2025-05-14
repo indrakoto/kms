@@ -35,16 +35,61 @@ Route::prefix('analisis')->group(function () {
     Route::get('/read/{neraca:slug}', [AnalisisController::class, 'showNeraca'])->name('neraca.show');
 });
 
+/*
+Route::prefix('knowledge')->group(function () {
+    Route::get('/{institution:slug}', [KnowledgeController::class, 'institution'])
+        ->name('institution');
+    
+    Route::get('/kategori/{category:slug}', [KnowledgeController::class, 'category'])
+        ->name('category');
+    
+    Route::get('/tags/{tag:name}', [KnowledgeController::class, 'tag'])
+        ->name('tag');
+});
+*/
+
+Route::prefix('knowledge')->group(function() {
+    // Display all articles
+    Route::get('/', [KnowledgeController::class, 'index'])
+        ->name('knowledge.index');
+    
+    // Display articles by Institusi
+    Route::get('/{institusi_slug}', [KnowledgeController::class, 'byInstitusi'])
+        ->name('knowledge.institusi');
+    
+    // Display articles by Category
+    Route::get('/kategori/{category_slug}', [KnowledgeController::class, 'byCategory'])
+        ->name('knowledge.category');
+    
+    // Display a single article
+    Route::get('/read/{article_slug}/{id}', [KnowledgeController::class, 'showArticle'])
+        ->name('knowledge.show');
+    
+    // Display articles by Tag
+    Route::get('/tags/{tag_name}', [KnowledgeController::class, 'byTag'])
+        ->name('knowledge.tag');
+});
+
+/*
 // Route untuk halaman utama knowledge
 Route::get('/knowledge', [KnowledgeController::class, 'index'])->name('knowledges.index');
 // Route untuk halaman artikel
 Route::get('/knowledge/{id}', [KnowledgeController::class, 'show'])->name('knowledges.show');
+*/
 
-// Route untuk memuat lebih banyak knowledge via AJAX
-Route::get('/knowledge/load-more', [KnowledgeController::class, 'loadMoreArticles'])->name('knowledges.loadMore');
+Route::get('/geoportal', function () {
+    return view('geo-portal');
+});
+
+Route::get('/geo-portal', function () {
+    return view('geo-portal');
+});
 
 
 Route::get('/ai', function () {
+    return redirect('/aplhabyte');
+});
+Route::get('/aplhabyte', function () {
     return view('ai');
 });
 
@@ -93,22 +138,3 @@ Route::post('/chat-api', function (Request $request) {
     return response()->json($response->json(), $response->status());
 });
 
-
-/* Route Article tidak digunakan */
-// Route untuk halaman utama artikel
-Route::get('/article', [ArticleController::class, 'index'])->name('articles.index');
-
-// Route untuk halaman artikel
-Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show');
-
-// Route untuk memuat lebih banyak artikel via AJAX
-Route::get('/article/load-more', [ArticleController::class, 'loadMoreArticles'])->name('articles.loadMore');
-
-
-Route::get('/geoportal', function () {
-    return view('geo-portal');
-});
-
-Route::get('/geo-portal', function () {
-    return view('geo-portal');
-});

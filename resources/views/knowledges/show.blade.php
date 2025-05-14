@@ -99,9 +99,11 @@
         <!-- Kolom untuk konten -->
         <div class="col-md-6">
             <h6 class="mb-1">
-                <a href="{{ route('knowledges.show', $related->id) }}" class="text-decoration-none">
+                
+                <a href="{{ route('knowledge.show', ['article_slug' => $related->slug, 'id' => $related->id]) }}">
                     {{ $related->title }}
                 </a>
+   
             </h6>
             <div class="d-flex small text-muted gap-3">
                 <div>

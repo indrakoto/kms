@@ -28,7 +28,7 @@
                   <!-- <p class="category">{{ $article->category->name }}</p> -->
                 </div>
 
-                <h3><a href="{{ route('knowledges.show', $article->id) }}">{{ $article->title }}</a></h3>
+                <h3><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
                 
                 <div class="trainer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3 ">
                   <div class="trainer-profile d-flex align-items-center">
