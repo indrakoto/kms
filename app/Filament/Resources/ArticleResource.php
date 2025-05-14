@@ -38,7 +38,7 @@ class ArticleResource extends Resource
     protected static ?string $navigationGroup = 'Knowledge';
     
     protected static bool $shouldRegisterNavigation = true;
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
@@ -160,15 +160,8 @@ class ArticleResource extends Resource
 
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('is_published')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('source.name')
+                    ->label('Tipe')
                     ->badge()
                     ->color(function ($record) {
                         return match ($record->source->name) {
@@ -178,10 +171,21 @@ class ArticleResource extends Resource
                             'link' => 'success',
                             default => 'gray',
                         };
-                    }),
-                Tables\Columns\TextColumn::make('views')
+                    }),                    
+                Tables\Columns\TextColumn::make('category.name')
                     ->numeric()
                     ->sortable(),
+
+                    
+                Tables\Columns\IconColumn::make('is_published')
+                    ->boolean()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                Tables\Columns\TextColumn::make('views')
+                    ->numeric()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -9,11 +9,11 @@ use Filament\Resources\Pages\ListRecords;
 class ListProfiles extends ListRecords
 {
     protected static string $resource = ProfileResource::class;
-
+    protected ?string $heading      = 'Profil Pengguna';    
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            //Actions\CreateAction::make(),
         ];
     }
 }

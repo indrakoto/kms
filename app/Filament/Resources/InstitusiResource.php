@@ -20,9 +20,9 @@ class InstitusiResource extends Resource
 {
     protected static ?string $model = Institusi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
     protected static ?string $navigationLabel   = 'Institusi ';
-    //protected static ?string $navigationGroup   = 'Master Data';
+    protected static ?string $navigationGroup   = 'Master';
     protected static bool $shouldRegisterNavigation = true;
     protected static ?int $navigationSort = 1;
 

@@ -18,12 +18,12 @@ class SourceResource extends Resource
     protected static ?string $model = Source::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
-    protected static ?string $navigationLabel   = 'Master Tipe Konten';
+    protected static ?string $navigationLabel   = 'Tipe Konten';
     protected static ?string $recordTitleAttribute  = 'PDF/Video/Link Website';
     protected static ?string $navigationGroup = 'Knowledge';
 
     protected static bool $shouldRegisterNavigation = true;
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 5;
     public static function form(Form $form): Form
     {
         return $form

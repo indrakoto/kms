@@ -17,8 +17,8 @@ class ProfileResource extends Resource
 {
     protected static ?string $model = ExpertProfile::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel   = 'Profil ';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?string $navigationLabel   = 'Profil';
     protected static bool $shouldRegisterNavigation = true;
     protected static ?int $navigationSort = 4;
 
@@ -34,13 +34,17 @@ class ProfileResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('expertise')
+                    ->label('Nama')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                //Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -60,8 +64,8 @@ class ProfileResource extends Resource
     {
         return [
             'index' => Pages\ListProfiles::route('/'),
-            'create' => Pages\CreateProfile::route('/create'),
-            'edit' => Pages\EditProfile::route('/{record}/edit'),
+            //'create' => Pages\CreateProfile::route('/create'),
+            //'edit' => Pages\EditProfile::route('/{record}/edit'),
         ];
     }
 }

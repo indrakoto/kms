@@ -29,7 +29,7 @@ class NeracaResource extends Resource
     protected static ?string $navigationGroup = 'Analisis';
 
     protected static bool $shouldRegisterNavigation = true;
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
