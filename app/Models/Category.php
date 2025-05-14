@@ -13,7 +13,7 @@ class Category extends Model
     protected $table = 'kms_categories';
 
     // Kolom-kolom yang bisa diisi (mass assignment)
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'slug'];
 
     // Relasi: satu kategori memiliki banyak artikel
     public function articles()
