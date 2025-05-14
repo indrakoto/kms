@@ -3,8 +3,8 @@
     <div class="container footer-top">
     <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
-        <a href="#" class="logo d-flex align-items-center">
-        <img  height="32px" src="{{asset('img/LogoAlphaByteBlack.png')}}" /> <span class="sitename">KMS AI</span>
+        <a href="#" class=" d-flex align-items-center">
+            <img style="max-height: 72px;" src="{{asset('img/logo-esdm.png')}}" />
         </a>
         <div class="footer-contact pt-3">
             <h6>Kementerian ESDM</h6>
@@ -22,56 +22,41 @@
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-        <h4>SDM</h4>
+        <h4>KMS Migas</h4>
+        <ul>
+            <li><a href="{{ env('APP_URL') }}/beranda">Beranda</a></li>
+            <li><a href="{{ env('APP_URL') }}/analisis">Analisis</a></li>
+            <li><a href="{{ env('APP_URL') }}/knowledge">Knowledge</a></li>
+            <li><a href="{{ env('APP_URL') }}/geo-portal">Geo-Portal</a></li>
+            <li><a href="{{ env('APP_URL') }}/ai">AlphaByte</a></li>
+        </ul>
+        </div>
+
+
+        <div class="col-lg-2 col-md-3 footer-links">
+        <h4>Tautan Lainnya</h4>
         <ul>
             <li><a href="https://migas.esdm.go.id/post/Profil-Dirjen">Profil Dirjen</a></li>
             <li><a href="https://migas.esdm.go.id/visi-dan-misi">Visi dan MIsi Organisasi</a></li>
             <li><a href="https://migas.esdm.go.id/visi-dan-misi">Tugas dan Fungsi Organisasi</a></li>
             <li><a href="https://migas.esdm.go.id/struktur-organisasi-ditjen-migas">Struktur Organisasi</a></li>
-            <li><a href="https://migas.esdm.go.id/post/index">Berita Migas</a></li>
-            <li><a href="https://migas.esdm.go.id/agenda/index">Agenda Migas</a></li>
-            <li><a href="https://migas.esdm.go.id/infografis/index">Infografis Migas</a></li>
-            <li><a href="https://datamigas.esdm.go.id/home">Migas Data Repository</a></li>
-    
         </ul>
         </div>
 
 
-        <div class="col-lg-2 col-md-3 footer-links">
-        <h4>DMO</h4>
-        <ul>
-            <li><a href="https://migas.esdm.go.id/page/badan-usaha-hilir-dan-penyalur-migas">Badan Usaha Hilir dan Penyalur Migas</a></li>
-            <li><a href="https://migas.esdm.go.id/page/daftar-sub-penyalur-lpg-3-kg">Daftar Sub Penyalur LPG Tabung 3 kg</a></li>
-            <li><a href="https://migas.esdm.go.id/page/daftar-penyalur-lpg-3-kg">Daftar Penyalur lPG 3 KG</a></li>
-            <li><a href="https://migas.esdm.go.id/page/daftar-umum-pelumas">Daftar Umum Pelumas</a></li>
-            <li><a href="https://migas.esdm.go.id/page/sop-dit-hilir-migas">SOP Direktorat Pembinaan Usaha Hilir Migas</a></li>
-            <li><a href="https://migas.esdm.go.id/page/harga-index-pasar-bbm">Harga Index Pasar BBM</a></li>
-            <li><a href="https://migas.esdm.go.id/page/perusahaan-memiliki-npt-berdasarkan-tahun">Daftar Perusahaan memiliki NPT berdasarkan tahun</a></li>
-        </ul>
-        </div>
-
-
-        <div class="col-lg-2 col-md-3 footer-links">
-        <h4>DMT</h4>
-        <ul>
-            <li><a href="https://migas.esdm.go.id/page/buku-referensi-1">Atlas Keselamatan</a></li>
-            <li><a href="https://migas.esdm.go.id/page/beban-kerja-perusahaan-inspeksi">Beban Kerja Perusahaan Inspeksi</a></li>
-            <li><a href="https://migas.esdm.go.id/page/perusahaan-inspeksi-1">Daftar Perusahaan Inspeksi</a></li>
-            <li><a href="https://migas.esdm.go.id/page/maklumat-pelayanan-direktorat-teknik-dan-lingkungan-migas">Maklumat Pelayanan Direktorat Teknik dan Lingkungan</a></li>
-            <li><a href="https://migas.esdm.go.id/page/sop-direktorat-teknik-dan-lingkungan-migas">SOP Direktorat Teknik dan Lingkungan Migas</a></li>
-            <li><a href="https://migas.esdm.go.id/page/jasa-teknik-1">Daftar Perusahaan jasa penunjang migas</a></li>
-        </ul>
-        </div>
-
-
-        <div class="col-lg-2 col-md-3 footer-links">
-        <h4>DMB</h4>
-        <ul>
-            <li><a href="https://migas.esdm.go.id/post/harga-minyak-mentah">Harga Minyak Mentah</a></li>
-            <li><a href="https://migas.esdm.go.id/page/sop-dit-program-migas">SOP Direktorat Pembinaan Program Migas</a></li>
-            <li><a href="https://migas.esdm.go.id/page/renstra-ditjen-migas">Renstra Ditjen Migas</a></li>
-            <li><a href="https://sirib.migas.esdm.go.id/login">Sistem Informasi Rencana Impor Barang</a></li>
-        </ul>
+        <div class="col-lg-4 col-md-3 footer-links">
+            <a href="/ai" class="logo d-flex align-items-center">
+                <img  height="32px" src="{{asset('img/LogoAlphaByteBlack.png')}}" /> 
+                <span style="color:rgb(176, 164, 62); margin: 5px 0 0 5px; font-size: xx-large;">
+                    AlphaByte.
+                </span>
+            </a>
+            <div class="footer-contact pt-3">
+                <p style="font-size: medium; color:rgb(222, 222, 222);">
+                    Halo! Saya AlphaByte., Knowledge AI khusus dalam segala hal yang berkaitan dengan dunia Minyak dan Gas Bumi.
+                    Saya hadir untuk menjawab pertanyaan Anda, memberikan penjelasan mendalam, dan membantu Anda memahami pengetahuan tentang Minyak dan Gas Bumi.
+                </p>
+           </div>
         </div>
 
     </div>
