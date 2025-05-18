@@ -19,19 +19,67 @@ class KnowledgeController extends Controller
             ->latest() // Mengurutkan berdasarkan tanggal terbaru
             ->paginate(9); // Mengambil 10 artikel per halaman
         
-        $institusis = Institusi::all();
+        /*$institusis = Institusi::with(['children' => function ($query) {
+            $query->orderBy('name');
+        }])
+            ->whereNull('parent')
+            ->orderBy('name')
+            ->get();*/
+        $institusis = Institusi::getMenuInstitusi();
 
         return view('knowledges.index', compact('knowledges','institusis'));
     }
-
-    // Show articles by Institusi
-    public function byInstitusi($institusi_slug)
+    public function byInstitusiXX($institusi_slug)
     {
         $institusi = Institusi::where('slug', $institusi_slug)->firstOrFail();
-        $institusis = Institusi::all();
-        $knowledges = $institusi->articles()->with(['category', 'tags'])->paginate(10);
+        
+        $knowledges = $institusi->articles()
+            ->with(['category', 'tags'])
+            ->latest()
+            ->paginate(9);
+        
+        $institusis = Institusi::getMenuInstitusi();
+        
+        return view('knowledges.institusi', compact('knowledges', 'institusis', 'institusi'));
+    }
+
+    // Show articles by Institusi
+    public function byInstitusiX($institusi_slug)
+    {
+        $institusi = Institusi::where('slug', $institusi_slug)->firstOrFail();
+        $knowledges = $institusi->articles()
+            ->with(['category', 'tags'])
+            ->latest()
+            ->paginate(9);
+        $institusis = Institusi::getMenuInstitusi();
         
         return view('knowledges.institusi', compact('knowledges', 'institusi', 'institusis'));
+    }
+    public function byInstitusi($slug)
+    {
+        // 1. Cari institusi/sub-institusi berdasarkan slug (unik)
+        $institusi = Institusi::where('slug', $slug)
+            ->with(['parentRelation', 'children']) // Eager load relasi
+            ->firstOrFail();
+    
+        
+        // 2. Dapatkan artikel terkait institusi ini
+        $knowledges = $institusi->articles()->with(['category', 'tags'])->paginate(10);
+    
+        // 3. Ambil semua institusi untuk sidebar (parent saja + children)
+        /*$sidebarInstitusi = Institusi::with(['children' => function($query) {
+                $query->orderBy('name');
+            }])
+            ->whereNull('parent')
+            ->orderBy('name')
+            ->get();*/
+        $institusis = Institusi::getMenuInstitusi();
+    
+        return view('knowledges.institusi', [
+            'knowledges'       => $knowledges,
+            'institusi' => $institusi,
+            'institusis'        => $institusis // Untuk menu sidebar
+        ]);
     }
 
     // Show articles by Category

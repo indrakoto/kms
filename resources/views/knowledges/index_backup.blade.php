@@ -24,9 +24,30 @@
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->
                 <div class="col-lg-3">
-                    <div class="menu-myside">
+                    <div class="list-group">
+                    <a 
+                            href="{{ route('knowledge.index') }}" 
+                            class="list-group-item list-group-item-action {{ request('institusi_slug') ? '' : 'active-institusi' }}">
+                            Semua Institusi
+                        </a>
+                        @foreach ($institusis as $inst)
+                            <a 
+                                href="{{ route('knowledge.institusi', ['institusi_slug' => $inst->slug]) }}" 
+                                class="list-group-item list-group-item-action {{ request('institusi_slug') == $inst->slug ? 'active-institusi' : '' }}">
+                                {{ $inst->name }}
+                            </a>
+                        @endforeach
+                    </div>
+
+                    <div class="list-group">
+                        <a 
+                            href="{{ route('knowledge.index') }}" 
+                            class="list-group-item list-group-item-action {{ !request('institusi_slug') ? 'active-institusi' : '' }}">
+                            Semua Institusi
+                        </a>
+                        
                         @foreach ($institusis as $item)
-                            @include('section.sidebar-knowledge', ['item' => $item])
+                            @include('section.knowledge-sidebar', ['item' => $item])
                         @endforeach
                     </div>
 

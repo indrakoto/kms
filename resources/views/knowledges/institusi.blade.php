@@ -2,6 +2,10 @@
 
 @section('title', 'KMS - Knowledge')
 
+@push('styles')
+  <link rel="stylesheet" href="{{ asset('assets/css/mysidebar.css') }}">
+@endpush
+
 @section('content')
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
@@ -9,18 +13,9 @@
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->
                 <div class="col-lg-3">
-                    <div class="list-group">
-                        <a 
-                            href="{{ route('knowledge.index') }}" 
-                            class="list-group-item list-group-item-action {{ request('institusi_slug') ? '' : 'active-institusi' }}">
-                            Semua Institusi
-                        </a>
-                        @foreach ($institusis as $inst)
-                            <a 
-                                href="{{ route('knowledge.institusi', ['institusi_slug' => $inst->slug]) }}" 
-                                class="list-group-item list-group-item-action {{ request('institusi_slug') == $inst->slug ? 'active-institusi' : '' }}">
-                                {{ $inst->name }}
-                            </a>
+                    <div class="menu-myside">
+                        @foreach ($institusis as $item)
+                            @include('section.sidebar-knowledge', ['item' => $item])
                         @endforeach
                     </div>
                 </div>
@@ -81,3 +76,6 @@
     </section>
     <!-- /Knowledges Section -->
 @endsection
+@push('scripts')
+  <script src="{{ asset('assets/js/mysidebar.js') }}"></script>
+@endpush

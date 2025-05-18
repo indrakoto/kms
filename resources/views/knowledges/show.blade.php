@@ -1,16 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <!-- Page Title -->
-      <div class="page-title" data-aos="fade">
-        <nav class="breadcrumbs">
-          <div class="container">
-            <ol>
-              <li><a href="/">Beranda</a></li>
-              <li class="current">Knowledge</li>
-            </ol>
-          </div>
-        </nav>
-      </div><!-- End Page Title -->
+    @include('section.page-title')
       
       <section id="knowledges-knowledge-details" class="knowledges-knowledge-details section">
         <div class="container">

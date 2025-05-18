@@ -2,34 +2,27 @@
 
 @section('title', 'KMS - Knowledge')
 
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/mysidebar.css') }}">
-@endpush
-
 @section('content')
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-        <nav class="breadcrumbs">
-          <div class="container">
-            <ol>
-              <li><a href="/">Beranda</a></li>
-              <li class="current">Knowledge</li>
-            </ol>
-          </div>
-        </nav>
-      </div><!-- End Page Title -->
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
         <div class="container">
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->
                 <div class="col-lg-3">
-                    <div class="menu-myside">
-                        @foreach ($institusis as $item)
-                            @include('section.sidebar-knowledge', ['item' => $item])
+                    <div class="list-group">
+                        <a 
+                            href="{{ route('knowledge.index') }}" 
+                            class="list-group-item list-group-item-action {{ request('institusi_slug') ? '' : 'active-institusi' }}">
+                            Semua Institusi
+                        </a>
+                        @foreach ($sidebarInstitusi as $inst)
+                            <a 
+                                href="{{ route('knowledge.institusi', ['institusi_slug' => $inst->slug]) }}" 
+                                class="list-group-item list-group-item-action {{ request('institusi_slug') == $inst->slug ? 'active-institusi' : '' }}">
+                                {{ $inst->name }}
+                            </a>
                         @endforeach
                     </div>
-
                 </div>
 
                 <!-- Konten untuk Artikel Knowledge -->
@@ -88,7 +81,3 @@
     </section>
     <!-- /Knowledges Section -->
 @endsection
-
-@push('scripts')
-  <script src="{{ asset('assets/js/mysidebar.js') }}"></script>
-@endpush

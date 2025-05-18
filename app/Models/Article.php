@@ -122,10 +122,12 @@ class Article extends Model
     }
 
     public function getThumbnailUrlAttribute()
-{
-    if ($this->thumbnail && Storage::exists($this->thumbnail)) {
-        return Storage::url($this->thumbnail);
+    {
+        if ($this->thumbnail && Storage::exists($this->thumbnail)) {
+            return Storage::url($this->thumbnail);
+        }
+        return asset('img/default.png'); // Path ke gambar default
     }
-    return asset('img/default.png'); // Path ke gambar default
-}
+
+
 }
