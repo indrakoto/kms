@@ -120,9 +120,9 @@ class InstitusiResource extends Resource
                 Tables\Columns\TextColumn::make('parentRelation.name') // Akses relasi parent
                     ->label('Parent')
                     ->sortable()
+                    ->searchable()
                     ->placeholder('-'),
-                //Tables\Columns\TextColumn::make('slug')
-                //    ->searchable(),
+                
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
