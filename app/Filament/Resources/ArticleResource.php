@@ -27,6 +27,7 @@ use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Michaeld555\FilamentCroppie\Components\Croppie;
+use CodeWithDennis\FilamentSelectTree\SelectTree;
 
 class ArticleResource extends Resource
 {
@@ -67,12 +68,19 @@ class ArticleResource extends Resource
                             ->options(Category::orderBy('id', 'asc')->pluck('name','id'))
                             ->required(),
 
-                        Select::make('institusi_id')
-                            ->label('Institusi')
-                            //->relationship('institusi', 'name')
-                            ->options(Institusi::orderBy('id', 'asc')->pluck('name','id'))
-                            ->required(),
+                        //Select::make('institusi_id')
+                        //    ->label('Institusi')
+                        //    //->relationship('institusi', 'name')
+                        //    ->options(Institusi::orderBy('id', 'asc')->pluck('name','id'))
+                        //    ->required(),
 
+
+                        SelectTree::make('institusi_id')
+                                ->label('Institusi')
+                                ->withCount()
+                                ->relationship('institusi', 'name', 'parent')
+                                ->required(),
+                                
                         TextInput::make('title')
                             ->required()
                             ->maxLength(255)
