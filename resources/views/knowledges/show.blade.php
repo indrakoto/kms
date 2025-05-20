@@ -48,7 +48,7 @@
 
                   @case('link')
                       <div class="ratio ratio-16x9 mb-4">
-                        <iframe src="{{ Storage::url($article->embed_link) }}#toolbar=0" 
+                        <iframe src="{{ $article->embed_link }}#toolbar=0" 
                             style="border: none;"></iframe>
                       </div>
                       @break
