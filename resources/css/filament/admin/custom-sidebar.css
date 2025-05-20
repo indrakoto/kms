@@ -1,0 +1,23 @@
+/* resources/css/filament/admin/custom-sidebar.css */
+.fi-sidebar-nav {
+    @apply space-y-1;
+}
+
+.fi-sidebar-group > div:first-child {
+    @apply relative ps-9;
+}
+
+.fi-sidebar-group > div:first-child::before {
+    @apply absolute start-[2.75rem] inset-y-0 w-px bg-gray-200 dark:bg-gray-700;
+    content: '';
+}
+
+.fi-sidebar-item .fi-sidebar-item-button {
+    @apply relative;
+}
+
+.fi-sidebar-item .fi-sidebar-item-button::before {
+    @apply absolute start-[2.75rem] top-1/2 h-px w-3 bg-gray-200 dark:bg-gray-700;
+    content: '';
+    transform: translateY(-50%);
+}

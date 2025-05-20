@@ -7,6 +7,7 @@
 @endpush
 
 @section('content')
+    @include('section.page-title')
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
         <div class="container">

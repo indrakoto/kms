@@ -7,17 +7,7 @@
 @endpush
 
 @section('content')
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-        <nav class="breadcrumbs">
-          <div class="container">
-            <ol>
-              <li><a href="/">Beranda</a></li>
-              <li class="current">Knowledge</li>
-            </ol>
-          </div>
-        </nav>
-      </div><!-- End Page Title -->
+    @include('section.page-title')
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
         <div class="container">
@@ -56,7 +46,7 @@
                                                 <span class="badges-link"><i class="bi bi-globe"></i></span>
                                             @endif
                                         </div>
-                                        <h3 class="mt-4"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
+                                        <h3 class="mt-3"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
                                         <p class="description" style="margin-bottom: 0;">{{ $article->institusi->name }}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">

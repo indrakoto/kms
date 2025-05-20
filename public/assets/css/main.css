@@ -780,7 +780,7 @@ h6 {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding:  10px 0;
+  padding:  25px 0;
   gap: 15px;
 }
 
@@ -825,8 +825,8 @@ h6 {
 .page-title__search-group {
   display: flex;
   width: 100%;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 0;
+  margin-bottom: 50px;
   padding: 6px 8px;
   position: relative;
   border-radius: 50px;
@@ -2366,6 +2366,7 @@ section,
   border-radius: 10px;
 }
 
+
 .knowledges .knowledge-content {
   padding: 15px;
 }
@@ -2436,9 +2437,6 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
 }
 
-.knowledges .trainer .trainer-rank .user-icon {
-  /*font-size: 22px;*/
-}
 
 .knowledges .badges {
   position: absolute;
@@ -2586,6 +2584,13 @@ section,
   letter-spacing: 0.1vh;
   font-family: var(--default-font);
   color: #6e6e6e;
+}
+
+.knowledges-knowledge-lainnya .knowledge-lainnya-item {
+  background-color: #f7f7f7; /* var(--surface-color); */
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 10px;
+  padding: 15px;;
 }
 
 

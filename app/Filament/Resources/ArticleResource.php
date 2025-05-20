@@ -58,6 +58,7 @@ class ArticleResource extends Resource
                                 $set('file_path', null);
                                 $set('video_path', null);
                                 $set('embed_code', null);
+                                $set('embed_link', null);
                             }),
                     
                         Select::make('category_id')
@@ -119,14 +120,27 @@ class ArticleResource extends Resource
                                 //$sourceName = Source::find($get('source_id'))?->name;
                                 $sourceName = strtolower(Source::find($get('source_id'))?->name);
                                 return $sourceName === 'youtube' 
-                                    ? 'Paste YouTube embed code' 
+                                    ? 'Paste YouTube/Facebook/Instagram embed code' 
                                     : 'Paste full iframe code';
                             })
                             ->visible(function (Forms\Get $get) {
                                 $sourceName = strtolower(Source::find($get('source_id'))?->name);
-                                return in_array($sourceName, ['youtube', 'link']);
+                                return in_array($sourceName, ['youtube']);
                             }),
-
+                            
+                        Textarea::make('embed_link')
+                            ->label('Embed Link')
+                            ->placeholder('http or https://...')
+                            ->helperText(function (Forms\Get $get) {
+                                $sourceName = strtolower(Source::find($get('source_id'))?->name);
+                                return $sourceName === 'link' 
+                                    ? 'Paste full link with http or https' 
+                                    : 'Paste full link with http or https';
+                            })
+                            ->visible(function (Forms\Get $get) {
+                                $sourceName = strtolower(Source::find($get('source_id'))?->name);
+                                return in_array($sourceName, ['link']);
+                            }),
                         //FileUpload::make('thumbnail')
                         //    ->image()
                         //    ->directory('') // kosongkan karena kita sudah atur root-nya ke public/articles/thumbnails

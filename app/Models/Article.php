@@ -22,6 +22,7 @@ class Article extends Model
         'content',
         'slug', 
         'embed_code',
+        'embed_link',
         'file_path',
         'thumbnail',
         'is_published', 
@@ -105,8 +106,13 @@ class Article extends Model
                 ]);
                 
             case 'youtube':
-            case 'link':
                 return $this->embed_code;
+
+            case 'link':
+                //return $this->embed_link;
+                return view('components.link-web-viewer', [
+                    'url' => $this->embed_link
+                ]);
                 
             default:
                 return $this->content; // Fallback ke field content

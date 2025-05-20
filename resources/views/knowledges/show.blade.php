@@ -5,7 +5,7 @@
       <section id="knowledges-knowledge-details" class="knowledges-knowledge-details section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                 <h3 class="mb-2">{{ $article->title }}</h3>
                 <div style="border: 1px solid #cccccc; padding:5px;">
                 <!-- Awal bagian Konten , PDF, Video  , Link atau Youtube --> 
@@ -39,10 +39,17 @@
                       @endif
                       @break
 
+              
                   @case('youtube')
-                  @case('link')
                       <div class="ratio ratio-16x9 mb-4">
                           {!! $article->embed_code !!}
+                      </div>
+                      @break
+
+                  @case('link')
+                      <div class="ratio ratio-16x9 mb-4">
+                        <iframe src="{{ Storage::url($article->embed_link) }}#toolbar=0" 
+                            style="border: none;"></iframe>
                       </div>
                       @break
 
@@ -69,15 +76,30 @@
                         <hr>
                         {{ $article->content }}                  
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
+      <!-- Search Form -->
+      <form class="page-title__search" action="/search" method="GET">
+        <div class="page-title__search-group">
+          <input 
+            type="text" 
+            class="page-title__search-input" 
+            placeholder="Search..." 
+            name="q"
+            aria-label="Search articles"
+          >
+          <button class="page-title__search-btn" type="submit" aria-label="Submit search">
+            Search
+          </button>
+        </div>
+      </form>
                     <div class="knowledges-knowledge-lainnya">
                         <h3>Knowledge Lainnya</h3>
                         
-<div class="related-articles">
+<div class="s">
     @foreach($relatedArticles as $related)
-    <div class="row mt-4 mb-3 align-items-center">
+    <div class="knowledge-lainnya-item mt-4 mb-3 align-items-center">
         <!-- Kolom untuk thumbnail -->
-        <div class="col-md-6">
+        <div class="col-md-12">
             @php
                 $thumbnail = $related->thumbnail 
                     ? asset('articles/thumbnails/' . $related->thumbnail)
@@ -87,15 +109,15 @@
         </div>
         
         <!-- Kolom untuk konten -->
-        <div class="col-md-6">
-            <h6 class="mb-1">
+        <div class="col-md-12">
+            <h3 class="mt-3 mb-3">
                 
                 <a href="{{ route('knowledge.show', ['article_slug' => $related->slug, 'id' => $related->id]) }}">
                     {{ $related->title }}
                 </a>
    
-            </h6>
-            <div class="d-flex small text-muted gap-3">
+            </h3>
+            <div class="d-flex text-muted gap-3" style="font-size: 11px;">
                 <div>
                     <i class="bi bi-calendar me-1"></i>
                     {{ $related->created_at->format('d M Y') }}

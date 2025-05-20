@@ -66,7 +66,7 @@ class AdministratorPanelProvider extends PanelProvider
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' =>  '#3c5589',
+                'primary' =>  Color::hex('#6366f1'), // Warna custom '#3c5589',
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
@@ -89,6 +89,11 @@ class AdministratorPanelProvider extends PanelProvider
                     ', [
                     'text' => 'Ke Beranda',
                 ]);
-            });
+            })
+            //->viteTheme([
+            //    'resources/css/filament/admin/theme.css',
+            //    'resources/css/filament/admin/custom-sidebar.css',
+            //])
+            ;
     }
 }

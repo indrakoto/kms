@@ -1,0 +1,21 @@
+/* resources/css/filament/admin/theme.css */
+:root {
+    --primary-50: 236 253 245;
+    --primary-100: 209 250 229;
+    --primary-200: 167 243 208;
+    /* ... tambahkan variabel warna lainnya */
+}
+
+.fi-main {
+    background-color: rgb(var(--gray-50));
+}
+
+/* resources/css/filament/admin/theme.css */
+.dark {
+    --primary-600: 101 116 205;
+    --gray-800: 30 41 59;
+}
+
+.dark .fi-sidebar {
+    @apply bg-gray-900;
+}

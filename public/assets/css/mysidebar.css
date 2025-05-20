@@ -33,7 +33,7 @@
 .menu-parent.active {
     background-color: #284173;
     color: white;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 30px;
     border: 1px solid #333;
 }
