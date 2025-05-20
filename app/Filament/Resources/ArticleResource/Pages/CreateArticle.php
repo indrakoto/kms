@@ -5,6 +5,7 @@ namespace App\Filament\Resources\ArticleResource\Pages;
 use App\Filament\Resources\ArticleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Notifications\Notification;
 
 class CreateArticle extends CreateRecord
 {
@@ -19,6 +20,21 @@ class CreateArticle extends CreateRecord
                 ->url($this->getResource()::getUrl()) // Mengarahkan ke halaman List resource
                 //->color('secondary'), // Opsional: memberi warna pada tombol
         ];
+    }
+
+    // 1. Redirect ke list artikel setelah simpan (Pilihan 1)
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index'); 
+    }
+
+    // 2. Notifikasi sukses setelah simpan
+    protected function getSavedNotification(): ?Notification
+    {
+        return Notification::make()
+            ->success()
+            ->title('Knowledge disimpan')
+            ->body('Perubahan berhasil diperbarui.');
     }
 
     protected function getFormActions(): array
