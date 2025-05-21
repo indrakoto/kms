@@ -1,16 +1,16 @@
 /* Menu Container */
 .menu-myside {
-    width: 250px;
     background-color: transparent;
-    padding: 10px;
     font-size: 13px;
+    margin-right: 5px;
 }
 
 /* Parent Menu Container */
 .menu-parent-container {
     width: 100%;
     position: relative;
-    margin-bottom: 8px; /* Jarak antar menu parent */
+    margin-bottom: 15px; /* Jarak antar menu parent */
+    
 }
 
 /* Parent Menu Item */
@@ -22,7 +22,7 @@
     background-color: #f8f9fa;
     border-radius: 30px;
     transition: all 0.3s ease;
-    border: 1px solid #e9ecef;
+    border: 1px solid #ccc;
 }
 
 .menu-parent:hover {

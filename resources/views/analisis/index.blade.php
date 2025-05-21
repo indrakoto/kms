@@ -2,10 +2,6 @@
 
 @section('title', 'KMS - Analisis')
 
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/mysidebar.css') }}">
-@endpush
-
 @section('content')
   
   <section id="analisis" class="analisis section">
@@ -77,7 +73,3 @@
     </div>
   </section>
 @endsection
-
-@push('scripts')
-  <script src="{{ asset('assets/js/mysidebar.js') }}"></script>
-@endpush
