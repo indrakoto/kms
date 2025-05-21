@@ -10,8 +10,8 @@
 @section('content')
     <!-- Courses Section -->
     <section id="general" class="general section">
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+    
+      <div class="container" data-aos="fade-up">
         <div class="card">
             <div class="card-body">
                 <div class="text-center"><img height="100px" src="{{  asset('img/AlphaByteBlack.png') }}" /></div>
