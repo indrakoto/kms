@@ -53,6 +53,7 @@ class ArticleResource extends Resource
                                 ->withCount()
                                 ->relationship('institusi', 'name', 'parent')
                                 ->required(),
+                                
                         Select::make('category_id')
                             ->label('Kategori')
                             //->relationship('category', 'name')

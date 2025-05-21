@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Analisis;
 use App\Models\Institusi;
 use App\Models\Neraca;
+use App\Models\Article;
 
 use Illuminate\Http\Request;
 
@@ -16,11 +17,13 @@ class AnalisisController extends Controller
     {
         $neracas = Neraca::with('analisis')->latest()->paginate(10);
         $analisisList = Analisis::withCount('neracas')->get();
+        $layanan_publik = Article::where('category_id', '=', 3)->get();
         
         return view('analisis.index', [
             'neracas' => $neracas,
             'analisisList' => $analisisList,
-            'activeAnalisis' => null
+            'activeAnalisis' => null,
+            'layananList' => $layanan_publik
         ]);
     }
 

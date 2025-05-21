@@ -2,6 +2,10 @@
 
 @section('title', 'KMS - Analisis')
 
+@push('styles')
+  <link rel="stylesheet" href="{{ asset('assets/css/mysidebar.css') }}">
+@endpush
+
 @section('content')
   
   <section id="analisis" class="analisis section">
@@ -9,8 +13,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3">
-          <div class="card shadow-sm mb-4">
-            <div class="list-group">
+          <div class="mb-4">
+            <div class="list-group" style="border-radius: 0;">
               <a href="{{ route('analisis.index') }}" 
                 class="list-group-item list-group-item-action {{ !$activeAnalisis ? 'active-analisis' : '' }}">
                 Semua Analisis
@@ -24,6 +28,19 @@
               @endforeach
             </div>
           </div>
+
+            <div class="list-group" style="border-radius: 0;">
+              <a href="#" class="list-group-item list-group-item-action active-analisis">
+                Layanan Publik
+              </a>
+              @foreach($layananList as $item)
+                @if($item->redirect_link==1)
+                    <a class="list-group-item list-group-item-action" href="{{ $item->embed_link }}" target="_blank">{{ $item->title }}</a>
+                @else
+                    <a class="list-group-item list-group-item-action" href="{{ route('knowledge.show', ['article_slug' => $item->slug, 'id' => $item->id]) }}">{{ $item->title }}</a>
+                @endif
+              @endforeach
+            </div>
         </div>
 
         <div class="col-lg-9">
@@ -60,3 +77,7 @@
     </div>
   </section>
 @endsection
+
+@push('scripts')
+  <script src="{{ asset('assets/js/mysidebar.js') }}"></script>
+@endpush
