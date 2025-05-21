@@ -15,7 +15,7 @@ class AnalisisController extends Controller
 
     public function index()
     {
-        $neracas = Neraca::with('analisis')->latest()->paginate(10);
+        $neracas = Neraca::with('analisis')->latest()->paginate(9);
         $analisisList = Analisis::withCount('neracas')->get();
         $layanan_publik = Article::where('category_id', '=', 3)->get();
         
