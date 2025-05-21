@@ -3,7 +3,9 @@
 @section('title', 'KMS - Analisis')
 
 @section('content')
+  
   <section id="analisis" class="analisis section">
+    @include('section.page-title')
     <div class="container">
       <div class="row">
         <div class="col-lg-3">

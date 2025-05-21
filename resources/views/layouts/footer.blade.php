@@ -34,12 +34,15 @@
 
 
         <div class="col-lg-2 col-md-3 footer-links">
-        <h4>Tautan Lainnya</h4>
+        <h4>Layanan Publik</h4>
         <ul>
-            <li><a href="https://migas.esdm.go.id/post/Profil-Dirjen">Profil Dirjen</a></li>
-            <li><a href="https://migas.esdm.go.id/visi-dan-misi">Visi dan MIsi Organisasi</a></li>
-            <li><a href="https://migas.esdm.go.id/visi-dan-misi">Tugas dan Fungsi Organisasi</a></li>
-            <li><a href="https://migas.esdm.go.id/struktur-organisasi-ditjen-migas">Struktur Organisasi</a></li>
+            <li><a href="https://datamigas.esdm.go.id/home" target="_blank">Migas Data Repository</a></li>
+            <li><a href="https://www.esdm.go.id/wkmigas/" target="_blank">e-Lelang WK migas</a></li>
+            <li><a href="https://esdm.go.id/skupmigas" target="_blank">SKUP Online</a></li>
+            <li><a href="https://siie.esdm.go.id/web-publik/" target="_blank">Sistem Informasi Investasi Energi</a></li>
+            <li><a href="https://sirib.migas.esdm.go.id/login" target="_blank">Sistem Informasi Rencana Impor Barang</a></li>
+            <li><a href="https://wbs.esdm.go.id/" target="_blank">Whistleblowing ESDM</a></li>
+            <li><a href="https://perizinan.esdm.go.id/migas/" target="_blank">Layanan Perizinan Migas</a></li>
         </ul>
         </div>
 

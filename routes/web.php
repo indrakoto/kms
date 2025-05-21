@@ -9,6 +9,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\AnalisisController;
 //use App\Http\Controllers\NeracaController;
+use App\Http\Livewire\KnowledgeSearch;
 
 Route::get('/', function () {
     //return view('beranda');
@@ -27,48 +28,55 @@ Route::get('/beranda', function () {
     $latestArticles = Article::latest()->take(4)->get();  
 
     return view('index', compact('latestAnalisis', 'latestArticles'));
-});
+})->name('beranda.index');
 
 Route::prefix('analisis')->group(function () {
     Route::get('/', [AnalisisController::class, 'index'])->name('analisis.index');
-    Route::get('/{analisis:slug}', [AnalisisController::class, 'show'])->name('analisis.show');
+    Route::get('/{analisis:slug}', [AnalisisController::class, 'showAnalisis'])->name('analisis.show');
     Route::get('/read/{neraca:slug}', [AnalisisController::class, 'showNeraca'])->name('neraca.show');
 });
 
-/*
-Route::prefix('knowledge')->group(function () {
-    Route::get('/{institution:slug}', [KnowledgeController::class, 'institution'])
-        ->name('institution');
-    
-    Route::get('/kategori/{category:slug}', [KnowledgeController::class, 'category'])
-        ->name('category');
-    
-    Route::get('/tags/{tag:name}', [KnowledgeController::class, 'tag'])
-        ->name('tag');
-});
-*/
+    // Route Livewire
+Route::get('/knowledge/search-live', function () {
+    return view('knowledge-search-live');
+})->name('knowledge.search-live');
+
 
 Route::prefix('knowledge')->group(function() {
-    // Display all articles
+    // Display all knowledge
     Route::get('/', [KnowledgeController::class, 'index'])
         ->name('knowledge.index');
+
+    Route::get('/search', [KnowledgeController::class, 'search'])
+        ->name('knowledge.search');
     
-    // Display articles by Institusi
+    // Tampilkan halaman search (GET)
+    Route::get('/search', [KnowledgeController::class, 'showSearchPage'])
+        ->name('knowledge.search');
+    
+    // Proses pencarian (POST)
+    Route::post('/search', [KnowledgeController::class, 'handleSearch'])
+        ->name('knowledge.search.post');
+
+    // Display knowledge by Institusi
     Route::get('/{institusi_slug}', [KnowledgeController::class, 'byInstitusi'])
         ->name('knowledge.institusi');
     
-    // Display articles by Category
+    // Display knowledge by Category
     Route::get('/kategori/{category_slug}', [KnowledgeController::class, 'byCategory'])
         ->name('knowledge.category');
     
-    // Display a single article
+    // Display a single knowledge
     Route::get('/read/{article_slug}/{id}', [KnowledgeController::class, 'showArticle'])
         ->name('knowledge.show');
     
-    // Display articles by Tag
+    // Display knowledge by Tag
     Route::get('/tags/{tag_name}', [KnowledgeController::class, 'byTag'])
         ->name('knowledge.tag');
+ 
 });
+
+
 
 /*
 // Route untuk halaman utama knowledge

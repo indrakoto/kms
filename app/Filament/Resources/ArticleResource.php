@@ -34,9 +34,9 @@ class ArticleResource extends Resource
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
-    protected static ?string $navigationLabel   = 'Konten Knowledge';
-    protected static ?string $recordTitleAttribute  = 'Pengetahuan,Video,Link Website';
-    protected static ?string $navigationGroup = 'Knowledge';
+    protected static ?string $navigationLabel   = 'Konten';
+    protected static ?string $recordTitleAttribute  = 'Knowledge, Analisis, Video, Link Website';
+    //protected static ?string $navigationGroup = 'Knowledge';
     
     protected static bool $shouldRegisterNavigation = true;
     protected static ?int $navigationSort = 6;
@@ -47,6 +47,17 @@ class ArticleResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Tambah Konten')
                     ->schema([
+
+                        SelectTree::make('institusi_id')
+                                ->label('Institusi')
+                                ->withCount()
+                                ->relationship('institusi', 'name', 'parent')
+                                ->required(),
+                        Select::make('category_id')
+                            ->label('Kategori')
+                            //->relationship('category', 'name')
+                            ->options(Category::orderBy('id', 'asc')->pluck('name','id'))
+                            ->required(),
 
                         Select::make('source_id')
                             ->label('Tipe Konten')
@@ -61,25 +72,6 @@ class ArticleResource extends Resource
                                 $set('embed_code', null);
                                 $set('embed_link', null);
                             }),
-                    
-                        Select::make('category_id')
-                            ->label('Kategori')
-                            //->relationship('category', 'name')
-                            ->options(Category::orderBy('id', 'asc')->pluck('name','id'))
-                            ->required(),
-
-                        //Select::make('institusi_id')
-                        //    ->label('Institusi')
-                        //    //->relationship('institusi', 'name')
-                        //    ->options(Institusi::orderBy('id', 'asc')->pluck('name','id'))
-                        //    ->required(),
-
-
-                        SelectTree::make('institusi_id')
-                                ->label('Institusi')
-                                ->withCount()
-                                ->relationship('institusi', 'name', 'parent')
-                                ->required(),
                                 
                         TextInput::make('title')
                             ->required()
@@ -97,7 +89,6 @@ class ArticleResource extends Resource
                                 $sourceName = strtolower(Source::find($get('source_id'))?->name);
                                 return $sourceName === 'text';
                             }),
-
 
                         FileUpload::make('file_path')
                             ->label('PDF File')
@@ -133,7 +124,7 @@ class ArticleResource extends Resource
                             })
                             ->visible(function (Forms\Get $get) {
                                 $sourceName = strtolower(Source::find($get('source_id'))?->name);
-                                return in_array($sourceName, ['youtube']);
+                                return in_array($sourceName, ['youtube','tableau']);
                             }),
                             
                         Textarea::make('embed_link')
@@ -145,6 +136,17 @@ class ArticleResource extends Resource
                                     ? 'Paste full link with http or https' 
                                     : 'Paste full link with http or https';
                             })
+                            ->visible(function (Forms\Get $get) {
+                                $sourceName = strtolower(Source::find($get('source_id'))?->name);
+                                return in_array($sourceName, ['link']);
+                            }),
+
+                        Toggle::make('redirect_link')
+                            ->label('Direct langsung ke link ?')
+                            ->onColor('success') // Hijau saat ON
+                            ->onIcon('heroicon-o-check')  // Icon saat ON
+                            ->offIcon('heroicon-o-x-mark') // Icon saat OFF
+                            ->required()
                             ->visible(function (Forms\Get $get) {
                                 $sourceName = strtolower(Source::find($get('source_id'))?->name);
                                 return in_array($sourceName, ['link']);
@@ -182,9 +184,17 @@ class ArticleResource extends Resource
 
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+
+                Tables\Columns\TextColumn::make('category.name')
+                    ->numeric()
+                    ->searchable()
+                    ->sortable(),
+                    
                 Tables\Columns\TextColumn::make('source.name')
                     ->label('Tipe')
                     ->badge()
+                    ->searchable()
+                    ->sortable()
                     ->color(function ($record) {
                         return match ($record->source->name) {
                             'text' => 'info',
@@ -194,9 +204,6 @@ class ArticleResource extends Resource
                             default => 'gray',
                         };
                     }),                    
-                Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
 
                     
                 Tables\Columns\IconColumn::make('is_published')
@@ -204,10 +211,12 @@ class ArticleResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                Tables\Columns\TextColumn::make('views')
+                /*Tables\Columns\TextColumn::make('views')
                     ->numeric()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                */
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

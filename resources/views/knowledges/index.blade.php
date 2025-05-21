@@ -7,9 +7,9 @@
 @endpush
 
 @section('content')
-    @include('section.page-title')
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
+        @include('section.page-title')
         <div class="container">
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->
@@ -19,7 +19,6 @@
                             @include('section.sidebar-knowledge', ['item' => $item])
                         @endforeach
                     </div>
-
                 </div>
 
                 <!-- Konten untuk Artikel Knowledge -->
@@ -46,7 +45,12 @@
                                                 <span class="badges-link"><i class="bi bi-globe"></i></span>
                                             @endif
                                         </div>
-                                        <h3 class="mt-3"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
+                                        @if($article->redirect_link==1)
+                                            <h3 class="mt-3"><a href="{{ $article->embed_link }}" target="_blank">{{ $article->title }}</a></h3>
+                                        @else
+                                            <h3 class="mt-3"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
+                                        @endif
+                                        
                                         <p class="description" style="margin-bottom: 0;">{{ $article->institusi->name }}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">

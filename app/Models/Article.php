@@ -23,6 +23,7 @@ class Article extends Model
         'slug', 
         'embed_code',
         'embed_link',
+        'redirect_link',
         'file_path',
         'thumbnail',
         'is_published', 
@@ -135,5 +136,13 @@ class Article extends Model
         return asset('img/default.png'); // Path ke gambar default
     }
 
+
+    public function scopeSearch($query, string $keyword)
+    {
+        return $query->where(function($q) use ($keyword) {
+            $q->where('title', 'LIKE', "%{$keyword}%")
+            ->orWhere('content', 'LIKE', "%{$keyword}%");
+        });
+    }
 
 }

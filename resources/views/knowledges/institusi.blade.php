@@ -7,9 +7,9 @@
 @endpush
 
 @section('content')
-    @include('section.page-title')
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
+        @include('section.page-title')
         <div class="container">
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->

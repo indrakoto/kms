@@ -1,36 +1,34 @@
-@extends('layouts.app')
+<div class="">
 
-@section('title', 'KMS - Knowledge')
+    <!-- Search Form -->
+      <form class="page-title__search">
+        @csrf
+        <div class="page-title__search-group">
+          <input 
+            type="text" 
+            wire:model.live.debounce.500ms="search" 
+            class="page-title__search-input" 
+            placeholder="Search..." 
+            name="q"
+            aria-label="Search articles"
+          >
+          <button class="page-title__search-btn" type="submit" aria-label="Submit search">
+            Search
+          </button>
+        </div>
+      </form>
 
-@section('content')
-    <!-- Knowledges Section -->
-    <section id="knowledges" class="knowledges section">
-        @include('section.page-title')
-        <div class="container">
-            <div class="row">
-                <!-- Sidebar untuk memilih Institusi -->
-                <div class="col-lg-3">
-                    <div class="list-group">
-                    <a 
-                            href="{{ route('knowledge.index') }}" 
-                            class="list-group-item list-group-item-action {{ request('institusi_slug') ? '' : 'active-institusi' }}">
-                            Semua Institusi
-                        </a>
-                        @foreach ($institusis as $inst)
-                            <a 
-                                href="{{ route('knowledge.institusi', ['institusi_slug' => $inst->slug]) }}" 
-                                class="list-group-item list-group-item-action {{ request('institusi_slug') == $inst->slug ? 'active-institusi' : '' }}">
-                                {{ $inst->name }}
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
+    <!-- Loading Indicator -->
+    <div wire:loading class="mb-4 text-blue-500">Mencari...</div>
 
-                <!-- Konten untuk Artikel Knowledge -->
-                <div class="col-lg-9">
-                    <div class="row">
-                        @foreach ($knowledges as $article)
-                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+    <!-- Results -->
+    <div wire:loading.remove>
+
+    </div>
+    @if($results->isNotEmpty())
+        <div class="row">
+            @foreach($results as $article)
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="knowledge-item mb-4">
                                     <div class="knowledge-content">
                                         @php
@@ -50,7 +48,7 @@
                                                 <span class="badges-link"><i class="bi bi-globe"></i></span>
                                             @endif
                                         </div>
-                                        <h3 class="mt-4"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
+                                        <h3 class="mt-3"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
                                         <p class="description" style="margin-bottom: 0;">{{ $article->institusi->name }}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">
@@ -66,19 +64,21 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> <!-- End Knowledge Item-->
-                        @endforeach
-                    </div>
 
-                    <!-- Pagination -->
-                    <div class="row">
-                        <div class="mt-4">
-                            {{ $knowledges->withQueryString()->links() }}
-                        </div>
-                    </div>
                 </div>
+            @endforeach
+
+            <!-- Pagination -->
+            <div class="mt-6">
+                {{ $results->withQueryString()->links() }}
             </div>
         </div>
-    </section>
-    <!-- /Knowledges Section -->
-@endsection
+    @elseif($search)
+        <p class="text-gray-500">Tidak ditemukan hasil untuk "{{ $search }}"</p>
+        @if($search)
+            <p class="text-gray-500">Tidak ditemukan hasil untuk "{{ $search }}"</p>
+        @else
+            <p class="text-gray-500">Masukkan kata kunci pencarian</p>
+        @endif
+    @endif
+</div>

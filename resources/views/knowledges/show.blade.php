@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    @include('section.page-title')
-      
+ 
       <section id="knowledges-knowledge-details" class="knowledges-knowledge-details section">
+            @include('section.page-title')
         <div class="container">
             <div class="row">
                 <div class="col-lg-9">
@@ -77,8 +77,9 @@
                         {{ $article->content }}                  
                 </div>
                 <div class="col-lg-3">
-      <!-- Search Form -->
-      <form class="page-title__search" action="/search" method="GET">
+    <!-- Search Form -->
+      <form class="page-title__search" action="{{ route('knowledge.search') }}" method="POST">
+        @csrf
         <div class="page-title__search-group">
           <input 
             type="text" 
@@ -86,6 +87,7 @@
             placeholder="Search..." 
             name="q"
             aria-label="Search articles"
+            value="{{ old('q', $searchQuery ?? '') }}"
           >
           <button class="page-title__search-btn" type="submit" aria-label="Submit search">
             Search

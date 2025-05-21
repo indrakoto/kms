@@ -10,10 +10,18 @@ class ListCategories extends ListRecords
 {
     protected static string $resource = CategoryResource::class;
 
+    protected static ?string $navigationLabel   = 'Kategori ';
+    protected ?string $heading      = 'Kategori';    
+    protected ?string $subheading   = 'Daftar Kategori';
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Tambah Kategori')
+                ->createAnother(false)
+                ->modalSubmitActionLabel('SIMPAN')
+                ->modalHeading('Tambah Kategori.'),
         ];
     }
 }

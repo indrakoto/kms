@@ -185,4 +185,49 @@ class KnowledgeController extends Controller
             'currentInstitusi' => $article->institusi_id // Untuk highlight menu aktif
         ]);
     }
+
+    // Tampilkan halaman (GET)
+    public function showSearchPage()
+    {
+        $institusis = Institusi::getMenuInstitusi();
+        return view('knowledges.search', [
+            'results' => null,
+            'searchQuery' => null,
+            'institusis' => $institusis
+        ]);
+    }
+
+    public function handleSearch(Request $request)
+    {
+        $request->validate([
+            'q' => 'required|string|max:255'
+        ]);
+        $searchQuery = $request->q;
+        //$institusi = $request->input('institusi');
+        //$category = $request->input('category');
+
+        $institusis = Institusi::getMenuInstitusi();
+        
+        // Kirim data institusi dan category ke view
+        return view('knowledges.search', [
+            'results' => Article::query()
+                ->where('title', 'like', "%{$searchQuery}%")
+                ->orWhere('content', 'like', "%{$searchQuery}%")
+                //->when($query, fn($q) => $q->where('title', 'LIKE', "%{$query}%")
+                                       // ->orWhere('content', 'LIKE', "%{$query}%"))
+                //->when($institusi, fn($q) => $q->whereHas('institusi', fn($q) => $q->where('slug', $institusi)))
+                //->when($category, fn($q) => $q->whereHas('category', fn($q) => $q->where('slug', $category)))
+                //->with(['institusi', 'category'])
+                ->latest()
+                ->paginate(9),
+            
+            'searchQuery' => $searchQuery,
+            'institusis' => $institusis, // Tambahkan ini
+            'categories' => Category::all()    // Tambahkan ini
+            //'filters' => [
+            //    'institusi' => $institusi,
+            //    'category' => $category
+            //]
+        ]);
+    }
 }

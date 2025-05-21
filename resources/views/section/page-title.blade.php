@@ -5,12 +5,22 @@
       <nav class="breadcrumbs">
         <ol>
           <li><a href="/">Beranda</a></li>
-          <li><a href="/knowledge">Knowledge</a></li>
+          @php
+          // Mendapatkan nama controller tanpa suffix 'Controller'
+          $controllerName = strtolower(
+              str_replace('Controller', '', 
+                  class_basename(request()->route()->getController())
+              )
+          );
+          @endphp 
+          <li>{{ ucwords($controllerName) }}</li>
           @php
           if(isset($article->title)) {
             $title = '<li>'.$article->title.'</li>';
           } else if(isset($institusi->name)) {
             $title = '<li>'.$institusi->name.'</li>';
+          } else if(isset($analisis->name)) {
+            $title = '<li>'.$analisis->name.'</li>';
           } else {
             $title = "";
           }

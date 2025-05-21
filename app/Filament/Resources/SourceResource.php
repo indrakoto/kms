@@ -20,7 +20,7 @@ class SourceResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
     protected static ?string $navigationLabel   = 'Tipe Konten';
     protected static ?string $recordTitleAttribute  = 'PDF/Video/Link Website';
-    protected static ?string $navigationGroup = 'Knowledge';
+    protected static ?string $navigationGroup = 'Master';
 
     protected static bool $shouldRegisterNavigation = true;
     protected static ?int $navigationSort = 5;

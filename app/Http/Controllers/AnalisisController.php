@@ -51,12 +51,12 @@ class AnalisisController extends Controller
         return view('analisis.index', compact('analisis','neracas'));
     }
 
-    public function show(Analisis $analisis)
+    public function showAnalisis(Analisis $analisis)
     {
-        $neracas = $analisis->neracas()->latest()->paginate(6);
+        $neracas = $analisis->neracas()->latest()->paginate(9);
         $analisisList = Analisis::withCount('neracas')->get();
         
-        return view('analisis.show', [
+        return view('analisis.analisis-show', [
             'analisis' => $analisis,
             'neracas' => $neracas,
             'analisisList' => $analisisList,
@@ -65,7 +65,7 @@ class AnalisisController extends Controller
     }
 
     // Menampilkan neraca berdasarkan analisis
-    public function showAnalisis(Analisis $analisis)
+    public function showAnalisisX(Analisis $analisis)
     {
         $neracas = $analisis->neracas()->latest()->paginate(6);
         $analisisList = Analisis::all();

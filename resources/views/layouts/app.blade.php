@@ -33,7 +33,6 @@
 <body class="@yield('body-class', 'default-page')">
 
   @include('layouts.header')
-
   <main class="main">
     @yield('content')
   </main>
