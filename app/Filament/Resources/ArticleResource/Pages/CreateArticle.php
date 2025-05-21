@@ -10,8 +10,8 @@ use Filament\Notifications\Notification;
 class CreateArticle extends CreateRecord
 {
     protected static string $resource = ArticleResource::class;
-    protected ?string $heading      = 'Knowledge';
-    protected ?string $subheading   = 'Tambah Data';
+    protected ?string $heading      = 'Konten';
+    protected ?string $subheading   = 'Tambah Data Konten';
     protected function getHeaderActions(): array
     {
         return [
@@ -33,7 +33,7 @@ class CreateArticle extends CreateRecord
     {
         return Notification::make()
             ->success()
-            ->title('Knowledge disimpan')
+            ->title('Konten disimpan')
             ->body('Perubahan berhasil diperbarui.');
     }
 

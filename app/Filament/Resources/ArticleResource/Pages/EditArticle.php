@@ -10,7 +10,8 @@ use Filament\Notifications\Notification;
 class EditArticle extends EditRecord
 {
     protected static string $resource = ArticleResource::class;
-
+    protected ?string $heading      = 'Konten';
+    protected ?string $subheading   = 'Edit Konten';
     protected function getHeaderActions(): array
     {
         return [
@@ -31,7 +32,7 @@ class EditArticle extends EditRecord
     {
         return Notification::make()
             ->success()
-            ->title('Knowledge disimpan')
+            ->title('Konten disimpan')
             ->body('Perubahan berhasil diperbarui.');
     }
 
