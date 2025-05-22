@@ -34,6 +34,8 @@ Route::prefix('analisis')->group(function () {
     Route::get('/', [AnalisisController::class, 'index'])->name('analisis.index');
     Route::get('/{analisis:slug}', [AnalisisController::class, 'showAnalisis'])->name('analisis.show');
     Route::get('/read/{neraca:slug}', [AnalisisController::class, 'showNeraca'])->name('neraca.show');
+    Route::get('/detail/{article_slug}/{id}', [AnalisisController::class, 'showDetail'])
+        ->name('detail.show');
 });
 
     // Route Livewire

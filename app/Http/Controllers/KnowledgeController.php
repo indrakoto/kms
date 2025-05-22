@@ -20,42 +20,11 @@ class KnowledgeController extends Controller
             ->latest() // Mengurutkan berdasarkan tanggal terbaru
             ->paginate(9); // Mengambil 10 artikel per halaman
         
-        /*$institusis = Institusi::with(['children' => function ($query) {
-            $query->orderBy('name');
-        }])
-            ->whereNull('parent')
-            ->orderBy('name')
-            ->get();*/
         $institusis = Institusi::getMenuInstitusi();
 
         return view('knowledges.index', compact('knowledges','institusis'));
     }
-    public function byInstitusiXX($institusi_slug)
-    {
-        $institusi = Institusi::where('slug', $institusi_slug)->firstOrFail();
-        
-        $knowledges = $institusi->articles()
-            ->with(['category', 'tags'])
-            ->latest()
-            ->paginate(9);
-        
-        $institusis = Institusi::getMenuInstitusi();
-        
-        return view('knowledges.institusi', compact('knowledges', 'institusis', 'institusi'));
-    }
-
-    // Show articles by Institusi
-    public function byInstitusiX($institusi_slug)
-    {
-        $institusi = Institusi::where('slug', $institusi_slug)->firstOrFail();
-        $knowledges = $institusi->articles()
-            ->with(['category', 'tags'])
-            ->latest()
-            ->paginate(9);
-        $institusis = Institusi::getMenuInstitusi();
-        
-        return view('knowledges.institusi', compact('knowledges', 'institusi', 'institusis'));
-    }
+    
     public function byInstitusi($slug)
     {
         // 1. Cari institusi/sub-institusi berdasarkan slug (unik)
@@ -135,25 +104,6 @@ class KnowledgeController extends Controller
             'currentInstitusi' => $article->institusi_id // Untuk highlight menu aktif
         ]);
 
-    }
-
-
-
-    public function indexxx(Request $request)
-    {
-        $institusi_id = $request->query('institusi');
-
-        $articlesQuery = Article::latest();
-    
-        if ($institusi_id) {
-            $articlesQuery->where('institusi_id', $institusi_id);
-        }
-
-        $knowledges = $articlesQuery->paginate(6); // <--- paginate 8 artikel per halaman
-        //$knowledges = Article::latest()->take(8)->get(); // Mengambil 8 artikel terbaru
-        $institusi = Institusi::all();
-
-        return view('knowledges.index', compact('knowledges','institusi'));
     }
 
     // Method untuk menangani AJAX request dan mengembalikan 8 artikel berikutnya

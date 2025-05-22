@@ -96,4 +96,26 @@ class AnalisisController extends Controller
             'layananList' => $layanan_publik
         ]);
     }
+
+    public function showDetail($article_slug, $id)
+    {
+        
+        //$analisisList = Analisis::withCount('neracas')->get();
+        $analisisList   = Article::where('category_id', '=', 1)->get();
+        $layanan_publik = Article::where('category_id', '=', 3)->get();
+        $analisis = Article::with(['institusi', 'category', 'tags'])
+            ->whereIn('category_id',[1,3])
+            ->findOrFail($id);
+    
+            //dd($analisis);
+        
+        return view('analisis.detail', [
+            'analisis' => $analisis,
+            'analisisList' => $analisisList,
+            'activeAnalisis' => null,
+            'layananList' => $layanan_publik
+        ]);
+    }
+
+
 }
