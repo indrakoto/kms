@@ -9,21 +9,23 @@ use App\Models\Article;
 
 use Illuminate\Http\Request;
 
-class AnalisisController extends Controller
+class AnalisisBackupController extends Controller
 {
     // Menampilkan SEMUA neraca (dengan pagination)
 
     public function index()
     {
-        $analisis       = Article::where('category_id', '=', 1)->get();
-        $analisisList   = Article::where('category_id', '=', 1)->get();
+        $neracas = Neraca::with('analisis')
+                            ->latest()
+                            ->paginate(9);
+        $analisisList = Analisis::withCount('neracas')->get();
         $layanan_publik = Article::where('category_id', '=', 3)->get();
         
         return view('analisis.index', [
-            'analisis' => $analisis,
+            'neracas' => $neracas,
             'analisisList' => $analisisList,
-            'layananList' => $layanan_publik,
             'activeAnalisis' => null,
+            'layananList' => $layanan_publik
         ]);
     }
 

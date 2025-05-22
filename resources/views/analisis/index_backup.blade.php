@@ -15,11 +15,11 @@
                 class="list-group-item list-group-item-action {{ !$activeAnalisis ? 'active-analisis' : '' }}">
                 Semua Analisis
               </a>
-              @foreach($analisis as $item)
+              @foreach($analisisList as $analisis)
                 <a 
-                  href="{{ route('analisis.show', $item) }}" 
-                  class="list-group-item list-group-item-action {{ $activeAnalisis == $item->id ? 'active' : '' }}" >
-                  {{ $item->name }} 
+                  href="{{ route('analisis.show', $analisis) }}" 
+                  class="list-group-item list-group-item-action {{ $activeAnalisis == $analisis->id ? 'active' : '' }}" >
+                  {{ $analisis->name }} 
                 </a>
               @endforeach
             </div>
@@ -49,16 +49,16 @@
             @endif
 
             <!-- Daftar Neraca -->
-            @foreach($analisisList as $list)
+            @foreach($neracas as $neraca)
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
                 <div class="analisis-item mb-4">
                   <div class="analisis-content">
                     <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
-                    <h3 class="mt-3"><a href="{{ route('neraca.show', $list->slug) }}">{{ $list->short_title }}</a></h3>
+                    <h3 class="mt-3"><a href="{{ route('neraca.show', $neraca->slug) }}">{{ $neraca->short_title }}</a></h3>
 
                                         <div class="box-footer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3">
                                             <div class="trainer-profile d-flex align-items-center">
-                                                <i class="bi bi-calendar2-event me-1"></i> {{ $list->created_at->format('d M Y') }}
+                                                <i class="bi bi-calendar2-event me-1"></i> {{ $neraca->created_at->format('d M Y') }}
                                             </div>
                                             <div class="trainer-rank d-flex align-items-center">
                                                 <i class="bi bi-eye eye-icon"></i>&nbsp;0
@@ -73,7 +73,7 @@
 
             <!-- Pagination -->
             <div class="mt-4">
-                
+                {{ $neracas->links() }}
             </div>
           </div>
         </div>

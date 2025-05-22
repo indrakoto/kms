@@ -14,8 +14,9 @@ class KnowledgeController extends Controller
         // Menampilkan semua artikel dengan pagination
     public function index()
     {
-        // Ambil 10 artikel terbaru
+        // Ambil 9 artikel terbaru
         $knowledges = Article::with(['institusi', 'category', 'tags'])
+            ->where('category_id','=',2)
             ->latest() // Mengurutkan berdasarkan tanggal terbaru
             ->paginate(9); // Mengambil 10 artikel per halaman
         
@@ -64,7 +65,10 @@ class KnowledgeController extends Controller
     
         
         // 2. Dapatkan artikel terkait institusi ini
-        $knowledges = $institusi->articles()->with(['category', 'tags'])->paginate(10);
+        $knowledges = $institusi->articles()
+            ->with(['category', 'tags'])
+            ->where('category_id','=',2)
+            ->paginate(9);
     
         // 3. Ambil semua institusi untuk sidebar (parent saja + children)
         /*$sidebarInstitusi = Institusi::with(['children' => function($query) {
@@ -86,7 +90,10 @@ class KnowledgeController extends Controller
     public function byCategory($category_slug)
     {
         $category = Category::where('slug', $category_slug)->firstOrFail();
-        $knowledges = $category->articles()->with(['institusi', 'tags'])->paginate(10);
+        $knowledges = $category->articles()
+            ->with(['institusi', 'tags'])
+            ->where('category_id','=',2)
+            ->paginate(9);
         $institusis = Institusi::all();
 
         return view('knowledges.category', compact('knowledges', 'category', 'institusis'));
@@ -96,7 +103,7 @@ class KnowledgeController extends Controller
     public function byTag($tag_name)
     {
         $tag = Tag::where('name', $tag_name)->firstOrFail();
-        $knowledges = $tag->articles()->with(['institusi', 'category'])->paginate(10);
+        $knowledges = $tag->articles()->with(['institusi', 'category'])->paginate(9);
         $institusis = Institusi::all();
 
         return view('knowledges.tag', compact('knowledges', 'tag', 'institusis'));
@@ -105,7 +112,9 @@ class KnowledgeController extends Controller
     // Menampilkan satu artikel berdasarkan slug
     public function showArticle($article_slug, $id)
     {
-        $article = Article::with(['institusi', 'category', 'tags'])->findOrFail($id);
+        $article = Article::with(['institusi', 'category', 'tags'])
+            ->where('category_id','=',2)
+            ->findOrFail($id);
         $institusis = Institusi::all();
 
         //return view('knowledges.show', compact('article', 'institusis'));
