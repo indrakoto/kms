@@ -1,8 +1,8 @@
     <!-- Knowledges Section -->
-    <section id="knowledges" class="knowledges section">
+    <section id="knowledges" class="knowledges section mt-4 mb-4">
       <div class="container">
         <div class="row">
-        <h3 class="text-center mb-4">Knowledge Terbaru</h3>
+        <h2 class="text-center mb-4">Knowledge Terbaru</h2>
         @foreach ($latestArticles as $article)
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="knowledge-item">
@@ -30,19 +30,18 @@
 
                 <h3><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
                 
-                <div class="trainer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3 ">
-                  <div class="trainer-profile d-flex align-items-center">
-                    Publik/Private
-                  </div>
-                  <div class="trainer-rank d-flex align-items-center">
-                    <i class="bi bi-eye eye-icon"></i>&nbsp;0
-                  &nbsp;&nbsp;
-                    <i class="bi bi-people user-icon"></i>&nbsp;0
-                    &nbsp;&nbsp;
-                    <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;0
-                  </div>
-                </div>
-                
+                                        <div class="trainer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3">
+                                            <div class="trainer-profile d-flex align-items-center">
+                                                <i class="bi bi-calendar2-event me-1"></i> {{ $article->created_at->format('d M Y') }}
+                                            </div>
+                                            <div class="trainer-rank d-flex align-items-center">
+                                                <i class="bi bi-eye eye-icon"></i>&nbsp;0
+                                                &nbsp;&nbsp;
+                                                <i class="bi bi-people user-icon"></i>&nbsp;0
+                                                &nbsp;&nbsp;
+                                                <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;0
+                                            </div>
+                                        </div>                
               </div>
             </div>
           </div> <!-- End Course Item-->

@@ -1,7 +1,7 @@
 <div class="">
 
     <!-- Search Form -->
-      <form class="page-title__search">
+      <form class="page-title__search" style="padding: 0 250px 80px 250px;">
         @csrf
         <div class="page-title__search-group">
           <input 
@@ -11,6 +11,7 @@
             placeholder="Search..." 
             name="q"
             aria-label="Search articles"
+            autocomplete="off"
           >
           <button class="page-title__search-btn" type="submit" aria-label="Submit search">
             Search
@@ -52,7 +53,7 @@
                                         <p class="description" style="margin-bottom: 0;">{{ $article->institusi->name }}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">
-                                                Publikasi: {{ $article->created_at->format('d M Y') }}
+                                                {{ $article->created_at->format('d M Y') }}
                                             </div>
                                             <div class="trainer-rank d-flex align-items-center">
                                                 <i class="bi bi-eye eye-icon"></i>&nbsp;0

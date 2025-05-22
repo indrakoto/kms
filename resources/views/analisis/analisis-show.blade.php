@@ -5,22 +5,34 @@
     @include('section.page-title')
     <div class="container">
         <div class="row">
-            <!-- SIDEBAR -->
             <div class="col-lg-3">
-                <div class="card shadow-sm mb-4">
-
+                <div class="mb-4">
                     <div class="list-group">
                         <a href="{{ route('analisis.index') }}" 
                         class="list-group-item list-group-item-action {{ !$activeAnalisis ? 'active-analisis' : '' }}">
                         Semua Analisis
                         </a>
                         
-                        @foreach($analisisList as $item)
-                            <a href="{{ route('analisis.show', $item->slug) }}" 
-                            class="list-group-item list-group-item-action {{ $activeAnalisis == $item->id ? 'active-analisis' : '' }}">
-                            {{ $item->name }}
-                            <span class="badge bg-secondary float-end">{{ $item->neracas_count }}</span>
+                        @foreach($analisisList as $analisis)
+                            <a href="{{ route('analisis.show', $analisis->slug) }}" 
+                            class="list-group-item list-group-item-action {{ $activeAnalisis == $analisis->id ? 'active-analisis' : '' }}">
+                            {{ $analisis->name }}
+                            <span class="badge bg-secondary float-end">{{ $analisis->neracas_count }}</span>
                             </a>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="list-group" style="border-radius: 0;">
+                        <a href="#" class="list-group-item list-group-item-action active-analisis">
+                            Layanan Publik
+                        </a>
+                        @foreach($layananList as $item)
+                            @if($item->redirect_link==1)
+                                <a class="list-group-item list-group-item-action" href="{{ $item->embed_link }}" target="_blank">{{ $item->title }}</a>
+                            @else
+                                <a class="list-group-item list-group-item-action" href="{{ route('knowledge.show', ['article_slug' => $item->slug, 'id' => $item->id]) }}">{{ $item->title }}</a>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -28,9 +40,7 @@
 
             <!-- MAIN CONTENT -->
             <div class="col-md-9">
-            <h4 class="mb-0">{{ $analisis->name }}</h4>
                 <div class="row">
-                    
                         @if($neracas->count() > 0)
                             @foreach($neracas as $neraca)
                                 
@@ -39,10 +49,16 @@
                                     <div class="analisis-content">
                                         <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
                                         <h3 class="mt-4"><a href="{{ route('neraca.show', $neraca->slug) }}">{{ $neraca->name }}</a></h3>
-                                        <small class="text-muted small">
-                                            {{ $neraca->created_at->format('d M Y') }} • 
-                                            {{ $neraca->analisis->name }}
-                                        </small>
+                                        <div class="box-footer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3">
+                                            <div class="trainer-profile d-flex align-items-center">
+                                                <i class="bi bi-calendar2-event me-1"></i> {{ $neraca->created_at->format('d M Y') }}
+                                            </div>
+                                            <div class="trainer-rank d-flex align-items-center">
+                                                <i class="bi bi-eye eye-icon"></i>&nbsp;0
+                                                &nbsp;&nbsp;
+                                                <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;0
+                                            </div>
+                                        </div> 
                                     </div>
                                     </div>
                                 </div>

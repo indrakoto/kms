@@ -12,15 +12,7 @@
     <section id="knowledges" class="knowledges section">
         <div class="container">
             <div class="row">
-                <!-- Sidebar untuk memilih Institusi -->
-                <div class="col-lg-3">
-                    <div class="menu-myside">
-                        
-                    </div>
-                </div>
-
-                <!-- Konten untuk Artikel Knowledge -->
-                <div class="col-lg-9">
+                <div class="col-lg-12">
                     @livewire('knowledge-search')
                 </div>
             </div>

@@ -24,7 +24,7 @@
               @endforeach
             </div>
           </div>
-
+          <div class="mb-4">
             <div class="list-group" style="border-radius: 0;">
               <a href="#" class="list-group-item list-group-item-action active-analisis">
                 Layanan Publik
@@ -37,6 +37,7 @@
                 @endif
               @endforeach
             </div>
+          </div>
         </div>
 
         <div class="col-lg-9">
@@ -53,11 +54,18 @@
                 <div class="analisis-item mb-4">
                   <div class="analisis-content">
                     <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
-                    <h3 class="mt-4"><a href="{{ route('neraca.show', $neraca->slug) }}">{{ $neraca->name }}</a></h3>
-                    <small class="text-muted small">
-                        {{ $neraca->created_at->format('d M Y') }} • 
-                        {{ $neraca->analisis->name }}
-                    </small>
+                    <h3 class="mt-3"><a href="{{ route('neraca.show', $neraca->slug) }}">{{ $neraca->short_title }}</a></h3>
+
+                                        <div class="box-footer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3">
+                                            <div class="trainer-profile d-flex align-items-center">
+                                                <i class="bi bi-calendar2-event me-1"></i> {{ $neraca->created_at->format('d M Y') }}
+                                            </div>
+                                            <div class="trainer-rank d-flex align-items-center">
+                                                <i class="bi bi-eye eye-icon"></i>&nbsp;0
+                                                &nbsp;&nbsp;
+                                                <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;0
+                                            </div>
+                                        </div>  
                   </div>
                 </div>
               </div>

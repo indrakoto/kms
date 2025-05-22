@@ -58,12 +58,14 @@ class AnalisisController extends Controller
     {
         $neracas = $analisis->neracas()->latest()->paginate(9);
         $analisisList = Analisis::withCount('neracas')->get();
+        $layanan_publik = Article::where('category_id', '=', 3)->get();
         
         return view('analisis.analisis-show', [
             'analisis' => $analisis,
             'neracas' => $neracas,
             'analisisList' => $analisisList,
-            'activeAnalisis' => $analisis->id
+            'activeAnalisis' => $analisis->id,
+            'layananList' => $layanan_publik
         ]);
     }
 
@@ -85,11 +87,13 @@ class AnalisisController extends Controller
     public function showNeraca(Neraca $neraca)
     {
         $analisisList = Analisis::withCount('neracas')->get();
+        $layanan_publik = Article::where('category_id', '=', 3)->get();
         
         return view('neraca.show', [
             'neraca' => $neraca,
             'analisisList' => $analisisList,
-            'activeAnalisis' => $neraca->analisis_id
+            'activeAnalisis' => $neraca->analisis_id,
+            'layananList' => $layanan_publik
         ]);
     }
 }

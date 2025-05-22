@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
@@ -145,4 +146,8 @@ class Article extends Model
         });
     }
 
+    public function getShortTitleAttribute()
+    {
+        return Str::words($this->title, 7, '...');
+    }
 }

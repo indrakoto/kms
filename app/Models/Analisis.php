@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Analisis extends Model
 {
@@ -85,5 +86,10 @@ class Analisis extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getShortTitleAttribute()
+    {
+        return Str::words($this->name, 7, '...');
     }
 }

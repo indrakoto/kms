@@ -111,4 +111,8 @@ class Neraca extends Model
      {
          return 'slug';
      }
+    public function getShortTitleAttribute()
+    {
+        return Str::words($this->name, 7, '...');
+    }
 }

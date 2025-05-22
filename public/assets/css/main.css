@@ -2378,7 +2378,7 @@ section,
   letter-spacing: 0.1vh;
   font-family: var(--default-font);
   color: var(--accent-color);
-  height: 50px;
+  height: 40px;
 }
 
 .knowledges h3:before {
@@ -2438,6 +2438,10 @@ section,
   font-size: 11px
   /*padding-top: 15px;
   border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);*/
+}
+
+.box-footer{
+  font-size: 11px
 }
 
 .knowledges .trainer .trainer-profile img {
@@ -2747,6 +2751,42 @@ section,
 .analisis .analisis-content h3 a:hover {
   color: var(--accent-color);
 }
+
+
+.analisis .analisis-content  h3 {
+  font-size: 14px;
+  margin: 0 0 15px 0;
+  position: relative;
+  padding-bottom: 10px;
+  letter-spacing: 0.1vh;
+  font-family: var(--default-font);
+  color: var(--accent-color);
+  height: 40px;
+}
+
+.analisis .analisis-content h3:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+  bottom: 0;
+  left: 0;
+}
+
+.analisis .analisis-content h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--accent-color);
+  bottom: 0;
+  left: 0;
+}
+
+
 
 .analisis .analisis-content .category {
   background: var(--accent-color);

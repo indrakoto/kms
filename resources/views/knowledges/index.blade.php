@@ -50,9 +50,9 @@
                                             @endif
                                         </div>
                                         @if($article->redirect_link==1)
-                                            <h3 class="mt-3"><a href="{{ $article->embed_link }}" target="_blank">{{ $article->title }}</a></h3>
+                                            <h3 class="mt-3"><a href="{{ $article->embed_link }}" target="_blank">{{ $article->short_title }}</a></h3>
                                         @else
-                                            <h3 class="mt-3"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->title }}</a></h3>
+                                            <h3 class="mt-3"><a href="{{ route('knowledge.show', ['article_slug' => $article->slug, 'id' => $article->id]) }}">{{ $article->short_title }}</a></h3>
                                         @endif
                                         
                                         <p class="description" style="margin-bottom: 0;">{{ $article->institusi->name }}</p>

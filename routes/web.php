@@ -38,7 +38,7 @@ Route::prefix('analisis')->group(function () {
 
     // Route Livewire
 Route::get('/knowledge/search-live', function () {
-    return view('knowledge-search-live');
+    return view('knowledges.knowledge-search-live');
 })->name('knowledge.search-live');
 
 
