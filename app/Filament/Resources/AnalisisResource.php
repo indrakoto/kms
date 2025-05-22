@@ -26,7 +26,7 @@ class AnalisisResource extends Resource
     protected static ?string $navigationLabel   = 'Nama Analisis';
     protected static ?string $navigationGroup = 'Analisis';
 
-    protected static bool $shouldRegisterNavigation = true;
+    protected static bool $shouldRegisterNavigation = false;
     protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
