@@ -19,6 +19,8 @@
             $title = '<li>'.$article->title.'</li>';
           } else if(isset($institusi->name)) {
             $title = '<li>'.$institusi->name.'</li>';
+          } else if(isset($analisis->name)) {
+            $title = '<li>'.$analisis->name.'</li>';
           } else if(isset($neraca->analisis->name)) {
             $title = '<li>'.$neraca->analisis->name.'</li>';
             $title .= '<li>'.$neraca->name.'</li>';

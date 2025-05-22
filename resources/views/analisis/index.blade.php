@@ -45,7 +45,7 @@
             @if($activeAnalisis)
               <h3>Analisis: {{ $analisisList->find($activeAnalisis)->name }}</h3>
             @else
-                <h4>Analisis</h4>
+                
             @endif
 
             <!-- Daftar Neraca -->
