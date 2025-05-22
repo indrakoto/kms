@@ -14,6 +14,10 @@
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->
                 <div class="col-lg-3">
+                    <div class="mb-4">
+                        <!-- Include Search Form -->
+                        @include('section.search')
+                    </div>
                     <div class="menu-myside">
                         @foreach ($institusis as $item)
                             @include('section.sidebar-knowledge', ['item' => $item])

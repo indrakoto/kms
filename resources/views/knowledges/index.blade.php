@@ -14,6 +14,10 @@
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->
                 <div class="col-lg-3">
+                    <div class="mb-4">
+                        <!-- Include Search Form -->
+                        @include('section.search')
+                    </div>
                     <div class="menu-myside">
                         @foreach ($institusis as $item)
                             @include('section.sidebar-knowledge', ['item' => $item])
@@ -54,10 +58,10 @@
                                         <p class="description" style="margin-bottom: 0;">{{ $article->institusi->name }}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">
-                                                Publikasi: {{ $article->created_at->format('d M Y') }}
+                                                <i class="bi bi-calendar2-event me-1"></i> {{ $article->created_at->format('d M Y') }}
                                             </div>
                                             <div class="trainer-rank d-flex align-items-center">
-                                                <i class="bi bi-eye eye-icon"></i>&nbsp;0
+                                                <i class="bi bi-eye eye-icon"></i>&nbsp;{{ $article->views }}
                                                 &nbsp;&nbsp;
                                                 <i class="bi bi-people user-icon"></i>&nbsp;0
                                                 &nbsp;&nbsp;

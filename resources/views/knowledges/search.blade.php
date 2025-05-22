@@ -14,6 +14,10 @@
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->
                 <div class="col-lg-3">
+                    <div class="mb-4">
+                        <!-- Include Search Form -->
+                        @include('section.search')
+                    </div>
                     <div class="menu-myside">
                         @foreach ($institusis as $item)
                             @include('section.sidebar-knowledge', ['item' => $item])
@@ -23,26 +27,6 @@
 
                 <!-- Konten untuk Artikel Knowledge -->
                 <div class="col-lg-9">
-                    <div class="row" style="display: grid; margin: 0 100px;">
-
-    <!-- Search Form -->
-      <form class="page-title__search" action="{{ route('knowledge.search') }}" method="POST">
-        @csrf
-        <div class="page-title__search-group">
-          <input 
-            type="text" 
-            class="page-title__search-input" 
-            placeholder="Search..." 
-            name="q"
-            aria-label="Search articles"
-            value="{{ old('q', $searchQuery ?? '') }}"
-          >
-          <button class="page-title__search-btn" type="submit" aria-label="Submit search">
-            Search
-          </button>
-        </div>
-      </form>
-                    </div>
                     <div class="row">
                     @if(isset($results) && $results->isNotEmpty())
                         @foreach ($results as $article)

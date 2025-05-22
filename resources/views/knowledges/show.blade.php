@@ -77,27 +77,16 @@
                         {{ $article->content }}                  
                 </div>
                 <div class="col-lg-3">
-    <!-- Search Form -->
-      <form class="page-title__search" action="{{ route('knowledge.search') }}" method="POST">
-        @csrf
-        <div class="page-title__search-group">
-          <input 
-            type="text" 
-            class="page-title__search-input" 
-            placeholder="Search..." 
-            name="q"
-            aria-label="Search articles"
-            value="{{ old('q', $searchQuery ?? '') }}"
-          >
-          <button class="page-title__search-btn" type="submit" aria-label="Submit search">
-            Search
-          </button>
-        </div>
-      </form>
+                    
+                    <div class="mb-4">
+                        <!-- Include Search Form -->
+                        @include('section.search')
+                    </div>
+
                     <div class="knowledges-knowledge-lainnya">
                         <h3>Knowledge Lainnya</h3>
                         
-<div class="s">
+<div class="">
     @foreach($relatedArticles as $related)
     <div class="knowledge-lainnya-item mt-4 mb-3 align-items-center">
         <!-- Kolom untuk thumbnail -->
@@ -119,14 +108,14 @@
                 </a>
    
             </h3>
-            <div class="d-flex text-muted gap-3" style="font-size: 11px;">
-                <div>
-                    <i class="bi bi-calendar me-1"></i>
+            <div class="trainer d-flex justify-content-between align-items-center">
+                <div class="trainer-profile d-flex align-items-center">
+                    <i class="bi bi-calendar2-event me-1"></i>
                     {{ $related->created_at->format('d M Y') }}
                 </div>
-                <div>
+                <div class="trainer-rank d-flex align-items-center">
                     <i class="bi bi-eye me-1"></i>
-                    {{ $related->views }} views
+                    {{ $related->views }}
                     
                           &nbsp;&nbsp;
                           <i class="bi bi-people user-icon"></i>&nbsp;0
