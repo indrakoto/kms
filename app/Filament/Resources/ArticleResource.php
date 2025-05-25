@@ -29,6 +29,8 @@ use Illuminate\Validation\Rule;
 use Michaeld555\FilamentCroppie\Components\Croppie;
 use CodeWithDennis\FilamentSelectTree\SelectTree;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Notifications\Notification;
 
 class ArticleResource extends Resource
 {
@@ -207,11 +209,19 @@ class ArticleResource extends Resource
                         };
                     }),                    
 
-                    
-                Tables\Columns\IconColumn::make('is_published')
-                    ->boolean()
+                ToggleColumn::make('is_published')
+                    ->label('Published')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable() // ini memungkinkan toggle aktif/nonaktif
+                    ->onColor('success') // Warna hijau saat aktif
+                    ->offColor('danger') // Warna merah saat non-aktif
+                    ->afterStateUpdated(function ($record, $state) {
+                        // Optional: Notifikasi setelah update
+                        Notification::make()
+                            ->title('Status updated')
+                            ->success()
+                            ->send();
+                    }),
 
                 /*Tables\Columns\TextColumn::make('views')
                     ->numeric()
