@@ -16,7 +16,10 @@ class KnowledgeController extends Controller
     {
         // Ambil 9 artikel terbaru
         $knowledges = Article::with(['institusi', 'category', 'tags'])
-            ->where('category_id','=',2)
+            ->where([
+                    ['category_id', '=', 2],
+                    ['is_published', '=', 1]
+                ])
             ->latest() // Mengurutkan berdasarkan tanggal terbaru
             ->paginate(9); // Mengambil 10 artikel per halaman
         
@@ -36,7 +39,10 @@ class KnowledgeController extends Controller
         // 2. Dapatkan artikel terkait institusi ini
         $knowledges = $institusi->articles()
             ->with(['category', 'tags'])
-            ->where('category_id','=',2)
+            ->where([
+                    ['category_id', '=', 2],
+                    ['is_published', '=', 1]
+                ])
             ->paginate(9);
     
         // 3. Ambil semua institusi untuk sidebar (parent saja + children)
@@ -61,7 +67,10 @@ class KnowledgeController extends Controller
         $category = Category::where('slug', $category_slug)->firstOrFail();
         $knowledges = $category->articles()
             ->with(['institusi', 'tags'])
-            ->where('category_id','=',2)
+            ->where([
+                    ['category_id', '=', 2],
+                    ['is_published', '=', 1]
+                ])
             ->paginate(9);
         $institusis = Institusi::all();
 
@@ -72,7 +81,13 @@ class KnowledgeController extends Controller
     public function byTag($tag_name)
     {
         $tag = Tag::where('name', $tag_name)->firstOrFail();
-        $knowledges = $tag->articles()->with(['institusi', 'category'])->paginate(9);
+        $knowledges = $tag->articles()
+                            ->where([
+                                    ['category_id', '=', 2],
+                                    ['is_published', '=', 1]
+                                ])
+                            ->orderBy('created_at', 'desc')
+                            ->with(['institusi', 'category'])->paginate(9);
         $institusis = Institusi::all();
 
         return view('knowledges.tag', compact('knowledges', 'tag', 'institusis'));
@@ -82,7 +97,10 @@ class KnowledgeController extends Controller
     public function showArticle($article_slug, $id)
     {
         $article = Article::with(['institusi', 'category', 'tags'])
-            ->where('category_id','=',2)
+            ->where([
+                    ['category_id', '=', 2],
+                    ['is_published', '=', 1]
+                ])
             ->findOrFail($id);
         $institusis = Institusi::all();
 
@@ -93,6 +111,7 @@ class KnowledgeController extends Controller
         $relatedArticles = Article::with(['institusi', 'category', 'tags'])
             ->where('category_id', $article->category_id) // Cari artikel dengan kategori yang sama
             ->where('id', '!=', $id) // Mengecualikan artikel yang sedang dilihat
+            ->where('is_published', 1)
             ->latest() // Mengurutkan berdasarkan tanggal terbaru
             ->take(6) // Ambil 10 artikel terkait
             ->get();
@@ -124,6 +143,7 @@ class KnowledgeController extends Controller
     {
         // Cari artikel dengan relasi category, source, dan institusi
         $article = Article::with(['category', 'source', 'institusi'])
+                    ->where('is_published', 1)
                     ->findOrFail($id);
     
         // Ambil semua institusi untuk menu sidebar
@@ -132,6 +152,7 @@ class KnowledgeController extends Controller
         // Ambil 10 artikel terkait (kecuali artikel saat ini)
         $relatedArticles = Article::where('category_id', $article->category_id)
             ->where('id', '!=', $article->id)
+            ->where('is_published', 1)
             ->with('category') // Eager loading untuk optimasi
             ->latest()
             ->take(10)
@@ -170,6 +191,10 @@ class KnowledgeController extends Controller
         // Kirim data institusi dan category ke view
         return view('knowledges.search', [
             'results' => Article::query()
+                ->where([
+                    ['category_id', '=', 2],
+                    ['is_published', '=', 1]
+                ])
                 ->where('title', 'like', "%{$searchQuery}%")
                 ->orWhere('content', 'like', "%{$searchQuery}%")
                 //->when($query, fn($q) => $q->where('title', 'LIKE', "%{$query}%")

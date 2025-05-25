@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Michaeld555\FilamentCroppie\Components\Croppie;
 use CodeWithDennis\FilamentSelectTree\SelectTree;
+use Filament\Tables\Filters\SelectFilter;
 
 class ArticleResource extends Resource
 {
@@ -229,8 +230,20 @@ class ArticleResource extends Resource
             ])
             ->defaultSort('created_at', 'desc') // <-- Urutkan dari terbaru
             ->filters([
-                //
-            ])
+                    SelectFilter::make('category_id')
+                        ->label('Filter by Category')
+                        //->options(Category::pluck('name', 'id'))
+                        ->relationship('category', 'name') // ini penting untuk relasi
+                        ->searchable() // Opsional: bisa dicari
+                        ->preload(), // Opsional: load data awal
+
+                    SelectFilter::make('source_id')
+                        ->label('Filter by Tipe Konten')
+                        //->options(Category::pluck('name', 'id'))
+                        ->relationship('source', 'name') // ini penting untuk relasi
+                        ->searchable() // Opsional: bisa dicari
+                        ->preload() // Opsional: load data awal
+                ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
