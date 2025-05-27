@@ -227,7 +227,11 @@ class ArticleResource extends Resource
                             ->title('Status updated')
                             ->success()
                             ->send();
-                    }),
+                    })
+                    ->disabled(fn ($record) => !(
+                        auth()->user()?->isAdmin() ||
+                        auth()->user()?->institusi_id === $record->institusi_id
+                    )),
 
                 /*Tables\Columns\TextColumn::make('views')
                     ->numeric()
