@@ -19,8 +19,17 @@ class ProfileResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
     protected static ?string $navigationLabel   = 'Profil';
-    protected static bool $shouldRegisterNavigation = true;
+    
     protected static ?int $navigationSort = 4;
+    
+    //protected static bool $shouldRegisterNavigation = true;
+    public static function shouldRegisterNavigation(): bool
+    {
+        //dd(auth()->user()->institusi_id);
+        //return auth()->check(); // semua user login bisa lihat
+        $user = auth()->user();
+        return $user && $user->isAdmin();
+    }
 
     public static function form(Form $form): Form
     {

@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'institusi_id'
     ];
 
     /**
@@ -81,4 +83,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(SearchLog::class, 'user_id');  // Relasi one to many dengan SearchLog
     }
+
+    public function institusi()
+    {
+        return $this->belongsTo(Institusi::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isInInstitusi(string $institusiId): bool
+    {
+        return $this->institusi_id === $institusiId;
+    }
+
 }

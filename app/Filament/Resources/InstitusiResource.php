@@ -27,8 +27,15 @@ class InstitusiResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
     protected static ?string $navigationLabel   = 'Institusi ';
     protected static ?string $navigationGroup   = 'Master';
-    protected static bool $shouldRegisterNavigation = true;
     protected static ?int $navigationSort = 1;
+    //protected static bool $shouldRegisterNavigation = true;
+    public static function shouldRegisterNavigation(): bool
+    {
+        //dd(auth()->user()->institusi_id);
+        //return auth()->check(); // semua user login bisa lihat
+        $user = auth()->user();
+        return $user && $user->isAdmin();
+    }
 
     public static function form(Form $form): Form
     {

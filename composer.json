@@ -12,7 +12,8 @@
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "mews/purifier": "^3.4",
-        "michaeld555/filament-croppie": "^1.0"
+        "michaeld555/filament-croppie": "^1.0",
+        "tomatophp/filament-users": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

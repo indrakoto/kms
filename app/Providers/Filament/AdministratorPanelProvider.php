@@ -90,6 +90,7 @@ class AdministratorPanelProvider extends PanelProvider
                     'text' => 'Ke Beranda',
                 ]);
             })
+            ->plugin(\TomatoPHP\FilamentUsers\FilamentUsersPlugin::make())
             //->viteTheme([
             //    'resources/css/filament/admin/theme.css',
             //    'resources/css/filament/admin/custom-sidebar.css',

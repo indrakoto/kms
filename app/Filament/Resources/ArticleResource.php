@@ -40,9 +40,15 @@ class ArticleResource extends Resource
     protected static ?string $navigationLabel   = 'Konten';
     protected static ?string $recordTitleAttribute  = 'Knowledge, Analisis, Video, Link Website';
     //protected static ?string $navigationGroup = 'Knowledge';
-    
-    protected static bool $shouldRegisterNavigation = true;
     protected static ?int $navigationSort = 6;
+    //protected static bool $shouldRegisterNavigation = true;
+    public static function shouldRegisterNavigation(): bool
+    {
+        //dd(auth()->user()->institusi_id);
+        //return auth()->check(); // semua user login bisa lihat
+        $user = auth()->user();
+        return $user && ($user->isAdmin() || $user->institusi_id !== null);
+    }
 
     public static function form(Form $form): Form
     {
@@ -256,8 +262,10 @@ class ArticleResource extends Resource
                 ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->visible(fn ($record) => auth()->user()->isAdmin() || auth()->user()->institusi_id === $record->institusi_id),
                 Tables\Actions\DeleteAction::make()
+                    ->visible(fn ($record) => auth()->user()->isAdmin() || auth()->user()->institusi_id === $record->institusi_id)
                     ->modalHeading('Hapus Data')
                     ->modalDescription('Apakah anda sudah yakin untuk menghapus ini ?')
                     ->modalSubmitActionLabel('Ya')
@@ -286,4 +294,17 @@ class ArticleResource extends Resource
             //'view' => Pages\ViewArticle::route('/{record}'),
         ];
     }
+
+// app/Filament/Resources/ArtikelResource.php
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()->can('create', Article::class);
+    }
+
+    public static function canViewAny(): bool
+    {
+        return true; // Semua bisa lihat
+    }
+
 }
