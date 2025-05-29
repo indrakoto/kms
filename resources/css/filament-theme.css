@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gaya sidebar seperti Bootstrap dark navbar */
+.fi-aside {
+    @apply bg-blue-900 text-white;
+}
+
+/* Gaya tombol primary */
+.fi-btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded;
+}
+
+/* Gaya tombol success */
+.fi-btn-success {
+    @apply bg-green-600 hover:bg-green-700 text-white font-semibold rounded;
+}
+
+/* Gaya tombol danger */
+.fi-btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-semibold rounded;
+}
+
+/* Gaya card */
+.fi-section {
+    @apply bg-white shadow-sm border border-gray-200 rounded-md;
+}
+
+/* Input form */
+input.fi-input,
+textarea.fi-input,
+select.fi-input {
+    @apply border border-gray-300 rounded-md px-3 py-2;
+}
+
+/* Gaya tabel */
+.fi-table {
+    @apply w-full text-sm text-left text-gray-700;
+}
+.fi-table th {
+    @apply bg-gray-100 text-gray-700 px-4 py-2;
+}
+.fi-table td {
+    @apply border-t px-4 py-2;
+}

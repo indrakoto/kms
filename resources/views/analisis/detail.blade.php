@@ -44,10 +44,9 @@
             </div>
 
             <!-- MAIN CONTENT -->
-            <div class="col-lg-9">
-                <div class="">
-                    <h3>{{ $analisis->title }}</h3>
-                    <div style="background-color: aliceblue; border:1px solid #eeeeee;">
+            <div class="col-lg-9 overflow-hidden">
+                <div class="mb-4" style="border: 1px solid rgb(232, 232, 232);">
+                    <div>
                         
                             <!-- Awal bagian Konten , PDF, Video  , Link atau Youtube --> 
                             @php
@@ -95,9 +94,20 @@
                                 @break
 
                             @case('tableau')
-                                <div class="ratio ratio-16x9 mb-4">
-                                    {!! $analisis->embed_code !!}
+                                <!--<script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>-->
+                                <script type='module' src='https://dashboard.esdm.go.id/javascripts/api/tableau.embedding.3.latest.min.js'></script>
+                                <div class="w-100" style="height: calc(100vh - 120px); overflow: hidden;">
+                                    <tableau-viz
+                                        id="tableauViz"
+                                        src="{{ $url }}"
+                                        token="{{ $token }}"
+                                        device="desktop"
+                                        toolbar="bottom"
+                                        hide-tabs
+                                        class="w-full h-full">
+                                    </tableau-viz>
                                 </div>
+                                <!--<script type="module" src="https://cdn.jsdelivr.net/npm/@tableau/tableau-viz@1.6.0/dist/tableau-viz.min.js"></script>-->
                                 @break
                             @default
                                 <div class="alert alert-warning">
