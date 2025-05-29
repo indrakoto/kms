@@ -38,7 +38,7 @@ class ArticleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
     protected static ?string $navigationLabel   = 'Konten';
-    protected static ?string $recordTitleAttribute  = 'Knowledge, Analisis, Video, Link Website';
+    protected static ?string $recordTitleAttribute  = 'Analisis, Knowledge, Layanan Publik, Artikel, Video, Link Website';
     //protected static ?string $navigationGroup = 'Knowledge';
     protected static ?int $navigationSort = 6;
     //protected static bool $shouldRegisterNavigation = true;

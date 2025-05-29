@@ -10,7 +10,7 @@ class ListArticles extends ListRecords
 {
     protected static string $resource = ArticleResource::class;
     protected ?string $heading      = 'Konten';    
-    protected ?string $subheading   = 'Analisis, Knowledge, Layanan Publil, Artikel, Video, link Website, dll';
+    protected ?string $subheading   = 'Analisis, Knowledge, Layanan Publik, Artikel, Video, Link Website';
 
     protected function getHeaderActions(): array
     {
