@@ -6,8 +6,8 @@ use App\Models\Analisis;
 use App\Models\Institusi;
 use App\Models\Neraca;
 use App\Models\Article;
-
 use Illuminate\Http\Request;
+use App\Services\TableauEmbedService;
 
 class AnalisisController extends Controller
 {
@@ -64,7 +64,9 @@ class AnalisisController extends Controller
 
     public function showDetail($article_slug, $id)
     {
+       
         
+
         //$analisisList = Analisis::withCount('neracas')->get();
         $analisisList   = Article::where([
                                 ['category_id', '=', 1],
@@ -78,13 +80,27 @@ class AnalisisController extends Controller
             ->whereIn('category_id',[1,3])
             ->findOrFail($id);
     
-            //dd($analisis);
+            //dd($analisis->embed_code);
+
+        if($analisis->source->name=="TABLEAU")
+        {
+            $embedConfig = TableauEmbedService::getEmbedConfig($analisis->embed_code);
+            $url = $embedConfig['url'];
+            $token = $embedConfig['token'];
+            //$token = TableauEmbedService::generateToken($analisis->embed_code);
+        } else {
+            $url = "";
+            $token = "";
+        }
+        
         
         return view('analisis.detail', [
             'analisis' => $analisis,
             'analisisList' => $analisisList,
             'activeAnalisis' => null,
-            'layananList' => $layanan_publik
+            'layananList' => $layanan_publik,
+            'url' => $url,
+            'token' => $token,
         ]);
     }
 

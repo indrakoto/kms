@@ -180,9 +180,7 @@ class ArticleResource extends Resource
                         Toggle::make('is_published')
                             ->required(),
 
-                        Select::make('user_id')->label('Tutor/Instruktur/Admin')
-                            ->options(ExpertProfile::orderBy('id', 'asc')->pluck('expertise','id'))
-                            ->required(),
+    
                 ])
             ])->columns(1);
     }

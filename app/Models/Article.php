@@ -150,4 +150,14 @@ class Article extends Model
     {
         return Str::words($this->title, 7, '...');
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function ($article) {
+            if (auth()->check()) {
+                $article->user_id = auth()->id();
+            }
+        });
+    }
+
 }

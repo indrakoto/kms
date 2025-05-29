@@ -19,6 +19,9 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
+use Filament\Facades\Filament;
+//use function Laravel\Vite\vite;
+
 
 class AdministratorPanelProvider extends PanelProvider
 {
@@ -60,13 +63,14 @@ class AdministratorPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->sidebarCollapsibleOnDesktop()
             ->sidebarWidth('15rem')
             //->darkMode(false)
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' =>  Color::hex('#6366f1'), // Warna custom '#3c5589',
+                'primary' =>  Color::hex('#3c5589'), // Warna custom '#3c5589',
                 'success' => Color::Emerald,
                 'warning' => Color::Orange,
             ])
@@ -97,4 +101,13 @@ class AdministratorPanelProvider extends PanelProvider
             //])
             ;
     }
+
+
+//    public function boot(): void
+//    {
+//        Filament::registerTheme(
+//            vite('build/assets/filament-theme.css'),
+//        );
+//    }
+
 }
