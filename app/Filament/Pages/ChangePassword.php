@@ -36,12 +36,14 @@ class ChangePassword extends Page implements Forms\Contracts\HasForms
                     TextInput::make('current_password')
                         ->label('Password Sekarang')
                         ->password()
+                        ->autocomplete('current-password')
                         ->required()
                         ->rule('current_password'),
 
                     TextInput::make('password')
                         ->label('Password Baru')
                         ->password()
+                        ->autocomplete('new-password') // ⬅️ penting!
                         ->required()
                         ->minLength(8)
                         ->same('password_confirmation'),
@@ -49,6 +51,7 @@ class ChangePassword extends Page implements Forms\Contracts\HasForms
                     TextInput::make('password_confirmation')
                         ->label('Konfirmasi Password')
                         ->password()
+                        ->autocomplete('new-password') // ⬅️ penting!
                         ->required(),
                 ])
         ];
