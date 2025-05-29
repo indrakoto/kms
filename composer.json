@@ -9,6 +9,7 @@
         "php": "^8.2",
         "codewithdennis/filament-select-tree": "^3.1",
         "filament/filament": "^3.3",
+        "firebase/php-jwt": "^6.11",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "mews/purifier": "^3.4",

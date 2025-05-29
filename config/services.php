@@ -34,5 +34,13 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    
+    'tableau' => [
+        'client_id' => env('TABLEAU_CLIENT_ID'),
+        'secret_id' => env('TABLEAU_SECRET_ID'),
+        'secret_value' => env('TABLEAU_SECRET_VALUE'),
+        'subject' => env('TABLEAU_SUBJECT'),
+        'audience' => env('TABLEAU_AUDIENCE'),
+    ],
 
 ];
