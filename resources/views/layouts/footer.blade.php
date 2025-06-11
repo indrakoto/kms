@@ -66,7 +66,7 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-    <p>Copyright © 2025. Kementerian ESDM Ditjen Migas. All Rights Reserved. </p>
+    <p>Copyright © Juni 2025. Kementerian ESDM Ditjen Migas. All Rights Reserved. </p>
     </div>
 
 </footer>
