@@ -86,11 +86,11 @@ async function sendMessage() {
     chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
     input.value = ''; // Bersihkan input
 
-    // Tampilkan animasi loading
-    chatBox.innerHTML += `<div id="loading" class="message bot">Mengirim...</div>`;
-    chatBox.scrollTop = chatBox.scrollHeight;
+    // Tampilkan animasi Mengirim...
+    //chatBox.innerHTML += `<div id="loading" class="message bot">Mengirim...</div>`;
+    //chatBox.scrollTop = chatBox.scrollHeight;
 
-    // Ubah teks tombol menjadi "Sedang Proses..."
+    // Ubah teks tombol menjadi loading "Sedang Proses..."
     sendButton.disabled = true;  // Menonaktifkan tombol
     sendButton.innerHTML = 'Sedang Proses...';
 
