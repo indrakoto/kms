@@ -2670,23 +2670,20 @@ section,
 # General Section
 --------------------------------------------------------------*/
 .general {
-  position: relative;
-  background-image: url('/img/doodle.png');
-  background-repeat: repeat;
-  background-size: 150px; /* Sesuaikan dengan ukuran di body */
-  padding: 30px 0;
+    background-image: var(--background-image);
+    background-repeat: repeat;
+    background-size: 150px; /* Sesuaikan ukuran sesuai kebutuhan */
+    margin: 0;
+    padding: 0;
+    padding: 30px 0;
+}
 
+.general .box{
   /* Warna overlay dengan transparansi */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.7); /* Putih transparan 70% */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Putih transparan 70% */
     z-index: 1;
-  }
+  
   
 }
 

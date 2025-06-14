@@ -1,13 +1,12 @@
-// Fungsi untuk mengubah URL menjadi link
-const urlToLink = (text) => {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.replace(urlRegex, url => {
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-    });
-};
-
-// Fungsi untuk memproses respon dari bot
 function processBotResponse(responseText) {
+    // Fungsi untuk mengubah URL menjadi link
+    const urlToLink = (text) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, url => {
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        });
+    };
+
     const lines = responseText.split('\n');
     let html = '';
     let tableLines = [];
@@ -24,12 +23,14 @@ function processBotResponse(responseText) {
                 inTable = false;
             }
             if (line.trim()) {
+                // Proses URL di teks biasa
                 html += `<div class="message-text">${urlToLink(line)}</div>`;
             }
         }
     });
 
     if (inTable) {
+        // Proses URL di dalam tabel (jika ada)
         html += markdownTableToHtml(tableLines.join('\n'));
     }
 
@@ -40,27 +41,33 @@ function processBotResponse(responseText) {
 function markdownTableToHtml(markdownTable) {
     const lines = markdownTable.trim().split('\n');
     
+    // Baris header (pertama)
     const headerParts = lines[0].split('|').map(part => part.trim());
-    const headers = headerParts.slice(1, -1); 
-
+    const headers = headerParts.slice(1, -1); // Hilangkan bagian kosong di awal/akhir
+    
+    // Baris separator (kedua) untuk menentukan jumlah kolom sebenarnya
     const separatorParts = lines[1].split('|').map(part => part.trim());
     const actualColumnCount = separatorParts.slice(1, -1).length;
-
+    
+    // Baris data (mulai dari baris ke-3)
     const rows = lines.slice(2)
         .filter(line => line.includes('|'))
         .map(line => {
             const parts = line.split('|').map(part => part.trim());
-            return parts.slice(1, 1 + actualColumnCount); 
+            return parts.slice(1, 1 + actualColumnCount); // Ambil hanya kolom yang sesuai
         });
 
+    // Bangun HTML tabel
     let html = '<div class="table-container"><table class="bot-table">';
     
+    // Header tabel
     html += '<thead><tr>';
     headers.slice(0, actualColumnCount).forEach(header => {
         html += `<th>${header}</th>`;
     });
     html += '</tr></thead>';
     
+    // Body tabel
     html += '<tbody>';
     rows.forEach(row => {
         html += '<tr>';
@@ -74,43 +81,45 @@ function markdownTableToHtml(markdownTable) {
     return html;
 }
 
-// Fungsi untuk mengirim pesan
-async function sendMessage() {
+// Ketika tombol "Kirim" diklik
+document.getElementById('send-btn').addEventListener('click', async function () {
     const input = document.getElementById('user-input');
     const chatBox = document.getElementById('chat-box');
-    const sendButton = document.querySelector('.send-btn'); // class-based
+
     const userMessage = input.value.trim();
-    if (!userMessage) return;
+    if (!userMessage) return; // Jangan kirim jika input kosong
 
+    // Tampilkan pesan pengguna di UI
     chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
-    input.value = '';
-    sendButton.style.display = 'none'; // Sembunyikan tombol setelah kirim
+    input.value = ''; // Bersihkan input
 
-    sendButton.disabled = true;
-    sendButton.innerHTML = 'Sedang Proses...';
-     // Ubah ke loading spinner
-    //sendButton.classList.add('loading');
-    //sendButton.innerHTML = `<div class="spinner"></div>`;
-
+    // Scroll ke bawah chat box
+    chatBox.scrollTop = chatBox.scrollHeight;
+    
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     try {
+        // Kirim pertanyaan ke API Ollama
         const response = await fetch('/ai-api', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': csrfToken,
             },
-            body: JSON.stringify({ message: userMessage }),
+            body: JSON.stringify({
+                message: userMessage
+            }),
         });
 
         if (!response.ok) {
-            throw new Error(`Kesalahan HTTP! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
-        const botMessage = data.response || "Tidak ada balasan";
+        console.log("Raw response:", data);
 
+        // Proses response dengan fungsi baru
+        const botMessage = data.response || "Tidak ada balasan";
         chatBox.innerHTML += processBotResponse(botMessage);
         chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -118,32 +127,5 @@ async function sendMessage() {
         console.error("Terjadi kesalahan:", error);
         chatBox.innerHTML += `<div class="message bot">Terjadi kesalahan, coba lagi nanti.</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
-    } finally {
-        sendButton.disabled = false;
-        //sendButton.innerHTML = 'Kirim';
-         // Kembalikan ke ikon panah
-        sendButton.classList.remove('loading');
-        sendButton.innerHTML = `<i class="fas fa-paper-plane"></i>`;
-    }
-}
-
-// Kirim saat tombol diklik
-document.querySelector('.send-btn').addEventListener('click', sendMessage);
-
-// Kirim saat tekan Enter (tanpa shift)
-document.getElementById('user-input').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        sendMessage();
-    }
-});
-
-// Munculkan tombol kirim jika ada input
-document.getElementById('user-input').addEventListener('input', function () {
-    const sendButton = document.querySelector('.send-btn');
-    if (this.value.trim().length > 0) {
-        sendButton.style.display = 'block';
-    } else {
-        sendButton.style.display = 'none';
     }
 });
