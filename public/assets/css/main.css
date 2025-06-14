@@ -2540,7 +2540,7 @@ section,
 # Knowledges knowledge Details Section
 --------------------------------------------------------------*/
 .knowledges-knowledge-details {
-  padding-top: 10px;
+  padding:0;
   position: relative;
   background-image: url('/img/doodle.png');
   background-repeat: repeat;
@@ -2727,34 +2727,25 @@ section,
   z-index: 2;
 }
 
-.analisis .analisis-item {
-  background-color: #f7f7f7; /* var(--surface-color); */
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-  border-radius: 10px;
-}
-
-.analisis .analisis-content {
-  padding: 15px;
-}
-
-.analisis .analisis-content h3 {
+/* H3 milik class .analisis */
+.analisis h3 {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
 }
 
-.analisis .analisis-content h3 a {
+.analisis h3 a {
   color: var(--heading-color);
   transition: 0.3s;
 }
 
-.analisis .analisis-content h3 a:hover {
+.analisis h3 a:hover {
   color: var(--accent-color);
 }
 
 
-.analisis .analisis-content  h3 {
-  font-size: 14px;
+.analisis h3 {
+  font-size: 24px;
   margin: 0 0 15px 0;
   position: relative;
   padding-bottom: 10px;
@@ -2764,7 +2755,7 @@ section,
   height: 40px;
 }
 
-.analisis .analisis-content h3:before {
+.analisis h3:before {
   content: "";
   position: absolute;
   display: block;
@@ -2775,7 +2766,62 @@ section,
   left: 0;
 }
 
-.analisis .analisis-content h3:after {
+.analisis h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--accent-color);
+  bottom: 0;
+  left: 0;
+}
+
+
+.analisis .analisis-item {
+  padding: 15px;
+  background-color: #f7f7f7; /* var(--surface-color); */
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 10px;
+}
+
+
+/* H3 milik class .analisis-content */
+
+
+.analisis .analisis-item h3 a {
+  color: var(--accent-color);
+  transition: 0.3s;
+}
+
+.analisis .analisis-item h3 a:hover {
+  color: var(--accent-color);
+}
+
+
+.analisis .analisis-item  h3 {
+  font-size: 16px;
+  margin: 0 0 15px 0;
+  position: relative;
+  padding-bottom: 10px;
+  letter-spacing: 0.1vh;
+  font-family: var(--default-font);
+  color: var(--accent-color);
+  height: 40px;
+}
+
+.analisis .analisis-item h3:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+  bottom: 0;
+  left: 0;
+}
+
+.analisis .analisis-item h3:after {
   content: "";
   position: absolute;
   display: block;
@@ -2788,7 +2834,7 @@ section,
 
 
 
-.analisis .analisis-content .category {
+.analisis .analisis-item .category {
   background: var(--accent-color);
   color: var(--contrast-color);
   font-size: 14px;
@@ -2796,6 +2842,88 @@ section,
   margin: 0;
   border-radius: 5px;
 }
+
+/*--------------------------------------------------------------
+# Analisis Details Section
+--------------------------------------------------------------*/
+.analisis-details {
+  padding:0;
+  position: relative;
+  background-image: url('/img/doodle.png');
+  background-repeat: repeat;
+  background-size: 150px; /* Sesuaikan dengan ukuran di body */
+  /* Warna overlay dengan transparansi */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7); /* Putih transparan 70% */
+    z-index: 1;
+  }
+}
+
+/* Konten knowledges harus di atas overlay */
+.analisis-details > * {
+  position: relative;
+  z-index: 2;
+}
+
+.analisis-details h3 {
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  position: relative;
+  padding-bottom: 10px;
+  letter-spacing: 0.1vh;
+  font-family: var(--default-font);
+  color: var(--accent-color);
+}
+
+.analisis-details h3:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 90%);
+  bottom: 0;
+  left: 0;
+}
+
+.analisis-details h3:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--accent-color);
+  bottom: 0;
+  left: 0;
+}
+
+.analisis-details .analisis-info {
+  background: color-mix(in srgb, var(--default-color), transparent 95%);
+  padding: 10px 15px;
+  margin: 15px 0;
+  font-family: var(--default-font);
+  color: var(--default-color);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+
+.analisis-details .analisis-info p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.analisis-details .analisis-info a {
+  color: var(--accent-color);
+}
+
 
 /* resources/css/app.css */
 .list-group-item .list-group-flush .list-group-item {
