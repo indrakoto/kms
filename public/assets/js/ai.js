@@ -6,7 +6,7 @@ const urlToLink = (text) => {
     });
 };
 
-// Fungsi untuk memproses respons dari bot
+// Fungsi untuk memproses respon dari bot
 function processBotResponse(responseText) {
     const lines = responseText.split('\n');
     let html = '';
@@ -78,6 +78,7 @@ function markdownTableToHtml(markdownTable) {
 async function sendMessage() {
     const input = document.getElementById('user-input');
     const chatBox = document.getElementById('chat-box');
+    const sendButton = document.getElementById('send-btn');
     const userMessage = input.value.trim();
     if (!userMessage) return; // Jangan kirim jika input kosong
 
@@ -88,6 +89,10 @@ async function sendMessage() {
     // Tampilkan animasi loading
     chatBox.innerHTML += `<div id="loading" class="message bot">Mengirim...</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Ubah teks tombol menjadi "Sedang Proses..."
+    sendButton.disabled = true;  // Menonaktifkan tombol
+    sendButton.innerHTML = 'Sedang Proses...';
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -121,6 +126,10 @@ async function sendMessage() {
         document.getElementById('loading').remove();
         chatBox.innerHTML += `<div class="message bot">Terjadi kesalahan, coba lagi nanti.</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
+    } finally {
+        // Kembalikan tombol ke kondisi semula
+        sendButton.disabled = false;  // Mengaktifkan tombol kembali
+        sendButton.innerHTML = 'Kirim';  // Kembalikan teks tombol ke "Kirim"
     }
 }
 
