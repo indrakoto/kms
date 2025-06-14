@@ -84,13 +84,12 @@ async function sendMessage() {
 
     chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
     input.value = '';
-    sendButton.style.display = 'none'; // Sembunyikan tombol setelah kirim
-
-    sendButton.disabled = true;
-    sendButton.innerHTML = 'Sedang Proses...';
+    //sendButton.style.display = 'none'; // Sembunyikan tombol setelah kirim
+    //sendButton.disabled = true;
+    //sendButton.innerHTML = 'Sedang Proses...';
      // Ubah ke loading spinner
-    //sendButton.classList.add('loading');
-    //sendButton.innerHTML = `<div class="spinner"></div>`;
+    sendButton.classList.add('loading');
+    sendButton.innerHTML = `<div class="spinner"></div>`;
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -117,7 +116,7 @@ async function sendMessage() {
     } catch (error) {
         console.error("Terjadi kesalahan:", error);
         chatBox.innerHTML += `<div class="message bot">Terjadi kesalahan, coba lagi nanti.</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
+        //chatBox.scrollTop = chatBox.scrollHeight;
     } finally {
         sendButton.disabled = false;
         //sendButton.innerHTML = 'Kirim';
