@@ -14,7 +14,7 @@
         <div class="row">  <!-- Tambahkan g-0 untuk menghilangkan gutter -->
             <!-- MAIN CONTENT -->
             <div class="col-lg-12">
-                <h3 class="mb-2">{{ $analisis->title }}</h3>
+                <h3 class="mb-3">{{ $analisis->title }}</h3>
                 <div class="mb-4" style="border: 1px solid #cccccc; padding:5px;">            
                             <!-- Awal bagian Konten , PDF, Video  , Link atau Youtube --> 
                             @php
