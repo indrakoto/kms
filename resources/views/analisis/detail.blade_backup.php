@@ -8,14 +8,15 @@
 
 @section('content')
 
-<section id="analisis" class="analisis-details section">
+<section id="analisis" class="analisis section">
     @include('section.page-title',['analisis'=>$analisis])
-    <div class="container">  <!-- Ganti container menjadi container-fluid dan hapus padding horizontal -->
-        <div class="row">  <!-- Tambahkan g-0 untuk menghilangkan gutter -->
+    <div class="container-fluid px-0">  <!-- Ganti container menjadi container-fluid dan hapus padding horizontal -->
+        <div class="row g-0">  <!-- Tambahkan g-0 untuk menghilangkan gutter -->
             <!-- MAIN CONTENT -->
             <div class="col-lg-12">
-                <h3 class="mb-2">{{ $analisis->title }}</h3>
-                <div class="mb-4" style="border: 1px solid #cccccc; padding:5px;">            
+                <div class="mb-4" style="border: 1px solid rgb(232, 232, 232);">
+                    <div>
+                        
                             <!-- Awal bagian Konten , PDF, Video  , Link atau Youtube --> 
                             @php
                             $sourceType = strtolower($analisis->source->name);
@@ -55,7 +56,7 @@
                                 @break
 
                             @case('link')
-                                <div class="ratio ratio-21x9">
+                                <div class="ratio ratio-16x9 mb-4">
                                     <iframe src="{{ $analisis->embed_link }}#toolbar=0" 
                                         style="border: none;"></iframe>
                                 </div>
@@ -85,39 +86,51 @@
                             @endswitch
                             <!-- Akhir bagian Konten , PDF, Video  , Link atau Youtube -->                         
                        
-                    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<section id="analisis" class="analisis section">
     <div class="container">
-        <h3 class="mt-4 mb-4">Analisis Lainnya</h3>
         <div class="row">
-            
-            @foreach($analisisList as $aList)
-              <div class="col-lg-3 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
-                <div class="analisis-item mb-4">
-                  <div class="analisis-content">
-                    <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
-                    <h3 class="mt-3"><a href="{{ route('detail.show', ['article_slug' => $aList->slug, 'id' => $aList->id]) }}">{{ $aList->short_title }}</a></h3>
 
-                    <div class="box-footer d-flex justify-content-between align-items-center pt-1 pb-1 pr-1 pl-3">
-                        <div class="trainer-profile d-flex align-items-center">
-                          <!-- isi dengan institusi -->
-                        </div>
-                        <div class="trainer-rank d-flex align-items-center">
-                            <i class="bi bi-eye eye-icon"></i>&nbsp;0
-                            &nbsp;&nbsp;
-                            <i class="bi bi-star-fill start-icon" style="color:rgb(233, 187, 89);"></i>&nbsp;0
-                        </div>
-                    </div>  
-                  </div>
+            <div class="col-lg-3">
+                <div class="mb-4">
+                    <div class="list-group" style="border-radius: 0;">
+                        <a href="{{ route('analisis.index') }}" 
+                        class="list-group-item list-group-item-action {{ !$activeAnalisis ? 'active-analisis' : '' }}">
+                        Semua Analisis
+                        </a>
+                        
+                        @foreach($analisisList as $aList)
+                            <a href="{{ route('detail.show', ['article_slug' => $aList->slug, 'id' => $aList->id]) }}" 
+                            class="list-group-item list-group-item-action {{ $activeAnalisis == $aList->id ? 'active-analisis' : '' }}">
+                            {{ $aList->title }}
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-              </div>
-            @endforeach
+                <div class="mb-4">
+                    <div class="list-group" style="border-radius: 0;">
+                        <a href="#" class="list-group-item list-group-item-action active-analisis">
+                            Layanan Publik
+                        </a>
+                        @foreach($layananList as $item)
+                            @if($item->redirect_link==1)
+                                <a class="list-group-item list-group-item-action" href="{{ $item->embed_link }}" target="_blank">{{ $item->title }}</a>
+                            @else
+                                <a href="{{ route('detail.show', ['article_slug' => $item->slug, 'id' => $item->id]) }}" 
+                                    class="list-group-item list-group-item-action {{ $activeAnalisis == $item->id ? 'active-analisis' : '' }}">
+                                    {{ $item->title }}
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </section>
