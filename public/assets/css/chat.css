@@ -1,3 +1,31 @@
+#chat-box {
+    height: 400px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Scrollbar styling (optional) */
+#chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#chat-box::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 .input-wrapper {
     position: relative;
     width: 100%;
@@ -25,14 +53,14 @@
     position: absolute;
     right: 12px;
     bottom: 12px;
-    background-color: #000;
+    background-color: #ccc; /* Warna abu-abu untuk state non-aktif */
     color: #fff;
     border: none;
     border-radius: 50%;
     padding: 10px;
     font-size: 0.9rem;
-    cursor: pointer;
-    display: none; /* awalnya disembunyikan */
+    cursor: not-allowed; /* Ubah kursor menjadi not-allowed */
+    display: flex; /* Muncul secara default */
     align-items: center;
     justify-content: center;
     width: 40px;
@@ -40,21 +68,33 @@
     transition: background 0.3s;
 }
 
-.send-btn:hover {
-    background-color: #333;
+.send-btn.inactive {
+    background-color: #ccc !important;
+    cursor: not-allowed;
+}
+
+/* Gaya saat tombol aktif */
+.send-btn:not(:disabled) {
+    background-color: #000; /* Warna hitam saat aktif */
+    cursor: pointer; /* Kursor pointer saat aktif */
+}
+
+.send-btn:not(:disabled):hover {
+    background-color: #333; /* Warna hover saat aktif */
 }
 
 .send-btn.loading {
-  pointer-events: none;
+    pointer-events: none;
+    opacity: 0.7;
 }
 
 .send-btn .spinner {
-  border: 2px solid #fff;
-  border-top: 2px solid transparent;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  animation: spin 0.8s linear infinite;
+    border: 2px solid #fff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
@@ -62,25 +102,45 @@
   100% { transform: rotate(360deg); }
 }
 
+.message.error {
+    color: #dc3545;
+    font-style: italic;
+}
 
 /* Gaya dasar pesan */
-.message {
+/*.message {
     margin-bottom: 10px;
     max-width: 75%;
     padding: 10px;
     border-radius: 12px;
     clear: both;
+}*/
+.message {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 80%;
+    word-wrap: break-word;
 }
 
-.message.user {
+/*.message.user {
     background-color: #DCF8C6;
     align-self: flex-end;
     margin-left: auto;
+}*/
+.message.user {
+    align-self: flex-end;
+    background-color: #DCF8C6;
+    color: #333;
 }
 
-.message.bot {
+/*.message.bot {
     background-color: #E4E6EB;
     margin-right: auto;
+}*/
+.message.bot {
+    align-self: flex-start;
+    background-color: #E4E6EB;
+    color: #333;
 }
 
 /* Gaya untuk kontainer tabel */
@@ -153,23 +213,31 @@
     }
 }
 
-.custom-input {
-    width: 100%;
-    padding: 10px 16px;
-    border: 1px solid #ccc;
+/* ... (kode CSS sebelumnya tetap sama) ... */
+
+.api-selector {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.api-option {
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
     border-radius: 12px;
-    font-size: 1rem;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.custom-input:focus {
-    outline: none;
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+.api-option.active {
+    background: #000;
+    color: #fff;
 }
 
-.custom-btn {
-    border-radius: 12px;
-    padding: 10px 20px;
-    font-weight: 500;
+.api-option:hover {
+    background: rgba(0, 0, 0, 0.2);
 }

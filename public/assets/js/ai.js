@@ -1,42 +1,161 @@
+// Variabel global
+let selectedApi = 'internal';
+const apiUrls = {
+    internal: '/chat-api',
+    external: '/ai-api'
+};
+
+// Variabel global
+let isSending = false;
+
+// Inisialisasi saat DOM siap
+document.addEventListener('DOMContentLoaded', function() {
+    initializeScrollAnchor();
+    setupApiSelector();
+    setupEventListeners();
+    updateSendButton();
+});
+
+// Setup semua event listeners
+// Setup event listeners yang sederhana dan efektif
+function setupEventListeners() {
+    const input = document.getElementById('user-input');
+    const sendButton = document.querySelector('.send-btn');
+    
+    // 1. Handle klik tombol kirim
+    sendButton.addEventListener('click', handleSendMessage);
+    
+    // 2. Handle tekan Enter
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    });
+    
+    // 3. Update tombol saat input berubah
+    input.addEventListener('input', function() {
+        updateSendButton();
+        autoResizeTextarea(this);
+    });
+}
+
+// Fungsi untuk mengatur state tombol kirim
+function updateSendButton() {
+    const input = document.getElementById('user-input');
+    const sendButton = document.querySelector('.send-btn');
+    const hasText = input.value.trim().length > 0;
+    
+    if (isSending) {
+        sendButton.disabled = true;
+        sendButton.classList.add('inactive');
+        return;
+    }
+    
+    if (hasText) {
+        sendButton.disabled = false;
+        sendButton.classList.remove('inactive');
+    } else {
+        sendButton.disabled = true;
+        sendButton.classList.add('inactive');
+    }
+}
+
+// Auto-resize textarea
+function autoResizeTextarea(textarea) {
+    textarea.style.height = 'auto';
+    textarea.style.height = (textarea.scrollHeight) + 'px';
+}
+
+// Setup API selector
+function setupApiSelector() {
+    const apiOptions = document.querySelectorAll('.api-option');
+    
+    apiOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            apiOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+            selectedApi = this.dataset.api;
+        });
+    });
+}
+
+// Fungsi scroll
+function initializeScrollAnchor() {
+    const chatBox = document.getElementById('chat-box');
+    if (!chatBox.querySelector('#scroll-anchor')) {
+        const anchor = document.createElement('div');
+        anchor.id = 'scroll-anchor';
+        chatBox.appendChild(anchor);
+    }
+}
+
+function updateScrollAnchor() {
+    const chatBox = document.getElementById('chat-box');
+    let anchor = document.getElementById('scroll-anchor');
+    
+    if (!anchor) {
+        anchor = document.createElement('div');
+        anchor.id = 'scroll-anchor';
+    }
+    
+    chatBox.appendChild(anchor);
+}
+
+function scrollToBottom() {
+    const chatBox = document.getElementById('chat-box');
+    const anchor = document.getElementById('scroll-anchor');
+    
+    if (anchor) {
+        // Gunakan scrollTop untuk scroll internal element
+        chatBox.scrollTop = chatBox.scrollHeight;
+        
+        // Optional: Smooth scroll dengan animation
+        smoothScroll(chatBox, chatBox.scrollHeight, 300);
+    }
+}
+
+// Helper function untuk smooth scroll
+function smoothScroll(element, target, duration) {
+    const start = element.scrollTop;
+    const change = target - start;
+    const startTime = performance.now();
+    
+    function animateScroll(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        element.scrollTop = start + change * progress;
+        
+        if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+        }
+    }
+    
+    requestAnimationFrame(animateScroll);
+}
+
+// Fungsi scroll ke elemen tertentu dalam chat box
+function scrollToElement(element) {
+    const chatBox = document.getElementById('chat-box');
+    const elementPosition = element.offsetTop;
+    const chatBoxHeight = chatBox.clientHeight;
+    const scrollTo = elementPosition - (chatBoxHeight / 3); // Scroll ke 1/3 atas elemen
+    
+    chatBox.scrollTo({
+        top: scrollTo,
+        behavior: 'smooth'
+    });
+}
+
 // Fungsi untuk mengubah URL menjadi link
-const urlToLink = (text) => {
+function urlToLink(text) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, url => {
         return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
     });
-};
-
-// Fungsi untuk memproses respon dari bot
-function processBotResponse(responseText) {
-    const lines = responseText.split('\n');
-    let html = '';
-    let tableLines = [];
-    let inTable = false;
-
-    lines.forEach(line => {
-        if (line.trim().startsWith('|') && line.includes('|')) {
-            if (!inTable) inTable = true;
-            tableLines.push(line);
-        } else {
-            if (inTable) {
-                html += markdownTableToHtml(tableLines.join('\n'));
-                tableLines = [];
-                inTable = false;
-            }
-            if (line.trim()) {
-                html += `<div class="message-text">${urlToLink(line)}</div>`;
-            }
-        }
-    });
-
-    if (inTable) {
-        html += markdownTableToHtml(tableLines.join('\n'));
-    }
-
-    return `<div class="message bot">${html}</div>`;
 }
 
-// Fungsi khusus untuk konversi markdown table ke HTML
+// Konversi markdown table ke HTML
 function markdownTableToHtml(markdownTable) {
     const lines = markdownTable.trim().split('\n');
     
@@ -65,7 +184,7 @@ function markdownTableToHtml(markdownTable) {
     rows.forEach(row => {
         html += '<tr>';
         row.forEach(cell => {
-            html += `<td>${cell}</td>`;
+            html += `<td>${urlToLink(cell)}</td>`;
         });
         html += '</tr>';
     });
@@ -74,75 +193,133 @@ function markdownTableToHtml(markdownTable) {
     return html;
 }
 
-// Fungsi untuk mengirim pesan
-async function sendMessage() {
+// Proses respon dari bot
+function processBotResponse(responseText) {
+    const lines = responseText.split('\n');
+    let html = '';
+    let tableLines = [];
+    let inTable = false;
+
+    lines.forEach(line => {
+        if (line.trim().startsWith('|') && line.includes('|')) {
+            if (!inTable) inTable = true;
+            tableLines.push(line);
+        } else {
+            if (inTable) {
+                html += markdownTableToHtml(tableLines.join('\n'));
+                tableLines = [];
+                inTable = false;
+            }
+            if (line.trim()) {
+                html += `<div class="message-text">${urlToLink(line)}</div>`;
+            }
+        }
+    });
+
+    if (inTable) {
+        html += markdownTableToHtml(tableLines.join('\n'));
+    }
+
+    return html;
+}
+
+// Fungsi utama untuk mengirim pesan
+async function handleSendMessage() {
+    if (isSending) return;
+    
     const input = document.getElementById('user-input');
     const chatBox = document.getElementById('chat-box');
-    const sendButton = document.querySelector('.send-btn'); // class-based
-    const userMessage = input.value.trim();
-    if (!userMessage) return;
-
-    chatBox.innerHTML += `<div class="message user">${userMessage}</div>`;
-    input.value = '';
-    //sendButton.style.display = 'none'; // Sembunyikan tombol setelah kirim
-    //sendButton.disabled = true;
-    //sendButton.innerHTML = 'Sedang Proses...';
-     // Ubah ke loading spinner
-    sendButton.classList.add('loading');
-    sendButton.innerHTML = `<div class="spinner"></div>`;
-
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
+    const sendButton = document.querySelector('.send-btn');
+    const message = input.value.trim();
+    
+    if (!message || sendButton.disabled) return;
+    
+    isSending = true;
+    updateSendButton();
+    
     try {
-        const response = await fetch('/ai-api', {
+        // Tampilkan pesan pengguna
+        //chatBox.innerHTML += `<div class="message user">${message}</div>`;
+        // 1. Tampilkan pesan pengguna
+        const userMessageElement = document.createElement('div');
+        userMessageElement.className = 'message user';
+        userMessageElement.textContent = message;
+        chatBox.appendChild(userMessageElement);
+
+        // Scroll ke pesan pengguna terlebih dahulu
+        scrollToElement(userMessageElement);
+
+        input.value = '';
+        
+        // Tampilkan loading
+        sendButton.innerHTML = `<div class="spinner"></div>`;
+        
+        // Kirim ke API
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const response = await fetch(apiUrls[selectedApi], {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json' // Explicitly request JSON
             },
-            body: JSON.stringify({ message: userMessage }),
+            body: JSON.stringify({ message: message })
         });
-
-        if (!response.ok) {
-            throw new Error(`Kesalahan HTTP! Status: ${response.status}`);
+        
+        // Periksa content-type response
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            throw new Error(`Response bukan JSON. Content-Type: ${contentType}`);
         }
-
+        
         const data = await response.json();
-        const botMessage = data.response || "Tidak ada balasan";
-
-        chatBox.innerHTML += processBotResponse(botMessage);
-        chatBox.scrollTop = chatBox.scrollHeight;
-
+        
+        if (!response.ok) {
+            throw new Error(data.message || `HTTP error! Status: ${response.status}`);
+        }
+        
+        // Tampilkan response
+        //chatBox.innerHTML += `<div class="message bot">${processBotResponse(data.response)}</div>`;
+        //updateScrollAnchor();
+        const botMessageElement = document.createElement('div');
+        botMessageElement.className = 'message bot';
+        botMessageElement.innerHTML = processBotResponse(data.response);
+        chatBox.appendChild(botMessageElement);
+        
+        // Scroll ke bawah dengan delay kecil
+        setTimeout(() => {
+            scrollToElement(botMessageElement);
+            updateScrollAnchor();
+        }, 50);
+        
     } catch (error) {
-        console.error("Terjadi kesalahan:", error);
-        chatBox.innerHTML += `<div class="message bot">Terjadi kesalahan, coba lagi nanti.</div>`;
-        //chatBox.scrollTop = chatBox.scrollHeight;
+        console.error('Error:', error);
+        
+        let errorMessage = 'Terjadi kesalahan saat memproses permintaan';
+        if (error.message.includes('JSON') || error.message.includes('<!DOCTYPE')) {
+            errorMessage = 'Server mengembalikan respons tidak valid (bukan JSON)';
+        } else if (error.message.includes('Failed to fetch')) {
+            errorMessage = 'Tidak dapat terhubung ke server';
+        }
+        
+        const errorElement = document.createElement('div');
+        errorElement.className = 'message bot error';
+        errorElement.innerHTML = `
+            ${errorMessage}<br>
+            <small>${selectedApi === 'internal' ? 'API Internal' : 'API External'}</small>
+        `;
+        chatBox.appendChild(errorElement);
+
+        //setTimeout(scrollToBottom, 50);
+        setTimeout(() => {
+            scrollToElement(errorElement);
+            updateScrollAnchor();
+        }, 50);
+
     } finally {
-        sendButton.disabled = false;
-        //sendButton.innerHTML = 'Kirim';
-         // Kembalikan ke ikon panah
-        sendButton.classList.remove('loading');
+        isSending = false;
         sendButton.innerHTML = `<i class="fas fa-paper-plane"></i>`;
+        updateSendButton();
+        //scrollToBottom();
     }
 }
-
-// Kirim saat tombol diklik
-document.querySelector('.send-btn').addEventListener('click', sendMessage);
-
-// Kirim saat tekan Enter (tanpa shift)
-document.getElementById('user-input').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        sendMessage();
-    }
-});
-
-// Munculkan tombol kirim jika ada input
-document.getElementById('user-input').addEventListener('input', function () {
-    const sendButton = document.querySelector('.send-btn');
-    if (this.value.trim().length > 0) {
-        sendButton.style.display = 'block';
-    } else {
-        sendButton.style.display = 'none';
-    }
-});
