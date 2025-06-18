@@ -149,12 +149,35 @@ function scrollToElement(element) {
 }
 
 // Fungsi untuk mengubah URL menjadi link
-function urlToLink(text) {
+function urlToLinkOLD(text) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, url => {
         return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
     });
 }
+
+function urlToLink(text) {
+    const urlRegex = /(https?:\/\/[^\s<>"'`{}|\\^\[\]]+)/g;
+
+    return text.replace(urlRegex, match => {
+        // Jangan proses jika URL mengandung spasi
+        if (/\s/.test(match)) {
+            return match;
+        }
+
+        // Pisahkan tanda baca di akhir URL
+        const matchUrl = match.match(/^(https?:\/\/[^\s<>"'`{}|\\^\[\]]*?)([.,!?)]*?)$/);
+
+        if (matchUrl) {
+            const cleanUrl = matchUrl[1];
+            const trailingPunctuation = matchUrl[2];
+            return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">${cleanUrl}</a>${trailingPunctuation}`;
+        }
+
+        return match;
+    });
+}
+
 
 // Konversi markdown table ke HTML
 function markdownTableToHtml(markdownTable) {
