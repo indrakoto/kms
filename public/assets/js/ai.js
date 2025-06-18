@@ -1,8 +1,9 @@
 // Variabel global
-let selectedApi = 'internal';
+let selectedApi = 'alphabyte';
 const apiUrls = {
-    internal: '/chat-api',
-    external: '/ai-api'
+    chat: '/chat-api',
+    alphabyte: '/ai-api',
+    pusdatin: '/pusdatin-api'
 };
 
 // Variabel global
@@ -306,7 +307,7 @@ async function handleSendMessage() {
         errorElement.className = 'message bot error';
         errorElement.innerHTML = `
             ${errorMessage}<br>
-            <small>${selectedApi === 'internal' ? 'API Internal' : 'API External'}</small>
+            <small>${selectedApi === 'internal' ? 'API Internal' : 'API alphabyte'}</small>
         `;
         chatBox.appendChild(errorElement);
 

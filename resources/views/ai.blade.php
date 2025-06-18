@@ -38,9 +38,9 @@
                   <i class="fas fa-paper-plane"></i>
                 </button>
                 <div class="api-selector">
-                    <button class="api-option active" data-api="internal">Internal</button>
-                    <button class="api-option" data-api="external">AlphaBtye</button>
-                    <button class="api-option" data-api="Pusdatin">Pusdatin</button>
+                    <button class="api-option active" data-api="alphabyte">AlphaBtye</button>
+                    <button class="api-option" data-api="chat">Chat</button>
+                    <button class="api-option" data-api="pusdatin">Pusdatin</button>
                 </div>
             </div>
         </div>
