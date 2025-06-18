@@ -10,6 +10,7 @@ use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\AnalisisController;
 //use App\Http\Controllers\NeracaController;
 use App\Http\Livewire\KnowledgeSearch;
+use App\Http\Controllers\ForumController;
 
 Route::get('/', function () {
     //return view('beranda');
@@ -123,7 +124,8 @@ Route::post('/ai-api', function (Request $request) {
     // Kirim request ke API Ollama
     //$response = Http::post('http://localhost:11434/api/generate', $validated);
     //$response = Http::timeout(60)->post('http://localhost:11434/api/generate', $validated);
-    $response = Http::timeout(60)->post('http://127.0.0.1:5000/chat', $validated);
+    //$response = Http::timeout(60)->post('http://127.0.0.1:5000/chat', $validated);
+    $response = Http::timeout(60)->post('http://93.127.135.59:5000/chat', $validated);
 
 
     // Kembalikan response API Ollama ke frontend
@@ -134,17 +136,34 @@ Route::post('/ai-api', function (Request $request) {
 Route::post('/chat-api', function (Request $request) {
     // Validasi input dari frontend
     $validated = $request->validate([
-        'model' => 'required|string',
-        'prompt' => 'required|string',
-        'stream' => 'required|boolean',
+        'message' => 'required|string',
+    ]);
+    // Tambahkan data tetap
+    $payload = array_merge($validated, [
+        'model' => 'llama3.2',
+        'prompt' => $validated['message'],
+        'stream' => false,
     ]);
 
+    //print_r($payload); die();
     // Kirim request ke API Ollama (General)
-    //$response = Http::post('http://localhost:11434/api/generate', $validated);
-    $response = Http::timeout(60)->post('http://localhost:11434/api/generate', $validated);
+    //$response = Http::post('http://localhost:11434/api/generate', $payload);
+    $response = Http::timeout(60)->post('http://localhost:11434/api/generate', $payload);
 
 
     // Kembalikan response API Ollama ke frontend
     return response()->json($response->json(), $response->status());
 });
 
+Route::prefix('forum')->group(function() {
+    // List threads
+    Route::get('/', [ForumController::class, 'index'])->name('forum.index');
+    
+    // Show single thread
+    Route::get('/{thread}', [ForumController::class, 'show'])->name('forum.threads.show');
+    
+    // Store reply
+    Route::post('/{thread}/replies', [ForumController::class, 'storeReply'])
+         ->name('forum.threads.replies.store')
+         ->middleware('auth');
+});

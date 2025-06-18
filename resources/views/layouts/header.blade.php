@@ -4,6 +4,7 @@
     ['label' => 'Analisis', 'url' => '/analisis'],
     ['label' => 'Knowledge', 'url' => '/knowledge'],
     ['label' => 'Geo-Portal', 'url' => '/geo-portal'],
+    ['label' => 'Forum', 'url' => '/forum'],
     ['label' => '<img  height="18px" src="' . asset('img/LogoAlphaByteBlack.png') . '" />&nbsp;AlphaByte.', 'url' => '/ai', 'raw' => true, 'class' => ''],
     ['label' => '<i class="bi bi-file-lock2-fill text-warning" style="font-size:xx-large;"></i>', 'url' => '/login', 'raw' => true],
   ];

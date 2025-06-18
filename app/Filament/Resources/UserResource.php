@@ -75,7 +75,8 @@ class UserResource extends Resource
                 ->label('Role')
                 ->options([
                     'admin' => 'Admin',
-                    'user' => 'User',
+                    'teknis' => 'Teknis',
+                    'guest' => 'Guest',
                 ])
                 ->reactive() // penting agar bisa trigger visibility/required
                 ->required(),
@@ -84,8 +85,8 @@ class UserResource extends Resource
                 ->label('Institusi')
                 ->withCount()
                 ->relationship('institusi', 'name', 'parent')
-                ->visible(fn (Forms\Get $get) => $get('role') === 'user')
-                ->required(fn (Forms\Get $get) => $get('role') === 'user'),
+                ->visible(fn (Forms\Get $get) => $get('role') === 'teknis')
+                ->required(fn (Forms\Get $get) => $get('role') === 'teknis'),
 
             TextInput::make('name')
                 ->required()

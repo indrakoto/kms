@@ -17,25 +17,31 @@
         <div class="box">
             <div>
                 <div class="text-center">
-                  <img width="50%"
+                  <img 
                     src="{{ asset('img/AlphaByteBlack.png') }}"
-                    style="display: block; margin-left: auto; margin-right: auto;"
+                    style="display: block; margin-left: auto; margin-right: auto; max-width: 300px;"
                     alt="Logo"
                   />
                 </div>
 
                 <div class="mt-4">
-                    <div id="chat-box" class="mb-3" style="height: 400px; overflow-y: scroll;">
+                    <div id="chat-box" class="mb-3" style="height: 400px; overflow-y: auto;">
                         <!-- Pesan akan ditampilkan di sini -->
+                         <div id="scroll-anchor"></div>
                     </div>
 
                 </div>
             </div>
             <div class="input-wrapper">
                 <textarea id="user-input" class="chat-input" placeholder="Tulis pesan..."></textarea>
-                <button class="send-btn">
+                <button class="send-btn inactive" disabled>
                   <i class="fas fa-paper-plane"></i>
                 </button>
+                <div class="api-selector">
+                    <button class="api-option active" data-api="internal">Internal</button>
+                    <button class="api-option" data-api="external">AlphaBtye</button>
+                    <button class="api-option" data-api="Pusdatin">Pusdatin</button>
+                </div>
             </div>
         </div>
 

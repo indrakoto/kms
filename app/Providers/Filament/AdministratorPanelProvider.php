@@ -21,6 +21,7 @@ use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use Filament\Facades\Filament;
 //use function Laravel\Vite\vite;
+use App\Filament\Pages\CustomDashboard;
 
 
 class AdministratorPanelProvider extends PanelProvider
@@ -33,11 +34,15 @@ class AdministratorPanelProvider extends PanelProvider
             ->path('administrator')
             ->login()
             ->passwordReset()
+            ->registration() 
             ->emailVerification()
             ->colors([
                 'primary' => Color::Amber,
             ])
             ->brandName('KMS MIGAS')
+            //->getBrandLogo(asset('img/logo-esdm.png'))
+            ->favicon(asset('imga/logo-esdm.png'))
+            
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->globalSearch(false)
@@ -46,8 +51,9 @@ class AdministratorPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                //Widgets\AccountWidget::class,
                 //Widgets\FilamentInfoWidget::class,
+                \App\Filament\Widgets\AnalysisStatsWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -109,5 +115,4 @@ class AdministratorPanelProvider extends PanelProvider
 //            vite('build/assets/filament-theme.css'),
 //        );
 //    }
-
 }
