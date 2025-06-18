@@ -192,6 +192,7 @@
     margin-bottom: 12px;
     line-height: 1.5;
     color: #333;
+    text-align: justify;
 }
 
 .message-text br {

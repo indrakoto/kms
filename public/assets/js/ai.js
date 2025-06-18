@@ -148,6 +148,33 @@ function scrollToElement(element) {
     });
 }
 
+function cleanHtmlText(text) {
+    // Ganti semua <p ...> dan </p> dengan newline
+    text = text.replace(/<p[^>]*>/gi, '\n');
+    text = text.replace(/<\/p>/gi, '\n');
+
+    // Ganti <br> dan <br/> dengan newline
+    text = text.replace(/<br\s*\/?>/gi, '\n');
+
+    // Hapus tag HTML lainnya (opsional)
+    text = text.replace(/<[^>]+>/g, '');
+
+    // Ubah multiple newline menjadi satu saja
+    text = text.replace(/\n{2,}/g, '\n');
+
+    // Trim spasi dan newline di awal/akhir
+    return text.trim();
+}
+
+function cleanTagP(text) {
+    // Ganti semua <p ...> menjadi \n
+    text = text.replace(/<p[^>]*>/gi, '\n');
+    // Ganti semua </p> menjadi \n
+    text = text.replace(/<\/p>/gi, '\n');
+    return text;
+}
+
+
 // Fungsi untuk mengubah URL menjadi link
 function urlToLinkOLD(text) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -155,8 +182,7 @@ function urlToLinkOLD(text) {
         return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
     });
 }
-
-function urlToLink(text) {
+function urlToLinkOLD2(text) {
     const urlRegex = /(https?:\/\/[^\s<>"'`{}|\\^\[\]]+)/g;
 
     return text.replace(urlRegex, match => {
@@ -177,6 +203,34 @@ function urlToLink(text) {
         return match;
     });
 }
+
+function urlToLink(text) {
+    // 1. Ganti <p> dan </p> jadi newline
+    text = text.replace(/<p[^>]*>/gi, '\n');
+    text = text.replace(/<\/p>/gi, '\n');
+
+    // 2. Ganti URL menjadi <a href="...">...</a>
+    const urlRegex = /(https?:\/\/[^\s<>"'`{}|\\^\[\]]+)/g;
+
+    text = text.replace(urlRegex, match => {
+        // Abaikan URL yang mengandung spasi
+        if (/\s/.test(match)) {
+            return match;
+        }
+
+        // Pisahkan tanda baca di akhir
+        const parts = match.match(/^(.*?)([.,!?)]*?)$/);
+        const url = parts[1];
+        const trailing = parts[2];
+
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>${trailing}`;
+    });
+
+    return text;
+}
+
+
+
 
 
 // Konversi markdown table ke HTML
