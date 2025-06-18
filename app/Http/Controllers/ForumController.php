@@ -18,9 +18,10 @@ class ForumController extends Controller
                     ->latest()
                     ->paginate(10);
                     
-        $topContributors = User::withCount('threads')
-            ->orderBy('threads_count', 'desc')
-            ->limit(6)
+        $topContributors = User::whereHas('threads')
+            ->withCount('threads')
+            ->orderByDesc('threads_count')
+            ->limit(5)
             ->get();
 
         return view('forum.index', compact('threads', 'topContributors'));
