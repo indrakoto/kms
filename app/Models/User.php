@@ -99,4 +99,9 @@ class User extends Authenticatable
         return $this->institusi_id === $institusiId;
     }
 
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
+
 }
