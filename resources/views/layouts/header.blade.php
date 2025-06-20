@@ -6,22 +6,35 @@
     ['label' => 'Geo-Portal', 'url' => '/geo-portal'],
     ['label' => 'Forum', 'url' => '/forum'],
     ['label' => '<img  height="18px" src="' . asset('img/LogoAlphaByteBlack.png') . '" />&nbsp;AlphaByte.', 'url' => '/ai', 'raw' => true, 'class' => ''],
-    //['label' => '<i class="bi bi-file-lock2-fill text-warning" style="font-size:xx-large;"></i>', 'url' => '/login', 'raw' => true],
   ];
+
   if(Auth::check()) {
+
     // Nama user menu
     $menus[] = [
-      'label' => Auth::user()->name,
-      'url' => '/dashboard',
-      'raw' => false,
+      'label' => '<button type="button" class="btn btn-success btn-sm">' . Auth::user()->name . '</button>',
+      'url' => '#',
+      'raw' => true, // agar label HTML tidak di-escape
     ];
+
+    // Jika user role admin atau teknis, tambahkan menu Administrator
+    if (in_array(Auth::user()->role, ['admin', 'teknis'])) {
+        $menus[] = [
+          'label' => '<button type="button" class="btn btn-warning btn-sm"><i class="bi bi-box-arrow-right"></i> ke Admin Page</button>',
+          'url' => '/administrator/dashboard',
+          'raw' => true, // Karena label berisi HTML, harus true agar tidak di-escape
+        ];
+    }
+
+
+
 
     // Logout menu (gunakan form POST untuk logout keamanan CSRF)
     $menus[] = [
       'label' => '<form action="' . route('logout') . '" method="POST" style="display:inline;">
                     ' . csrf_field() . '
-                    <button type="submit" title="Logout" style="border:none; background:none; color:#dc3545; cursor:pointer;">
-                      <i class="bi bi-box-arrow-right"></i>
+                    <button type="submit" title="Logout" class="btn btn-danger btn-sm">
+                      <i class="bi bi-box-arrow-right"></i> Logout
                     </button>
                   </form>',
       'url' => '#',
@@ -29,12 +42,13 @@
     ];
   } else {
     $menus[] = [
-      'label' => '<i class="bi bi-file-lock2-fill text-warning" style="font-size:xx-large;"></i> Login',
+      'label' => '<button type="button" class="btn btn-success btn-sm"><i class="bi bi-file-lock2-fill"></i> Login &nbsp;</button>',
       'url' => '/login',
       'raw' => true,
     ];
   }
 @endphp
+
 
 <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
@@ -57,12 +71,5 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-      
-      <!--
-        <form action="#" method="post" class="searchx">
-            <div class="search-form"><input type="text" name="search"></div>
-        </form>
-      -->
-
     </div>
 </header>
