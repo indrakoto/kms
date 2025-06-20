@@ -77,4 +77,31 @@ class ForumController extends Controller
         
         return back()->with('success', 'Reply posted successfully!');
     }
+    public function tambah()
+    {
+        // Kembali ke view form tambah artikel thread
+        return view('forum.tambah'); 
+        // Pastikan Anda sudah membuat view ini di resources/views/forum/tambah.blade.php
+    }
+
+    public function store(Request $request)
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        // Simpan data thread baru
+        $thread = Thread::create([
+            'user_id' => Auth::id(),  // ambil user yang sedang login
+            'title' => $validatedData['title'],
+            'content' => $validatedData['content'],
+        ]);
+
+        // Redirect ke halaman thread yang baru dibuat (bisa disesuaikan)
+        // Misalnya kita redirect ke halaman detail thread
+        return redirect()->route('forum.threads.show', $thread->id)
+                         ->with('success', 'Artikel/forum berhasil ditambahkan!');
+    }
 }

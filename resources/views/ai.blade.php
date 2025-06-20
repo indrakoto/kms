@@ -38,7 +38,7 @@
                   <i class="fas fa-paper-plane"></i>
                 </button>
                 <div class="api-selector">
-                    <button class="api-option active" data-api="alphabyte">AlphaBtye</button>
+                    <button class="api-option active" data-api="alphabyte">AlphaByte</button>
                     <button class="api-option" data-api="chat">Chat</button>
                     <button class="api-option" data-api="pusdatin">Pusdatin</button>
                 </div>

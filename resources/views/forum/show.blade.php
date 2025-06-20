@@ -41,10 +41,13 @@
                 <!-- Form Balas Thread -->
                 @guest
                     <div class="mt-4 mb-4">
-                        <a href="/administrator/login" class="btn btn-outline-primary btn-sm">
+                        <a href="/login" class="btn btn-outline-primary btn-sm">
                             <i class="bi bi-box-arrow-in-right me-1"></i> Login
                         </a>
-                        <span class="text-muted ms-2 small">untuk membalas</span>
+                        <a href="/registrasi" class="btn btn-outline-success btn-sm">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Registrasi
+                        </a>
+                        <span class="text-muted ms-2 small">bila belum punya akses</span>
                     </div>
                 @endguest
                 @auth
