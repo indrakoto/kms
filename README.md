@@ -1,4 +1,4 @@
-<p align="center"><a href="http://93.127.135.59/beranda" target="_blank"><img src="http://93.127.135.59/img/KMSLogoWhiteOutline.png" width="400" alt="KMS Logo"></a></p>
+<p align="center"><a href="http://93.127.135.59/beranda" target="_blank"><img src="http://93.127.135.59/img/KMS-Logo-White.png" width="400" alt="KMS Logo"></a></p>
 
 ## KMS MIGAS - AI
 
