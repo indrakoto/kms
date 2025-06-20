@@ -11,6 +11,8 @@ use App\Http\Controllers\AnalisisController;
 //use App\Http\Controllers\NeracaController;
 use App\Http\Livewire\KnowledgeSearch;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     //return view('beranda');
@@ -166,4 +168,18 @@ Route::prefix('forum')->group(function() {
     Route::post('/{thread}/replies', [ForumController::class, 'storeReply'])
          ->name('forum.threads.replies.store')
          ->middleware('auth');
+
+       // Tambah artikel/thread (form tambah artikel)
+    Route::get('/tambah', [ForumController::class, 'tambah'])
+        ->name('forum.tambah')
+        ->middleware('auth'); // biasanya form tambah hanya untuk yang sudah login
 });
+
+
+
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('login.post');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::get('/registrasi', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/registrasi', [RegisterController::class, 'register'])->name('register.submit');
