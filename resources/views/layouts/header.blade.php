@@ -21,7 +21,7 @@
     if (in_array(Auth::user()->role, ['admin', 'teknis'])) {
         $menus[] = [
           'label' => '<button type="button" class="btn btn-warning btn-sm"><i class="bi bi-box-arrow-right"></i> ke Admin Page</button>',
-          'url' => '/administrator/dashboard',
+          'url' => '/administrator',
           'raw' => true, // Karena label berisi HTML, harus true agar tidak di-escape
         ];
     }
