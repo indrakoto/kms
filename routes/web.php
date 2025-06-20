@@ -142,7 +142,7 @@ Route::post('/chat-api', function (Request $request) {
     ]);
     // Tambahkan data tetap
     $payload = array_merge($validated, [
-        'model' => 'llama3.2',
+        'model' => 'gemma:2b',
         'prompt' => $validated['message'],
         'stream' => false,
     ]);
