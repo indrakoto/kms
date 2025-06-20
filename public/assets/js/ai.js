@@ -1,8 +1,8 @@
 // Variabel global
 let selectedApi = 'alphabyte';
 const apiUrls = {
-    chat: '/chat-api',
     alphabyte: '/ai-api',
+    chat: '/chat-api',
     pusdatin: '/pusdatin-api'
 };
 
