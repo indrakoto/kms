@@ -22,7 +22,11 @@ use Illuminate\Support\Facades\Blade;
 use Filament\Facades\Filament;
 //use function Laravel\Vite\vite;
 use App\Filament\Pages\CustomDashboard;
-
+use App\Filament\Widgets\TopNavigation;
+use Filament\Navigation\MenuItem;
+use App\Filament\Pages\Auth\CustomLogin;
+use App\Filament\Pages\Auth\CustomRegister;
+use Illuminate\Support\Facades\Auth;
 
 class AdministratorPanelProvider extends PanelProvider
 {
@@ -32,17 +36,15 @@ class AdministratorPanelProvider extends PanelProvider
             ->default()
             ->id('administrator')
             ->path('administrator')
-            ->login()
+            ->login(CustomLogin::class)
             ->passwordReset()
-            ->registration() 
+            ->registration(CustomRegister::class) 
             ->emailVerification()
-            ->colors([
-                'primary' => Color::Amber,
-            ])
-            ->brandName('KMS MIGAS')
-            //->getBrandLogo(asset('img/logo-esdm.png'))
-            ->favicon(asset('imga/logo-esdm.png'))
-            
+            //->brandName('KMS')
+            ->brandLogo(asset('img/KMS-Logo-White.png'))
+            //->brandLogoHeight('150px')
+            ->favicon(asset('img/logo-esdm.png'))
+            ->darkMode(false)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->globalSearch(false)
@@ -53,8 +55,26 @@ class AdministratorPanelProvider extends PanelProvider
             ->widgets([
                 //Widgets\AccountWidget::class,
                 //Widgets\FilamentInfoWidget::class,
-                \App\Filament\Widgets\AnalysisStatsWidget::class,
+                \App\Filament\Widgets\KmsStatsWidget::class,
+                //TopNavigation::class,
             ])
+            /*->userMenuItems([
+                // Item custom akan muncul SEBELUM menu default (Profile, Logout)
+                MenuItem::make()
+                    ->label('Analisis')
+                    ->url('/analisis')
+                    ->icon('heroicon-o-chart-bar'),
+                    
+                MenuItem::make()
+                    ->label('Knowledge')
+                    ->url('/knowledge')
+                    ->icon('heroicon-o-book-open'),
+                    
+                MenuItem::make()
+                    ->label('Forum')
+                    ->url('/forum')
+                    ->icon('heroicon-o-chat-bubble-left-ellipsis'),
+            ])*/
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -65,11 +85,12 @@ class AdministratorPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->sidebarCollapsibleOnDesktop()
+            //->sidebarCollapsibleOnDesktop()
             ->sidebarWidth('15rem')
             //->darkMode(false)
             ->colors([
@@ -100,11 +121,53 @@ class AdministratorPanelProvider extends PanelProvider
                     'text' => 'Ke Beranda',
                 ]);
             })
-            ->plugin(\TomatoPHP\FilamentUsers\FilamentUsersPlugin::make())
-            //->viteTheme([
-            //    'resources/css/filament/admin/theme.css',
-            //    'resources/css/filament/admin/custom-sidebar.css',
-            //])
+            /*->renderHook(PanelsRenderHook::TOPBAR_START, function () {
+                return Blade::render('
+                    <img src="{{ $url }}" style="height:32px;">
+                    ', [
+                    'url' => asset('img/logo-esdm.png'),
+                ]);
+            })*/
+            ->renderHook(PanelsRenderHook::USER_MENU_BEFORE, function () {
+                return Blade::render(
+                    '
+                        <div class="flex items-center gap-6">
+                            <!-- Menu Analisis -->
+                            <a 
+                                href="/analisis" 
+                                class="text-white hover:text-[#ffc541] transition-colors duration-200 text-sm font-medium"
+                                wire:navigate
+                            >
+                                Analisis
+                            </a>
+                            <!-- Menu Knowledge -->
+                            <a 
+                                href="/knowledge" 
+                                class="text-white hover:text-[#ffc541] transition-colors duration-200 text-sm font-medium"
+                                wire:navigate
+                            >
+                                Knowledge
+                            </a>
+                            <!-- Menu Forum -->
+                            <a 
+                                href="/forum" 
+                                class="text-white hover:text-[#ffc541] transition-colors duration-200 text-sm font-medium"
+                                wire:navigate
+                            >
+                                Forum
+                            </a>
+                        </div>
+                    '
+                );
+            })
+            //->plugin(
+                //\Hasnayeen\Themes\ThemesPlugin::make()
+            //)
+            //->viteTheme('resources/css/filament/admin/theme.css')
+            ->viteTheme([
+                'resources/css/filament/admin/theme.css',
+                'resources/css/filament/admin/custom-sidebar.css',
+            ])
             ;
     }
 

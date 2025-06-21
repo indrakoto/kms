@@ -12,37 +12,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h3 class="mb-4">Forum</h3>
-                    
-<div class="d-flex mb-4 justify-content-between align-items-center">
-    <div>
-        <strong class="me-3">Recent</strong>
-        <a href="#" class="text-decoration-none text-muted me-3">Featured</a>
-        <a href="#" class="text-decoration-none text-muted me-3">Popular</a>
-    </div>
-    
-    <div class="d-flex align-items-center ms-auto gap-2">
-        @if(Auth::check())
-            <a href="{{ route('forum.tambah') }}" class="btn btn-outline-success btn-sm"><i class="bi bi-book me-1"></i> Tambah</a>
-            <form action="{{ route('logout') }}" method="POST" class="m-0 p-0">
-                @csrf
-                <button type="submit" class="btn btn-outline-danger btn-sm d-flex align-items-center">
-                    <i class="bi bi-box-arrow-right me-1"></i> Logout
-                </button>
-            </form>
-        @else
-            <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm d-flex align-items-center">
-                <i class="bi bi-box-arrow-in-right me-1"></i> Login
-            </a>
-            <a href="/registrasi" class="btn btn-outline-success btn-sm d-flex align-items-center">
-                <i class="bi bi-box-arrow-in-right me-1"></i> Registrasi
-            </a>
-        @endif
-    </div>
-</div>
+                    <div class="card mb-3 border rounded" style="border-color: #e0e0e0 !important;">
+                        <div class="card-body">
+                            <h3 class="mb-4">Forum</h3>                    
+                            <div class="d-flex mb-4 justify-content-between align-items-center">
+                                <div>
+                                    <strong class="me-3">Recent</strong>
+                                    <a href="#" class="text-decoration-none text-muted me-3">Featured</a>
+                                    <a href="#" class="text-decoration-none text-muted me-3">Popular</a>
+                                </div>
+                                
+                                <div class="d-flex align-items-center ms-auto gap-2">
+                                    @if(Auth::check())
+                                        <a href="{{ route('forum.tambah') }}" class="btn btn-outline-success btn-sm"><i class="bi bi-book me-1"></i> Tambah</a>
+                                        <form action="{{ route('logout') }}" method="POST" class="m-0 p-0">
+                                            @csrf
+                                            <button type="submit" class="btn btn-outline-danger btn-sm d-flex align-items-center">
+                                                <i class="bi bi-box-arrow-right me-1"></i> Logout
+                                            </button>
+                                        </form>
+                                    @else
+                                        <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+                                            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                                        </a>
+                                        <a href="/registrasi" class="btn btn-outline-success btn-sm d-flex align-items-center">
+                                            <i class="bi bi-box-arrow-in-right me-1"></i> Registrasi
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
 
-                    
                     @foreach($threads as $thread)
                     <div class="card mb-3 border rounded" style="border-color: #e0e0e0 !important;">
                         <div class="card-body p-3">

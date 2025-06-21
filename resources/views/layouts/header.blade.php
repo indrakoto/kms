@@ -5,7 +5,15 @@
     ['label' => 'Knowledge', 'url' => '/knowledge'],
     ['label' => 'Geo-Portal', 'url' => '/geo-portal'],
     ['label' => 'Forum', 'url' => '/forum'],
-    ['label' => '<img  height="18px" src="' . asset('img/LogoAlphaByteBlack.png') . '" />&nbsp;AlphaByte.', 'url' => '/ai', 'raw' => true, 'class' => ''],
+    [
+      'label' => '<div class="d-flex align-items-center gap-1">
+                    <img height="18px" src="' . asset('img/LogoAlphaByteBlack.png') . '" />
+                    <span>AlphaByte.</span>
+                  </div>',
+      'url' => '/ai',
+      'raw' => true,
+      'class' => 'd-flex align-items-center'
+    ],
   ];
 
   if(Auth::check()) {
@@ -25,8 +33,6 @@
           'raw' => true, // Karena label berisi HTML, harus true agar tidak di-escape
         ];
     }
-
-
 
 
     // Logout menu (gunakan form POST untuk logout keamanan CSRF)

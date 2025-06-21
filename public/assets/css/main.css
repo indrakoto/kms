@@ -225,7 +225,6 @@ h6 {
 .header {
   color: var(--default-color);
   background-color: #284173; /*var(--background-color);*/
-  padding: 0;
   transition: all 0.5s;
   z-index: 997;
   border-bottom: 5px solid #4498ae;
@@ -236,7 +235,7 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
+  max-height: 42px;
   margin-right: 8px;
 }
 
@@ -402,7 +401,7 @@ h6 {
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
-    color: var(--nav-color);
+    color: #ffffff;
     font-size: 28px;
     line-height: 0;
     margin-right: 10px;
@@ -522,6 +521,34 @@ h6 {
 
   .mobile-nav-active .navmenu>ul {
     display: block;
+  }
+
+}
+
+/* ==== Responsive Navmenu Buttons & Logo at Mobile ==== */
+@media (max-width: 1199px) {
+  .header {
+    padding: 10px 0;
+  }
+  /* Semua tombol di dalam navmenu agar lebar persegi panjang */
+  .navmenu ul li a button {
+    min-width: 140px;       /* Lebar minimal agar persegi panjang */
+    height: 40px;           /* Tinggi tombol */
+    padding-left: 20px;     /* Padding kiri */
+    padding-right: 20px;    /* Padding kanan */
+    white-space: nowrap;    /* Agar tulisan tidak terpotong dan tetap 1 baris */
+    border-radius: 8px;     /* Sudut membulat */
+    font-size: 16px;        /* Ukuran font yang enak dibaca */
+    display: inline-flex;   /* Flex agar isi tombol center */
+    align-items: center;    
+    justify-content: center;
+  }
+
+  /* Membuat logo dan tulisan AlphaByte berdampingan rapi */
+  .navmenu ul li a.d-flex {
+    display: flex;
+    align-items: center;
+    gap: 5px;               /* Jarak antar logo dan tulisan */
   }
 }
 

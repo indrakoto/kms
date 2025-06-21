@@ -5,7 +5,7 @@
   position: relative;
   background-image: url('/img/doodle.png');
   background-repeat: repeat;
-  background-size: 150px; /* Sesuaikan dengan ukuran di body */
+  background-size: 250px; /* Sesuaikan dengan ukuran di body */
   padding: 0;
   
   /* Warna overlay dengan transparansi */
@@ -16,7 +16,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.7); /* Putih transparan 70% */
+    background-color: rgba(255, 255, 255, 0.6); /* Putih transparan 70% */
     z-index: 1;
   }
   

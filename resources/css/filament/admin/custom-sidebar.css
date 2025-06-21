@@ -1,5 +1,5 @@
 /* resources/css/filament/admin/custom-sidebar.css */
-.fi-sidebar-nav {
+/*.fi-sidebar-nav {
     @apply space-y-1;
 }
 
@@ -20,4 +20,40 @@
     @apply absolute start-[2.75rem] top-1/2 h-px w-3 bg-gray-200 dark:bg-gray-700;
     content: '';
     transform: translateY(-50%);
+}*/
+
+/* Sidebar Putih */
+.fi-sidebar {
+    background-color: #f9f9f9 !important;
+}
+
+/* Main Area Putih */
+.fi-main {
+    background-color: #f9f9f9 !important;
+}
+
+/* Teks Item Sidebar */
+.fi-sidebar-item-label {
+    color: #333333 !important; /* Hitam pekat */
+    font-family: 'Inter', sans-serif; /* Opsional: Ganti font */
+}
+
+.fi-sidebar-item-icon {
+    color: #666666 !important; /* Abu-abu sedang */
+}
+
+/* Hover & Active State */
+.fi-sidebar-item:hover .fi-sidebar-item-label,
+.fi-sidebar-item-active .fi-sidebar-item-label {
+    color: #2563EB !important; /* Biru */
+}
+
+.fi-sidebar-item:hover .fi-sidebar-item-icon,
+.fi-sidebar-item-active .fi-sidebar-item-icon {
+    color: #2563EB !important; /* Biru */
+}
+
+/* Border Pemisah */
+.fi-sidebar-group-divider {
+    border-color: #E5E7EB !important; /* Abu-abu muda */
 }

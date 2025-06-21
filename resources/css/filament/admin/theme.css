@@ -1,21 +1,55 @@
-/* resources/css/filament/admin/theme.css */
-:root {
-    --primary-50: 236 253 245;
-    --primary-100: 209 250 229;
-    --primary-200: 167 243 208;
-    /* ... tambahkan variabel warna lainnya */
+@import '/vendor/filament/filament/resources/css/theme.css';
+/*
+.fi-sidebar-header {
+    background-color: #284173 !important;
 }
 
-.fi-main {
-    background-color: rgb(var(--gray-50));
+.fi .fi-topbar > nav {
+    background-color: #284173 !important;
 }
 
-/* resources/css/filament/admin/theme.css */
-.dark {
-    --primary-600: 101 116 205;
-    --gray-800: 30 41 59;
+.fi .fi-topbar > nav .fi-topbar-brand,
+.fi .fi-topbar > nav .fi-user-menu {
+    color: #ffffff !important;
+}
+*/
+.fi-sidebar-header {
+    background-color: #284173 !important;
 }
 
-.dark .fi-sidebar {
-    @apply bg-gray-900;
+.fi .fi-topbar > nav {
+    background-color: #284173 !important;
+}
+
+.fi .fi-topbar > nav .fi-topbar-brand,
+.fi .fi-topbar > nav .fi-user-menu {
+    color: #ffffff !important;
+}
+
+/* Style menu topbar */
+.fi-topbar-item {
+    padding: 0.5rem !important;
+}
+
+.fi-topbar .top-navigation-widget a {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    color: #FFFFFF !important; /* Putih */
+    transition: color 0.2s ease-in-out !important;
+}
+
+.fi-topbar .top-navigation-widget a:hover {
+    color: #FFC541 !important; /* Kuning */
+    text-decoration: none !important;
+}
+
+/* Ganti warna brand name */
+.fi-brand-name {
+    color: #FFC541 !important; /* Kuning */
+    font-weight: 600 !important;
+}
+
+/* Hover effect */
+.fi-brand-name:hover {
+    color: #FFB82E !important; /* Kuning lebih gelap */
 }
