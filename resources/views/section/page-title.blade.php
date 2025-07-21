@@ -13,7 +13,7 @@
               )
           );
           @endphp 
-          <li>{{ ucwords($controllerName) }}</li>
+          <li><a href="{{ route($controllerName.'.index') }}">{{ ucwords($controllerName) }}</a></li>
           @php
           if(isset($article->title)) {
             $title = '<li>'.$article->title.'</li>';
