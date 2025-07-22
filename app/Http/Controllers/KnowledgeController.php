@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 class KnowledgeController extends Controller
 {
 
+    public function list()
+    {
+        $institusis = Institusi::getMenuInstitusi(); // ⬅ penting agar sidebar tetap muncul
+
+        return view('knowledges.list', compact('institusis'));
+
+    }
         // Menampilkan semua artikel dengan pagination
     public function index()
     {

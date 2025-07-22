@@ -19,9 +19,11 @@ Route::get('/', function () {
     return redirect('/beranda');
 });
 
-Route::get('/login', function () {
-    return redirect('/administrator');
-});
+//Route::get('/login', function () {
+//    return redirect('/administrator');
+//});
+
+
 
 Route::get('/beranda', function () {
     // Mengambil 5 analisis terbaru
@@ -52,6 +54,9 @@ Route::prefix('knowledge')->group(function() {
     Route::get('/', [KnowledgeController::class, 'index'])
         ->name('knowledge.index');
 
+    Route::get('/list', [KnowledgeController::class, 'list'])
+        ->name('knowledge.list');
+
     Route::get('/search', [KnowledgeController::class, 'search'])
         ->name('knowledge.search');
     
@@ -80,7 +85,6 @@ Route::prefix('knowledge')->group(function() {
         ->name('knowledge.tag');
  
 });
-
 
 
 /*
@@ -183,3 +187,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middle
 
 Route::get('/registrasi', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/registrasi', [RegisterController::class, 'register'])->name('register.submit');
+
+//Route::get('/auth', function () {
+    //return redirect('/administrator');
+//})->name('auth.index');

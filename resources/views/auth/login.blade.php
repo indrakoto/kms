@@ -8,8 +8,9 @@
 @section('content')
 <!-- Forum Section -->
 <section id="forum" class="forum section">
-    
-    @include('section.page-title')
+
+    @include('section.breadcrumb')
+
     <div class="container" style="max-width: 400px;">
         <div class="card mb-4 border rounded" style="border-color: #e0e0e0 !important;">
             <div class="card-body p-4">

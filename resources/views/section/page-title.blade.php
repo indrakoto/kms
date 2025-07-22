@@ -12,6 +12,7 @@
                   class_basename(request()->route()->getController())
               )
           );
+          //$controllerName
           @endphp 
           <li><a href="{{ route($controllerName.'.index') }}">{{ ucwords($controllerName) }}</a></li>
           @php

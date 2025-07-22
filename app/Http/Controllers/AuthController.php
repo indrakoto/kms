@@ -10,7 +10,13 @@ class AuthController extends Controller
     // Tampilkan form login
     public function showLoginForm()
     {
-        return view('auth.login');  // Buat file resources/views/auth/login.blade.php
+        $breadcrumbs = [
+            ['title' => 'Beranda', 'url' => route('beranda.index')],
+            ['title' => 'Login', 'url' => route('login')],
+            //['title' => $product->name, 'url' => route('product.show', $product)],
+        ];
+        //return view('auth.login');  // Buat file resources/views/auth/login.blade.php
+        return view('auth.login', compact('breadcrumbs'));
     }
 
     // Proses login

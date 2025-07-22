@@ -16,7 +16,7 @@ use DominionSolutions\FilamentCaptcha\Forms\Components\Captcha;
 
 class CustomLogin extends BaseLogin
 {
-    //protected static string $view = 'filament.pages.auth.login';
+    protected static string $view = 'filament.pages.auth.login';
 
     public function getTitle(): string|Htmlable
     {
