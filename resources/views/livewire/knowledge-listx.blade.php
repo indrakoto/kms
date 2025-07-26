@@ -1,4 +1,26 @@
 <div>
+    <!-- Knowledges Section -->
+    <section id="knowledges" class="knowledges section">
+        @include('section.page-title')
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar untuk memilih Institusi -->
+                <div class="col-lg-3">
+                    <div class="mb-4">
+                        <!-- Include Search Form -->
+                        @include('section.search')
+                    </div>
+                    <div class="menu-myside">
+                        @foreach ($institusis as $item)
+                            @include('section.sidebar-knowledge', ['item' => $item])
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Konten untuk Artikel Knowledge (Livewire) -->
+                <div class="col-lg-9">
+
+
     <div class="d-flex justify-content-end mb-3">
         <button
             wire:click="$set('viewMode', 'list')"
@@ -19,7 +41,7 @@
         </button>
     </div>
 
-    @if ($viewMode === 'list')
+    @if ($viewMode === 'listx')
         <div class="row">
             @foreach ($knowledges as $article)
                 <div class="col-12 mb-3">
@@ -123,5 +145,15 @@
             {{ $knowledges->links() }}
         </div>
     </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Knowledges Section -->
+
+
 
 </div>

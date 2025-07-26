@@ -16,6 +16,17 @@
     ],
   ];
 
+  // Tambahkan menu toggle theme
+  $menus[] = [
+      'label' => '
+      <button id="toggleThemeBtn" class="btn-toggle-theme" aria-label="Toggle Theme" title="Switch Theme" type="button" style="all: unset; cursor: pointer;">
+          <i class="bi bi-sun" style="display: inline;"></i>
+          <i class="bi bi-moon" style="display: none;"></i>
+      </button>',
+      'url' => '#',
+      'raw' => true,
+  ];
+
   if(Auth::check()) {
 
     // Nama user menu
@@ -53,6 +64,10 @@
       'raw' => true,
     ];
   }
+
+
+
+
 @endphp
 
 

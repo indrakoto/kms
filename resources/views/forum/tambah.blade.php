@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('title', 'Tambah Artikel Forum')
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/forum.css') }}">
-@endpush
 
 @section('content')
 <!-- Forum Section -->

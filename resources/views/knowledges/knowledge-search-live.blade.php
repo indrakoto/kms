@@ -2,10 +2,6 @@
 
 @section('title', 'KMS - Knowledge')
 
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/mysidebar.css') }}">
-@endpush
-
 @section('content')
     @include('section.page-title')
     <!-- Knowledges Section -->

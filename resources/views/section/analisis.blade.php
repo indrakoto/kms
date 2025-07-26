@@ -3,6 +3,7 @@
   <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
     <h2 style="text-align:center">Analisis</h2>
     <div class="analisis-slider swiper init-swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+    @push('styles')
       <script type="application/json" class="swiper-config">
         {
           "loop": true,
@@ -42,30 +43,11 @@
           }
         }
       </script>
+    @endpush
+
 
       <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-438.667px, 0px, 0px); cursor: grab; transition-delay: 0ms;" id="swiper-wrapper-cba1f6391463fe04" aria-live="off">
-        <!-- Analisis Card 1 -->
-        
 
-        <!-- Analisis Card 2 -->
-        
-
-        <!-- Analisis Card 3 -->
-        
-
-        <!-- Analisis Card 4 -->
-        
-
-        <!-- Analisis Card 5 -->
-        
-
-        <!-- Analisis Card 6 -->
-        
-
-        <!-- Analisis Card 7 -->
-        
-
-        <!-- Analisis Card 8 -->
         
         <div class="swiper-slide" style="width: 199.333px; margin-right: 20px;" role="group" aria-label="6 / 8" data-swiper-slide-index="1">
           <div class="analisis-card aos-init aos-animate" data-aos="fade-up" data-aos-delay="400">

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use IbrahimBougaoua\FilamentSortOrder\Traits\SortOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Institusi extends Model
 {
-    use HasFactory;
+    use HasFactory, SortOrder;
 
     // Nama tabel jika berbeda dari konvensi Laravel
     protected $table = 'kms_institusi';
@@ -54,10 +55,10 @@ class Institusi extends Model
     public static function getMenuInstitusi()
     {
         return self::with(['children' => function($query) {
-                $query->orderBy('name');
+                $query->orderBy('sort_order');
             }])
             ->whereNull('parent')
-            ->orderBy('name')
+            ->orderBy('sort_order')
             ->get();
     }
 

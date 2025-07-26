@@ -13,14 +13,43 @@ class KnowledgeController extends Controller
 
     public function list()
     {
+        $breadcrumbs = [
+            ['title' => 'Beranda', 'url' => route('beranda.index')],
+            ['title' => 'Knowledge', 'url' => route('knowledge.list')],
+            //['title' => $product->name, 'url' => route('product.show', $product)],
+        ];
+
         $institusis = Institusi::getMenuInstitusi(); // ⬅ penting agar sidebar tetap muncul
 
-        return view('knowledges.list', compact('institusis'));
+        return view('knowledges.list', compact('institusis', 'breadcrumbs'));
+
+    }   
+    
+    public function listx()
+    {
+        $breadcrumbs = [
+            ['title' => 'Beranda', 'url' => route('beranda.index')],
+            ['title' => 'Knowledge', 'url' => route('knowledge.list')],
+            //['title' => $product->name, 'url' => route('product.show', $product)],
+        ];
+
+        $institusis = Institusi::getMenuInstitusi(); // ⬅ penting agar sidebar tetap muncul
+
+        return view('knowledges.listx', compact('institusis', 'breadcrumbs'));
 
     }
-        // Menampilkan semua artikel dengan pagination
+    
+    // Menampilkan semua artikel dengan pagination  
     public function index()
     {
+        return redirect('/knowledge/list');
+        //die();
+        $breadcrumbs = [
+            ['title' => 'Beranda', 'url' => route('beranda.index')],
+            ['title' => 'Knowledge', 'url' => route('knowledge.list')],
+            //['title' => $product->name, 'url' => route('product.show', $product)],
+        ];
+
         // Ambil 9 artikel terbaru
         $knowledges = Article::with(['institusi', 'category', 'tags'])
             ->where([
@@ -32,7 +61,7 @@ class KnowledgeController extends Controller
         
         $institusis = Institusi::getMenuInstitusi();
 
-        return view('knowledges.index', compact('knowledges','institusis'));
+        return view('knowledges.index', compact('knowledges','institusis', 'breadcrumbs'));
     }
     
     public function byInstitusi($slug)

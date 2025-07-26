@@ -15,6 +15,12 @@ class AnalisisController extends Controller
 
     public function index()
     {
+        $breadcrumbs = [
+            ['title' => 'Beranda', 'url' => route('beranda.index')],
+            ['title' => 'Knowledge', 'url' => route('knowledge.list')],
+            //['title' => $product->name, 'url' => route('product.show', $product)],
+        ];
+
         $analisis       = Article::where('category_id', '=', 1)->get();
         $analisisList   = Article::where([
                                 ['category_id', '=', 1],
@@ -30,6 +36,7 @@ class AnalisisController extends Controller
             'analisisList' => $analisisList,
             'layananList' => $layanan_publik,
             'activeAnalisis' => null,
+            'breadcrumbs' => $breadcrumbs
         ]);
     }
 

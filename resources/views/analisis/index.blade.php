@@ -5,7 +5,7 @@
 @section('content')
   
 <section id="analisis" class="analisis section">
-  @include('section.page-title')
+  @include('section.breadcrumb')
   
   <div class="container">
   <!-- Dropdown Button Analisis -->

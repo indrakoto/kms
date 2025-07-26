@@ -23,9 +23,8 @@
   <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-  <!-- Main CSS -->
-  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+  <!-- Default to light mode -->
+  <link rel="stylesheet" href="{{ asset('assets/css/light.css') }}" id="theme-link" />
 
   @stack('styles')
   @livewireStyles
@@ -53,6 +52,61 @@
   <!-- Main JS -->
   <script src="{{ asset('assets/js/main.js') }}"></script>
   @livewireScripts
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('toggleThemeBtn');
+        const themeLink = document.getElementById('theme-link');
+        const iconSun = toggleBtn ? toggleBtn.querySelector('.bi-sun') : null;
+        const iconMoon = toggleBtn ? toggleBtn.querySelector('.bi-moon') : null;
+
+        function switchTheme(theme) {
+            if (theme === 'dark') {
+                themeLink.href = "{{ asset('assets/css/dark.css') }}";
+                if (iconSun && iconMoon) {
+                    iconSun.style.display = 'none';
+                    iconMoon.style.display = 'inline';
+                }
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeLink.href = "{{ asset('assets/css/light.css') }}";
+                if (iconSun && iconMoon) {
+                    iconSun.style.display = 'inline';
+                    iconMoon.style.display = 'none';
+                }
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Cek preferensi yang sudah tersimpan di localStorage
+        let savedTheme = localStorage.getItem('theme');
+
+        if (!savedTheme) {
+            // Jika belum ada preferensi, cek preferensi sistem/browser dengan media query
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                savedTheme = 'dark';
+            } else {
+                savedTheme = 'light';
+            }
+        }
+
+        // Terapkan tema yang ditemukan
+        switchTheme(savedTheme);
+
+        // Event listener toggle tombol
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                const currentTheme = localStorage.getItem('theme');
+                switchTheme(currentTheme === 'light' ? 'dark' : 'light');
+            });
+        }
+    });
+</script>
+@endpush
+
+
+
   @stack('scripts')
 </body>
 </html>

@@ -1,0 +1,252 @@
+/* Dark Mode Overrides */
+:root {
+  /* Core Colors */
+  --background-color: #060606;
+  --default-color: #e0e0e0;
+  --heading-color: #f0f0f0;
+  --accent-color: #74a1d7;
+  --surface-color: #252525;
+  --contrast-color: #ffffff;
+
+  /* Navigation Colors */
+  --nav-color: #e0e0e0;
+  --nav-hover-color: #f5a623;
+  --nav-mobile-background-color: #1e1e1e;
+  --nav-dropdown-background-color: #2c2c2c;
+  --nav-dropdown-color: #e0e0e0;
+  --nav-dropdown-hover-color: #f5a623;
+  --nav-float-color: #f5a623;
+}
+
+
+.light-background {
+  --background-color: #060606;
+  --surface-color: #252525;
+}
+
+.dark-background {
+  --background-color: #060606;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #252525;
+  --contrast-color: #ffffff;
+}
+
+.dongker-background {
+  --background-color: #060606;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #252525;
+  --contrast-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/* Body and Global */
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+  background-image: none; /* Disable background doodle in dark mode to reduce noise */
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Links */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 50%);
+  text-decoration: underline;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+/* Surface containers */
+.surface {
+  background-color: var(--surface-color);
+  color: var(--contrast-color);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.85);
+  border-radius: 6px;
+  padding: 1em;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navigation */
+nav {
+  background-color: var(--nav-mobile-background-color);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.9);
+}
+
+nav a,
+nav .nav-link {
+  color: var(--nav-color);
+  padding: 0.75em 1em;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+nav a:hover,
+nav .nav-link:hover,
+nav .nav-link.active {
+  color: var(--nav-hover-color);
+  background-color: transparent;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  background-color: var(--nav-dropdown-background-color);
+  color: var(--nav-dropdown-color);
+  border: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.9);
+  border-radius: 4px;
+}
+
+.dropdown-menu a.dropdown-item {
+  color: var(--nav-dropdown-color);
+  padding: 0.5em 1em;
+  display: block;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.dropdown-menu a.dropdown-item:hover {
+  color: var(--nav-dropdown-hover-color);
+  background-color: transparent;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--contrast-color);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--accent-color), black 20%);
+  border-color: color-mix(in srgb, var(--accent-color), black 20%);
+  color: var(--contrast-color);
+}
+
+/* Inputs, Textarea, Select */
+input, textarea, select {
+  background-color: var(--surface-color);
+  color: var(--default-color);
+  border: 1px solid #555555;
+  border-radius: 4px;
+  padding: 0.5em;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #bbb;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+  border: 2px solid var(--surface-color);
+}
+
+/* Utility spacing fixes */
+section, header, footer, main, article, aside {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Adjust margin-bottom for paragraphs for readability */
+p {
+  margin-bottom: 1rem;
+}
+
+/* Ensure consistent box-sizing */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/* Responsive fixes for dark mode if layout issues */
+@media (max-width: 768px) {
+  nav a,
+  nav .nav-link {
+    padding: 0.5em 0.75em;
+  }
+}
+
+/* Specific fixes for known layout issues */
+.hero-section {
+  background-color: var(--background-color);
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--heading-color);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--nav-mobile-background-color);
+}
+
+/* Add transitions for smoother toggle effect */
+body, nav, .surface, input, textarea, select, a, h1,h2,h3,h4,h5,h6, .btn-primary {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* ==== Responsive Navmenu Buttons & Logo at Mobile ==== */
+@media (max-width: 1199px) {
+  .header {
+    padding: 10px 0;
+  }
+  .navmenu ul li a button {
+    min-width: 140px;
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
+    border-radius: 8px;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface-color); /* atau sesuaikan agar kontras dengan dark bg */
+    color: var(--default-color);
+    border: 1px solid #444; /* border sedikit terang untuk tombol */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .navmenu ul li a button:hover {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+  }
+  .navmenu ul li a.d-flex {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}

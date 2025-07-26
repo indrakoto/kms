@@ -11,6 +11,7 @@
         "filament/filament": "^3.3",
         "firebase/php-jwt": "^6.11",
         "hasnayeen/themes": "^3.0",
+        "ibrahimbougaoua/filament-sort-order": "^1.1",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "mews/purifier": "^3.4",

@@ -13,6 +13,10 @@ use Filament\Forms\Components\Repeater;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+
+use IbrahimBougaoua\FilamentSortOrder\Actions\DownStepAction;
+use IbrahimBougaoua\FilamentSortOrder\Actions\UpStepAction;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Get;
@@ -144,7 +148,10 @@ class InstitusiResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                DownStepAction::make(),
+                UpStepAction::make()
             ])
+            //->defaultSort('sort_order', 'asc')
             ->bulkActions([
                     Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

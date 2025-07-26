@@ -2,14 +2,12 @@
 
 @section('title', 'KMS - Knowledge')
 
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/mysidebar.css') }}">
-@endpush
-
 @section('content')
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
-        @include('section.page-title')
+        
+        @include('section.breadcrumb')
+
         <div class="container">
             <div class="row">
                 <!-- Sidebar untuk memilih Institusi -->

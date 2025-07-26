@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 use App\Models\Article; // Sesuaikan dengan modelmu
 use App\Models\Institusi;
 
-class KnowledgeList extends Component
+class KnowledgeListx extends Component
 {
     use WithPagination;
 

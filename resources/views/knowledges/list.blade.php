@@ -2,10 +2,6 @@
 
 @section('title', 'KMS - Knowledge')
 
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/mysidebar.css') }}">
-@endpush
-
 @section('content')
     <!-- Knowledges Section -->
     <section id="knowledges" class="knowledges section">
@@ -36,5 +32,33 @@
 @endsection
 
 @push('scripts')
-  <script src="{{ asset('assets/js/mysidebar.js') }}"></script>
+<script>
+function toggleSubMenu(id, parent) {
+    var submenu = document.getElementById(id);
+    if (submenu) {
+        submenu.classList.toggle('show');
+        var icon = parent.querySelector('.menu-arrow');
+        if (icon) {
+            icon.classList.toggle('rotate-180');
+        }
+    }
+}
+function attachDropdownEvents() {
+    document.querySelectorAll('.menu-parent').forEach(function(parent) {
+        parent.onclick = function() {
+            var id = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+            toggleSubMenu(id, this);
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', function () {
+    attachDropdownEvents();
+});
+document.addEventListener('livewire:navigated', function () {
+    attachDropdownEvents();
+});
+document.addEventListener('livewire:update', function () {
+    attachDropdownEvents();
+});
+</script>
 @endpush

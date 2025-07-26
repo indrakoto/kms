@@ -23,8 +23,6 @@ Route::get('/', function () {
 //    return redirect('/administrator');
 //});
 
-
-
 Route::get('/beranda', function () {
     // Mengambil 5 analisis terbaru
     $latestAnalisis = Analisis::latest()->take(5)->get();
@@ -57,6 +55,9 @@ Route::prefix('knowledge')->group(function() {
     Route::get('/list', [KnowledgeController::class, 'list'])
         ->name('knowledge.list');
 
+    Route::get('/listx', [KnowledgeController::class, 'listx'])
+        ->name('knowledge.listx');
+        
     Route::get('/search', [KnowledgeController::class, 'search'])
         ->name('knowledge.search');
     
@@ -106,6 +107,7 @@ Route::get('/geo-portal', function () {
 Route::get('/ai', function () {
     return redirect('/aplhabyte');
 });
+
 Route::get('/aplhabyte', function () {
     return view('ai');
 });

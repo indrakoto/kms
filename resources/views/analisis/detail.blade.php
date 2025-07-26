@@ -2,10 +2,6 @@
 
 @section('title', 'KMS-Analisis')
 
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/tableau.css') }}">
-@endpush
-
 @section('content')
 
 <section id="analisis" class="analisis-details section">

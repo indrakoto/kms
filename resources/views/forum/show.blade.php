@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Forum')
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/forum.css') }}">
-@endpush
+
+
 @section('content')
 <!-- Forum Section -->
 <section id="forum" class="forum section">

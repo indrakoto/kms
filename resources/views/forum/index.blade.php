@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Forum')
-@push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/forum.css') }}">
-@endpush
+
+
 @section('content')
     <!-- Forum Section -->
     <section id="forum" class="forum section">
@@ -12,14 +11,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="card mb-3 border rounded" style="border-color: #e0e0e0 !important;">
+                    <div class="card mb-3 forum-main">
                         <div class="card-body">
                             <h3 class="mb-4">Forum</h3>                    
                             <div class="d-flex mb-4 justify-content-between align-items-center">
-                                <div>
-                                    <strong class="me-3">Recent</strong>
-                                    <a href="#" class="text-decoration-none text-muted me-3">Featured</a>
-                                    <a href="#" class="text-decoration-none text-muted me-3">Popular</a>
+                                <div class="menu-forum">
+                                    <a href="#" class="text-decoration-none me-3 active">Recent</a>
+                                    <a href="#" class="text-decoration-none me-3">Featured</a>
+                                    <a href="#" class="text-decoration-none me-3 ">Popular</a>
                                 </div>
                                 
                                 <div class="d-flex align-items-center ms-auto gap-2">
@@ -46,7 +45,7 @@
                     </div>
 
                     @foreach($threads as $thread)
-                    <div class="card mb-3 border rounded" style="border-color: #e0e0e0 !important;">
+                    <div class="card mb-3 forum-thread">
                         <div class="card-body p-3">
                             <div class="d-flex">
                                 <!-- Foto profil di sebelah kiri -->
@@ -88,12 +87,12 @@
                 </div>
                 
                 <div class="col-md-4">
-                    <div class="card border rounded" style="border-color: #e0e0e0 !important;">
+                    <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Kontributor Teratas</h5>
-                            <p class="text-muted small">Pengguna yang memiliki diskusi terbanyak.</p>
+                            <p class="small sub-title">Pengguna yang memiliki diskusi terbanyak.</p>
                             
-                            <ul class="list-unstyled">
+                            <ul class="list-unstyled contributor">
                                 @foreach($topContributors as $contributor)
                                 <li class="mb-2">
                                     <div class="d-flex align-items-center">
