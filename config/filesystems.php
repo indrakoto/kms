@@ -53,6 +53,12 @@ return [
             'url' => env('APP_URL') . '/articles/thumbnails',
             'visibility' => 'public',
         ],
+        
+        'alphabyte_data' => [
+            'driver' => 'local',
+            'root' => storage_path('app/alphabyte_data'),
+            'visibility' => 'private',
+        ],
 
         's3' => [
             'driver' => 's3',

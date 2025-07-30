@@ -6,7 +6,7 @@ use App\Models\Article;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class AnalysisStatsWidget_X extends BaseWidget
+class AnalysisStatsWidget extends BaseWidget
 {
     protected static ?string $maxHeight = '300px';
     protected int | string | array $columnSpan = 'full';

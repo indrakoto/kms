@@ -193,3 +193,11 @@ Route::post('/registrasi', [RegisterController::class, 'register'])->name('regis
 //Route::get('/auth', function () {
     //return redirect('/administrator');
 //})->name('auth.index');
+Route::get('/test-error', function () {
+    $a = 10; 
+    $b = 20;
+    // Trigger error
+    throw new Exception("Coba error Laravel 11 dikirim ke Telegram!!");
+    //return $a;
+});
+
