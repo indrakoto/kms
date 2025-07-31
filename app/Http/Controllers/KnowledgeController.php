@@ -24,21 +24,7 @@ class KnowledgeController extends Controller
         return view('knowledges.list', compact('institusis', 'breadcrumbs'));
 
     }   
-    
-    public function listx()
-    {
-        $breadcrumbs = [
-            ['title' => 'Beranda', 'url' => route('beranda.index')],
-            ['title' => 'Knowledge', 'url' => route('knowledge.list')],
-            //['title' => $product->name, 'url' => route('product.show', $product)],
-        ];
 
-        $institusis = Institusi::getMenuInstitusi(); // ⬅ penting agar sidebar tetap muncul
-
-        return view('knowledges.listx', compact('institusis', 'breadcrumbs'));
-
-    }
-    
     // Menampilkan semua artikel dengan pagination  
     public function index()
     {
@@ -66,6 +52,12 @@ class KnowledgeController extends Controller
     
     public function byInstitusi($slug)
     {
+        $breadcrumbs = [
+            ['title' => 'Beranda', 'url' => route('beranda.index')],
+            ['title' => 'Knowledge', 'url' => route('knowledge.list')],
+            //['title' => $product->name, 'url' => route('product.show', $product)],
+        ];
+
         // 1. Cari institusi/sub-institusi berdasarkan slug (unik)
         $institusi = Institusi::where('slug', $slug)
             ->with(['parentRelation', 'children']) // Eager load relasi
@@ -82,19 +74,18 @@ class KnowledgeController extends Controller
             ->paginate(9);
     
         // 3. Ambil semua institusi untuk sidebar (parent saja + children)
-        /*$sidebarInstitusi = Institusi::with(['children' => function($query) {
-                $query->orderBy('name');
-            }])
-            ->whereNull('parent')
-            ->orderBy('name')
-            ->get();*/
         $institusis = Institusi::getMenuInstitusi();
-    
-        return view('knowledges.institusi', [
+        
+        return view('knowledges.list-institusi', [
+            'slug' => $slug,
             'knowledges'       => $knowledges,
-            'institusi' => $institusi,
             'institusis'        => $institusis // Untuk menu sidebar
         ]);
+        /*
+        return view('knowledges.institusi', [
+            'knowledges'       => $knowledges,
+            'institusis'        => $institusis // Untuk menu sidebar
+        ]);*/
     }
 
     // Show articles by Category
