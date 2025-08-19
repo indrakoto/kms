@@ -87,12 +87,15 @@ class BasisdataAlphabyteResource extends Resource
                         // Kirim POST request ke API proses
                         $response = Http::post(route('alphabyte.process', ['id' => $record->id]));
 
+                        //dd( $response->body());
+
                         if ($response->successful()) {
                             $record->is_processed = 1;
                             $record->save();
 
                             Notification::make()
-                                ->title('Proses API berhasil dijalankan.')
+                                ->title($response->body())
+                                ->body($response->body())
                                 ->success()
                                 ->send();
                         } else {
