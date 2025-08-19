@@ -43,4 +43,8 @@ return [
         'audience' => env('TABLEAU_AUDIENCE'),
     ],
 
+    'python' => [
+        'path' => env('PYTHON_PATH', '/usr/bin/python3'),
+    ],
+
 ];
