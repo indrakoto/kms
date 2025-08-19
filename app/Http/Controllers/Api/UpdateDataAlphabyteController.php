@@ -18,8 +18,8 @@ class UpdateDataAlphabyteController extends Controller
         try {
 
             //$output = shell_exec('/Users/indra/Projects/AI/flaskdeploy/venv/bin/python /Users/indra/Projects/AI/flaskdeploy/loadpdfv2.py 2>&1');
-            $output = shell_exec('/Users/indra/Projects/AI/flaskdeploy/venv/bin/python /Users/indra/Projects/AI/flaskdeploy/loadpdfv2.py');
-            //$output = shell_exec('/home/administrator/flaskdeploy/venv/bin/python /home/administrator/flaskdeploy/loadpdfv2.py ');
+            //$output = shell_exec('/Users/indra/Projects/AI/flaskdeploy/venv/bin/python /Users/indra/Projects/AI/flaskdeploy/loadpdfv2.py');
+            $output = shell_exec('/home/administrator/flaskdeploy/venv/bin/python /home/administrator/flaskdeploy/loadpdfv2.py ');
             return response()->json(['output' => $output]);
 
             //dd($output2); // atau return response()->json(['output' => $output]);
