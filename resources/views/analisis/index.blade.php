@@ -83,7 +83,12 @@
           <div class="col-lg-3 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
             <div class="analisis-item mb-4">
               <div class="">
-                <img src="{{ asset('img/rectangle-23.png') }}" class="img-fluid" alt="...">
+                @php
+                    $thumbnail = $aList->thumbnail 
+                        ? asset('articles/thumbnails/' . $aList->thumbnail)
+                        : asset('img/rectangle-23.png');
+                @endphp
+                <img src="{{ $thumbnail }}" class="img-fluid" alt="...">
                 @if($item->redirect_link==1)
                     <h3 class="mt-3"><a href="{{ $item->embed_link }}">{{ $item->short_title }}</a></h3>
                 @else
