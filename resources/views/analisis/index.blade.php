@@ -50,7 +50,7 @@
                 <div class="analisis-content">                                
                   @php
                       $thumbnail = $aList->thumbnail 
-                          ? asset('articles/thumbnails/' . $aList->thumbnail)
+                          ? asset('articles/thumbnails' . $aList->thumbnail)
                           : asset('img/rectangle-23.png');
                   @endphp
                   <img src="{{ $thumbnail }}" class="img-fluid" alt="...">
@@ -85,7 +85,7 @@
               <div class="">
                 @php
                     $thumbnail = $item->thumbnail 
-                        ? asset('articles/thumbnails/' . $item->thumbnail)
+                        ? asset('articles/thumbnails' . $item->thumbnail)
                         : asset('img/rectangle-23.png');
                 @endphp
                 <img src="{{ $thumbnail }}" class="img-fluid" alt="...">
