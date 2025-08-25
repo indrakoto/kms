@@ -84,8 +84,8 @@
             <div class="analisis-item mb-4">
               <div class="">
                 @php
-                    $thumbnail = $aList->thumbnail 
-                        ? asset('articles/thumbnails/' . $aList->thumbnail)
+                    $thumbnail = $item->thumbnail 
+                        ? asset('articles/thumbnails/' . $item->thumbnail)
                         : asset('img/rectangle-23.png');
                 @endphp
                 <img src="{{ $thumbnail }}" class="img-fluid" alt="...">
