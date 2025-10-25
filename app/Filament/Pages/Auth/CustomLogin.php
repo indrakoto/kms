@@ -23,6 +23,22 @@ class CustomLogin extends BaseLogin
         return __('Panel Admin');
         //return 'false';
     }
+
+    protected function getForms(): array
+    {
+        return [
+            'form' => $this->form(
+                $this->makeForm()
+                    ->schema([
+                        $this->getEmailFormComponent(),
+                        $this->getPasswordFormComponent(),
+                        $this->getCaptchaFormComponent(),
+                        $this->getRememberFormComponent(),
+                    ])
+                    ->statePath('data'),
+            ),
+        ];
+    }
     
     public function hasLogo(): bool
     {
@@ -42,4 +58,15 @@ class CustomLogin extends BaseLogin
         ]);
     }
 
+    protected function getCaptchaFormComponent(): Component
+    {
+        return Captcha::make('captcha')
+                ->rules(['captcha'])
+                ->required()
+                ->validationMessages([
+                    'captcha'  =>  __('Captcha does not match the image'),
+                ])
+                ->extraInputAttributes(['tabindex' =>4])
+                ->view('vendor.filament-captcha.form.components.captcha');
+    }
 }
