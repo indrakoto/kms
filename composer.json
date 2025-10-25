@@ -8,12 +8,16 @@
     "require": {
         "php": "^8.2",
         "codewithdennis/filament-select-tree": "^3.1",
+        "dominion-solutions/filament-captcha": "^0.2.0",
         "filament/filament": "^3.3",
         "firebase/php-jwt": "^6.11",
+        "google/apiclient": "^2.18",
         "hasnayeen/themes": "^3.0",
         "ibrahimbougaoua/filament-sort-order": "^1.1",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "masbug/flysystem-google-drive-ext": "^2.4",
+        "mews/captcha": "^3.4",
         "mews/purifier": "^3.4",
         "michaeld555/filament-croppie": "^1.0",
         "tomatophp/filament-users": "^2.0"

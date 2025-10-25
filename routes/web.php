@@ -13,6 +13,7 @@ use App\Http\Livewire\KnowledgeSearch;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\GoogleDriveController;
 
 Route::get('/', function () {
     //return view('beranda');
@@ -58,8 +59,8 @@ Route::prefix('knowledge')->group(function() {
     Route::get('/listx', [KnowledgeController::class, 'listx'])
         ->name('knowledge.listx');
         
-    Route::get('/search', [KnowledgeController::class, 'search'])
-        ->name('knowledge.search');
+    //Route::get('/search', [KnowledgeController::class, 'search'])
+    //    ->name('knowledge.search');
     
     // Tampilkan halaman search (GET)
     Route::get('/search', [KnowledgeController::class, 'showSearchPage'])
@@ -84,8 +85,38 @@ Route::prefix('knowledge')->group(function() {
     // Display knowledge by Tag
     Route::get('/tags/{tag_name}', [KnowledgeController::class, 'byTag'])
         ->name('knowledge.tag');
- 
+
+
+    Route::get('/driveindex', [GoogleDriveController::class, 'index'])
+        ->name('knowledge.drive.index');
+    //Route::get('/drive/folder/{folderId}', [GoogleDriveController::class, 'showFolder'])->name('knowledge.drive.folder');
+    //Route::get('/drive/file/{fileId}', [GoogleDriveController::class, 'viewFile'])->name('knowledge.drive.file.view');
+    //Route::get('/drive/file/{fileId}/download', [GoogleDriveController::class, 'downloadFile'])->name('knowledge.drive.file.download');
+
 });
+
+Route::get('/knowledge-drive/test', [GoogleDriveController::class, 'test'])
+    ->name('knowledge.drive.test');
+
+Route::get('/knowledge-drive', [GoogleDriveController::class, 'index'])
+    ->name('knowledge.drive.index');
+
+Route::get('/knowledge-drive/list', [GoogleDriveController::class, 'listContents'])
+    ->name('knowledge.drive.list');
+
+Route::get('/knowledge-drive/preview/{fileId}', [GoogleDriveController::class, 'preview'])
+    ->name('knowledge.drive.preview');
+
+Route::get('/knowledge-drive/preview/{fileId}/download', [GoogleDriveController::class, 'download'])
+     ->name('knowledge.drive.download');
+
+Route::get('/knowledge-drive/check-access/{folderId}', [GoogleDriveController::class, 'checkAccess']);
+
+#Route::get('/knowledge-drive/folder/{folderId}', [GoogleDriveController::class, 'showFolder'])->name('knowledge.drive.folder');
+
+//Route::get('/knowledge-drive/file/{fileId}', [GoogleDriveController::class, 'viewFile'])->name('knowledge.drive.file.view');
+
+##Route::get('/knowledge-drive/files', [GoogleDriveController::class, 'listFolderFiles'])->name('knowledge.drive.files');
 
 
 /*
